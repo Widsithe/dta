@@ -2,14 +2,3 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Raleway');
-$font-tilte: 'Raleway',
-sans-serif;
-$font-body: 'Noto Sans',
-sans-serif;
-body {
-    font-family: $font-body;
-}
-
-h1 {
-    font-family: $font-tilte;
-}
