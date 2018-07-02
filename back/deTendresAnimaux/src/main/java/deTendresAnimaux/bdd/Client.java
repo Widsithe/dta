@@ -1,7 +1,6 @@
 package deTendresAnimaux.bdd;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -91,8 +90,8 @@ public class Client {
 		return dateDeNaissance;
 	}
 
-	public void setDateDeNaissance(LocalDate dateDeNaissance) {
-		this.dateDeNaissance = dateDeNaissance;
+	public void setDateDeNaissance(LocalDate date) {
+		this.dateDeNaissance = date;
 	}
 
 	public String getMotDePasse() {

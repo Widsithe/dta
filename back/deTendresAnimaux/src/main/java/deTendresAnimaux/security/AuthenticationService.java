@@ -27,7 +27,7 @@ public class AuthenticationService implements UserDetailsService {
 		if (username.equals("admin1234")) {
 			rules.add(new SimpleGrantedAuthority("WRITE"));
 		}
-
+		
 		Client monClient = userDao.findUserAccount(username);
 		UserDetails monClientDetails = new org.springframework.security.core.userdetails.User(username,
 				monClient.getMotDePasse(), rules);

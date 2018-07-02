@@ -7,6 +7,8 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import deTendresAnimaux.bdd.Droit;
+
 public class DroitDao { //approledao
 
 	@Autowired
