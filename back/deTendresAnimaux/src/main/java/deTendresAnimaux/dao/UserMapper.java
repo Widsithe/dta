@@ -16,7 +16,7 @@ public class UserMapper implements RowMapper {
 		c.setEmail(rs.getString("email"));
 		c.setNom(rs.getString("nom"));
 		c.setPrenom(rs.getString("prenom"));
-		c.setDateDeNaissance(rs.getDate("dateDeNaissance"));    //localdate
+		c.setDateDeNaissance(rs.getDate("dateDeNaissance").toLocalDate());    //localdate
 		c.setMotDePasse(rs.getString("motDePasse"));
 		c.setTelephone(rs.getString("telephone"));
 		c.setAdresse(rs.getString("adresse"));
@@ -24,5 +24,7 @@ public class UserMapper implements RowMapper {
 		
 		return c;
 	}
+	
+
 
 }
