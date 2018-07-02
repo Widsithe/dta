@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu';
+
 import { AdopterComponent } from './adopter/adopter.component';
 import { AnimauxComponent } from './animaux/animaux.component';
 import { AnimauxDetailComponent } from './animaux-detail/animaux-detail.component';
@@ -27,7 +29,8 @@ import { PanierComponent } from './panier/panier.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
