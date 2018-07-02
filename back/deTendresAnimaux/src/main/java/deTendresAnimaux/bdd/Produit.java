@@ -11,7 +11,21 @@ public class Produit {
 	@GeneratedValue
 	private int idproduit;
 
-	private String Type;
+	public Produit(String type, String nom, int prix, int stock, String image, String description, Boolean active) {
+		this.type = type;
+		this.nom = nom;
+		this.prix = prix;
+		this.stock = stock;
+		this.image = image;
+		this.description = description;
+		this.active = active;
+	}
+	
+	public Produit() {
+		
+	}
+
+	private String type;
 
 	private String nom;
 
@@ -34,11 +48,11 @@ public class Produit {
 	}
 
 	public String getType() {
-		return Type;
+		return type;
 	}
 
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
 
 	public String getNom() {

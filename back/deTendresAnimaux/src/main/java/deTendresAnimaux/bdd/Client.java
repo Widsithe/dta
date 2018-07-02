@@ -13,6 +13,20 @@ public class Client {
 	@GeneratedValue
 	private int idclient;
 
+	public Client(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance, String motDePasse) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.email = email;
+		this.dateDeNaissance = dateDeNaissance;
+		this.motDePasse = motDePasse;
+	}
+	
+	public Client() {
+		
+	}
+
 	private String nom;
 
 	private String prenom;
