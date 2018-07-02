@@ -1,0 +1,12 @@
+$font-title: 'Raleway',
+sans-serif;
+button,
+.mat-button,
+.mat-fab,
+.mat-flat-button,
+.mat-icon-button,
+.mat-mini-fab,
+.mat-raised-button,
+.mat-stroked-button {
+    font: 16px/40px $font-title;
+}
