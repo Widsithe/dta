@@ -18,7 +18,7 @@ public class UserDao {
 	private EntityManager entityManager;
 
 	public Client findUserAccount(String userName) {
-		return this.jdbcTemplate.queryForObject("select * from usertable where login = ?", new Object[]{ username }, new UserMapper());
+		return this.jdbcTemplate.queryForObject("select * from client where login = ?", new Object[]{ userName }, new UserMapper());
 	}
 
 }

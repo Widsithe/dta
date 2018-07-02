@@ -1,7 +1,6 @@
 package deTendresAnimaux.bdd;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class Client {
 
 	private String email;
 
-	private Date dateDeNaissance;
+	private LocalDate dateDeNaissance;
 
 	private String motDePasse;
 
@@ -76,7 +75,7 @@ public class Client {
 		this.email = email;
 	}
 
-	public Date getDateDeNaissance() {
+	public LocalDate getDateDeNaissance() {
 		return dateDeNaissance;
 	}
 
