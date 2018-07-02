@@ -1,5 +1,6 @@
 package deTendresAnimaux.bdd;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -14,28 +15,36 @@ public class Client {
 
 	@Id
 	@GeneratedValue
-	private int idclient;
-
+	private int idClient;
 	private String nom;
-
 	private String prenom;
-
 	private String adresse;
-
 	private String telephone;
-
 	private String email;
-
-	private Date dateDeNaissance;
-
+	private LocalDate dateDeNaissance;
 	private String motDePasse;
-
-	public int getIdclient() {
-		return idclient;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Commande> client;
+	public Client() {
+	}
+	
+	public Client(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance, String motDePasse) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.email = email;
+		this.dateDeNaissance = dateDeNaissance;
+		this.motDePasse = motDePasse;
 	}
 
-	public void setIdclient(int idclient) {
-		this.idclient = idclient;
+	public int getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(int idclient) {
+		this.idClient = idclient;
 	}
 
 	public String getNom() {
@@ -78,11 +87,11 @@ public class Client {
 		this.email = email;
 	}
 
-	public Date getDateDeNaissance() {
+	public LocalDate getDateDeNaissance() {
 		return dateDeNaissance;
 	}
 
-	public void setDateDeNaissance(Date dateDeNaissance) {
+	public void setDateDeNaissance(LocalDate dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
 
@@ -94,7 +103,6 @@ public class Client {
 		this.motDePasse = motDePasse;
 	}
 	
-	@OneToMany(mappedBy = "clientCommande")
-	private List<Commande> commandeClient;
+
 
 }
