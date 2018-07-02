@@ -1,10 +1,13 @@
 package deTendresAnimaux.bdd;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Client {
@@ -90,5 +93,8 @@ public class Client {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	
+	@OneToMany(mappedBy = "clientCommande")
+	private List<Commande> commandeClient;
 
 }
