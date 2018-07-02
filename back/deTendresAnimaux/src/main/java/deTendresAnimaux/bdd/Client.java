@@ -1,50 +1,38 @@
 package deTendresAnimaux.bdd;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 
 @Entity
 public class Client {
 
 	@Id
 	@GeneratedValue
-	private int idClient;
+	private int idclient;
+
 	private String nom;
+
 	private String prenom;
+
 	private String adresse;
+
 	private String telephone;
+
 	private String email;
-	private LocalDate dateDeNaissance;
+
+	private Date dateDeNaissance;
+
 	private String motDePasse;
-	
-	@OneToMany(mappedBy = "client")
-	private List<Commande> client;
-	public Client() {
-	}
-	
-	public Client(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance, String motDePasse) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.telephone = telephone;
-		this.email = email;
-		this.dateDeNaissance = dateDeNaissance;
-		this.motDePasse = motDePasse;
+
+	public int getIdclient() {
+		return idclient;
 	}
 
-	public int getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(int idclient) {
-		this.idClient = idclient;
+	public void setIdclient(int idclient) {
+		this.idclient = idclient;
 	}
 
 	public String getNom() {
@@ -87,11 +75,11 @@ public class Client {
 		this.email = email;
 	}
 
-	public LocalDate getDateDeNaissance() {
+	public Date getDateDeNaissance() {
 		return dateDeNaissance;
 	}
 
-	public void setDateDeNaissance(LocalDate dateDeNaissance) {
+	public void setDateDeNaissance(Date dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
 
@@ -102,7 +90,5 @@ public class Client {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	
-
 
 }
