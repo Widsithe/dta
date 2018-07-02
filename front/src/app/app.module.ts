@@ -36,6 +36,11 @@ const appRoutes: Routes = [
     path: 'adopter',
     component: AdopterComponent,
     data: { title: 'Tous nos animaux' }
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    data: { title: '' }
   }
 ];
 

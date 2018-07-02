@@ -1,3 +1,10 @@
-<p>
-  loginadmin works!
-</p>
+<div [dir]="dir">
+    <div mdcTextField [helperText]="">
+        <input mdcTextFieldInput type="text" #input1="ngModel" [(ngModel)]="username" [disabled]="disabled" [required]="required" />
+        <label mdcFloatingLabel>Identifiant</label>
+    </div>
+    <div mdcTextField [helperText]="">
+        <input mdcTextFieldInput type="text" #input1="ngModel" [(ngModel)]="password" [disabled]="disabled" [required]="required" />
+        <label mdcFloatingLabel>Mot de passe</label>
+    </div>
+</div>
