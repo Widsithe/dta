@@ -1,8 +1,11 @@
 package deTendresAnimaux.bdd;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Produit {
@@ -15,21 +18,39 @@ public class Produit {
 
 	private String nom;
 
-	private int prix;
+	private Integer prix;
 
-	private int stock;
+	private Integer stock;
 
 	private String image;
 
 	private String description;
 
 	private Boolean active; // statut
+	
+	@OneToMany(mappedBy = "produit")
+	private List<Quantite> produit;
+	public Produit()
+	{
+		
+	}
+	public Produit(String type, String nom, Integer prix, Integer stock, String image, String description,
+			Boolean active) {
+		super();
+		Type = type;
+		this.nom = nom;
+		this.prix = prix;
+		this.stock = stock;
+		this.image = image;
+		this.description = description;
+		this.active = active;
+	}
 
-	public int getIdproduit() {
+	public Integer getIdproduit() {
 		return idproduit;
 	}
 
-	public void setIdproduit(int idproduit) {
+	public void setIdproduit(Integer idproduit) {
 		this.idproduit = idproduit;
 	}
 
@@ -49,15 +70,15 @@ public class Produit {
 		this.nom = nom;
 	}
 
-	public int getPrix() {
+	public Integer getPrix() {
 		return prix;
 	}
 
-	public void setPrix(int prix) {
+	public void setPrix(Integer prix) {
 		this.prix = prix;
 	}
 
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
 
@@ -88,5 +109,6 @@ public class Produit {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+
 
 }
