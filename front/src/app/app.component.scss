@@ -1,0 +1,26 @@
+$font-title: 'Raleway',
+sans-serif;
+$font-body: 'Noto Sans',
+sans-serif;
+body {
+    font-family: $font-body;
+}
+
+h1 {
+    font-family: $font-title;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar,
+.mat-toolbar h1,
+.mat-toolbar h2,
+.mat-toolbar h3,
+.mat-toolbar h4,
+.mat-toolbar h5,
+.mat-toolbar h6 {
+    font: 500 20px/32px $font-title;
+    margin: 0;
+}
