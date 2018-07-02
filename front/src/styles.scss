@@ -1,4 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "material-components-web/material-components-web";
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Raleway');
+// customize some theme variables, e.g.:
+$mdc-theme-primary: #6200ee;
+$mdc-theme-secondary: #018786;
+$mdc-theme-background: #fff;
+// import theming for all mdc components:
+footer.mce-container {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: aliceblue;
+    figure {
+        width: 100%;
+        text-align: center;
+        max-height: 50px;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+}

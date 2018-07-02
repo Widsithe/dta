@@ -6,6 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
+import { FormsModule } from '@angular/forms';
+
+import { MaterialModule } from '@blox/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
@@ -13,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
+
 
 import { AdopterComponent } from './adopter/adopter.component';
 import { AnimauxComponent } from './animaux/animaux.component';
@@ -24,6 +28,8 @@ import { PanierComponent } from './panier/panier.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuadminComponent } from './menuadmin/menuadmin.component';
 import { MenuloginComponent } from './menulogin/menulogin.component';
+
+
 
 const appRoutes: Routes = [
   {
@@ -55,6 +61,8 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
     NoopAnimationsModule,
+    FormsModule,
+    MaterialModule,
     MatMenuModule,
     MatToolbarModule,
     MatButtonModule,
