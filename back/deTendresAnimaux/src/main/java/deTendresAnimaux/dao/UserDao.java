@@ -17,8 +17,10 @@ public class UserDao {
 	@Autowired
 	private EntityManager entityManager;
 
-	public Client findUserAccount(String userName) {
-		return this.jdbcTemplate.queryForObject("select * from usertable where login = ?", new Object[]{ username }, new UserMapper());
+
+	public Client findUserAccount(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
