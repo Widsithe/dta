@@ -2,14 +2,6 @@ $font-title: 'Raleway',
 sans-serif;
 $font-body: 'Noto Sans',
 sans-serif;
-body {
-    font-family: $font-body;
-}
-
-h1 {
-    font-family: $font-title;
-}
-
 .fill-remaining-space {
     flex: 1 1 auto;
 }
