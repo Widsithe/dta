@@ -5,9 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,31 +17,29 @@ import deTendresAnimaux.bdd.Admin;
 @Transactional
 public class AdminDao {
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 
+	
 
 	public Admin findAdminName(String identifiant) {
 		List<Admin> admins = new ArrayList<Admin>();
-		admins = sessionFactory.getCurrentSession()
-				.createQuery("from Admin where identifiant=?")
-				.setParameter(0, identifiant)
-				.list();
+		Query query = entityManager.createQuery("from Admin where identifiant=?").setParameter(0, identifiant);
+		admins = query.getResultList();
 		if (admins.size() > 0) {
 			return admins.get(0);
 		} else {
 			return null;
+
+			/*
+			 * admins = sessionFactory.getCurrentSession()
+			 * .createQuery("from Admin where identifiant=?") .setParameter(0, identifiant)
+			 * .list(); if (admins.size() > 0) { return admins.get(0); } else { return null;
+			 * }
+			 */
+
 		}
-
 	}
-
-
-
-	
-
 
 }

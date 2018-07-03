@@ -13,7 +13,7 @@ import deTendresAnimaux.dao.AdminDao;
 
 
 @RestController
-@RequestMapping("/index")
+@RequestMapping("/")
 public class Controller {
 	
 	@Autowired

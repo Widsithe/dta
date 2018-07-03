@@ -16,7 +16,7 @@ export class LoginAdminServiceService {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    //A modifier avec la bonne url
+    // A modifier avec la bonne url
     this.http.get('http://localhost:8080/webapp/api/users/user', { headers: headers }).subscribe(response => {
       if (response['name']) {
         this.authenticated = true;
