@@ -1,0 +1,18 @@
+<div>
+  Allez on s'y met !! Gg all nice !!
+</div>
+<form role="form" (submit)="" class="form-container">
+  <div mdcTextField [helperText]="">
+      <input mdcTextFieldInput type="text" #adminSearchId="ngModel" [(ngModel)]="adminSearch.id" [disabled]="disabled" [required]="required" name="id" />
+      <label mdcFloatingLabel>Identifiant du produit</label>
+  </div>
+  <div mdcTextField [helperText]="">
+    <input mdcTextFieldInput type="text" #adminSearchNom="ngModel" [(ngModel)]="adminSearch.nom" [disabled]="disabled" [required]="required" name="nom" />
+    <label mdcFloatingLabel>Nom du produit</label>
+</div>
+<div mdcTextField [helperText]="">
+  <input mdcTextFieldInput type="text" #adminSearchType="ngModel" [(ngModel)]="adminSearch.type" [disabled]="disabled" [required]="required" name="type" />
+  <label mdcFloatingLabel>Type du produit</label>
+</div>
+  <button type="submit">Rechercher</button>
+</form>

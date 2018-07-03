@@ -32,6 +32,7 @@ import { AdminCommandesComponent } from './admin-commandes/admin-commandes.compo
 import { AdminCommandesDetailComponent } from './admin-commandes-detail/admin-commandes-detail.component';
 import { AdminProduitDetailComponent } from './admin-produit-detail/admin-produit-detail.component';
 import { LoginAdminServiceService } from './login-admin-service.service';
+import { AdminSearchComponent } from './admin-search/admin-search.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -93,7 +94,8 @@ const appRoutes: Routes = [
     AdminProduitComponent,
     AdminCommandesComponent,
     AdminCommandesDetailComponent,
-    AdminProduitDetailComponent
+    AdminProduitDetailComponent,
+    AdminSearchComponent
   ],
   imports: [
     BrowserModule,
