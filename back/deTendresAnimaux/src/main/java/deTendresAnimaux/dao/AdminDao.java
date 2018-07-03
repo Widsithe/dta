@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import deTendresAnimaux.bdd.Admin;
 public class AdminDao {
 	private JdbcTemplate jdbcTemplate;
 	
-	@Autowired
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Autowired
