@@ -25,7 +25,6 @@ public class AdminDao {
 	private SessionFactory sessionFactory;
 
 
-	@SuppressWarnings("unchecked")
 	public Admin findAdminName(String identifiant) {
 		List<Admin> admins = new ArrayList<Admin>();
 		admins = sessionFactory.getCurrentSession()
