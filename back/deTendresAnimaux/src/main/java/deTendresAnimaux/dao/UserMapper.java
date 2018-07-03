@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import deTendresAnimaux.bdd.Client;
 
-public class UserMapper implements RowMapper {
+public class UserMapper implements RowMapper<Client> {
 
 	@Override
 	public Client mapRow(ResultSet rs, int rowNum) throws SQLException {

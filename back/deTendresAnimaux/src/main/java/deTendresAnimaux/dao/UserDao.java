@@ -1,6 +1,7 @@
 package deTendresAnimaux.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +15,7 @@ import deTendresAnimaux.bdd.Client;
 public class UserDao {
 	private JdbcTemplate jdbcTemplate;
 	
-	@Autowired
+	@PersistenceContext
 	private EntityManager entityManager;
 
 
