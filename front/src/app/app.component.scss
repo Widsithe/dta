@@ -16,3 +16,9 @@ sans-serif;
     font: 500 20px/32px $font-title;
     margin: 0;
 }
+
+.m-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
