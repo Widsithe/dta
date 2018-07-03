@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { LoginAdminServiceService } from '../login-admin-service.service';
 
 @Component({
   selector: 'app-loginadmin',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginadminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginAdminServiceService) {
+    this.loginService = loginService;
+   }
 
   ngOnInit() {
   }
