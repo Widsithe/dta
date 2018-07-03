@@ -34,7 +34,7 @@ public class AuthenticationService implements UserDetailsService {
 
 		Set<Droit> droits = new HashSet<>();
 		droits.add(admin.getiddroit());
-		droits.add(client.getiddroit()); // rajout du droit client ou pas ?
+		//droits.add(client.getiddroit()); // rajout du droit client ou pas ?
 		Collection<GrantedAuthority> authorities = buildUserAuthority(droits);
 
 		return buildUserForAuthentication(admin, authorities);
