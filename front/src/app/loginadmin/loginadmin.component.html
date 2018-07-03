@@ -1,11 +1,14 @@
-<form action="" class="form-container">
+<div class="alert alert-danger" [hidden]="!error">
+    There was a problem logging in. Please try again.
+</div>
+<form role="form" (submit)="login()" class="form-container">
     <div mdcTextField [helperText]="">
-        <input mdcTextFieldInput type="text" #input1="ngModel" [(ngModel)]="username" [disabled]="disabled" [required]="required" name="username" />
+        <input mdcTextFieldInput type="text" #input1="ngModel" [(ngModel)]="credentials.username" [disabled]="disabled" [required]="required" name="username" />
         <label mdcFloatingLabel>Identifiant</label>
     </div>
     <div mdcTextField [helperText]="">
-        <input mdcTextFieldInput type="text" #input1="ngModel" [(ngModel)]="password" [disabled]="disabled" [required]="required" name="password" />
+        <input mdcTextFieldInput type="text" #input1="ngModel" [(ngModel)]="credentials.password" [disabled]="disabled" [required]="required" name="password" />
         <label mdcFloatingLabel>Mot de passe</label>
     </div>
-    <a href="javascript:void(0)" mdcButton raised>Me connecter</a>
+    <button type="submit">Me connecter</button>
 </form>
