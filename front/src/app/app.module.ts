@@ -16,7 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AdopterComponent } from './adopter/adopter.component';
 import { AnimauxComponent } from './animaux/animaux.component';
@@ -40,7 +40,12 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    data: { title: '' }
+    data: { title: 'Votre interface d"administration' }
+  },
+  {
+    path: 'login-admin',
+    component: LoginadminComponent,
+    data: { title: 'Connectez vous' }
   }
 ];
 
@@ -73,7 +78,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatBadgeModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
