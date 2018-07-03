@@ -137,8 +137,10 @@
 			<version>${logback.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
 
 	</dependencies>
+	
 	<build>
 		<finalName>webapp</finalName>
 		<plugins>

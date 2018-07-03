@@ -13,7 +13,6 @@ import deTendresAnimaux.bdd.Client;
 @Repository
 @Transactional
 public class UserDao {
-	private JdbcTemplate jdbcTemplate;
 	
 	@PersistenceContext
 	private EntityManager entityManager;
