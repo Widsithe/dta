@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@blox/material';
@@ -28,8 +27,22 @@ import { PanierComponent } from './panier/panier.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuadminComponent } from './menuadmin/menuadmin.component';
 import { MenuloginComponent } from './menulogin/menulogin.component';
+import { AdminProduitComponent } from './admin-produit/admin-produit.component';
+import { AdminCommandesComponent } from './admin-commandes/admin-commandes.component';
+import { AdminCommandesDetailComponent } from './admin-commandes-detail/admin-commandes-detail.component';
+import { AdminProduitDetailComponent } from './admin-produit-detail/admin-produit-detail.component';
+import { LoginAdminServiceService } from './login-admin-service.service';
 
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
 
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 
 const appRoutes: Routes = [
   {
@@ -46,6 +59,21 @@ const appRoutes: Routes = [
     path: 'login-admin',
     component: LoginadminComponent,
     data: { title: 'Connectez vous' }
+  },
+  {
+    path: 'admin/commandes',
+    component: AdminCommandesComponent,
+    data: { title: 'Toutes les commandes' }
+  },
+  {
+    path: 'admin/produits',
+    component: AdminProduitComponent,
+    data: { title: 'Tous les produits' }
+  },
+  {
+    path: 'panier',
+    component: PanierComponent,
+    data: { title: 'Votre panier' }
   }
 ];
 
@@ -61,7 +89,11 @@ const appRoutes: Routes = [
     PanierComponent,
     MenuComponent,
     MenuadminComponent,
-    MenuloginComponent
+    MenuloginComponent,
+    AdminProduitComponent,
+    AdminCommandesComponent,
+    AdminCommandesDetailComponent,
+    AdminProduitDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -79,9 +111,9 @@ const appRoutes: Routes = [
     MatBadgeModule,
     MatIconModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
   ],
-  providers: [],
+  providers: [LoginAdminServiceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
