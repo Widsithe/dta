@@ -2,21 +2,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Admin } from './admin';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
 @Injectable({
   providedIn: 'root'
 })
 export class LoginAdminServiceService {
-  urlService: string;
+  authenticated = false;
+
   constructor(private http: HttpClient) {
-    this.urlService = 'http://localhost:8080/';
   }
-  addAdmin(admin: Admin) {
-    this.http.post<Admin>(this.urlService, admin, httpOptions).subscribe();
+  authenticate(credentials, callback) {
+
+    const headers = new HttpHeaders(credentials ? {
+      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+    } : {});
+
+    //A modifier avec la bonne url
+    this.http.get('http://localhost:8080/webapp/api/users/user', { headers: headers }).subscribe(response => {
+      if (response['name']) {
+        this.authenticated = true;
+      } else {
+        this.authenticated = false;
+      }
+      return callback && callback();
+    });
+
   }
+
 }
 
