@@ -49,9 +49,9 @@ public class AdminController {
 //
 //		adminService.supprimerUtilisateur( id);
 //	}
-	@RequestMapping("/logadmin")
-	public Principal admin (Principal admin) {
-		return admin;
+	@RequestMapping("user")
+	public Principal user(Principal user) {
+		return user;
 	}
 	
 	@RequestMapping(value = "hello", method = RequestMethod.GET)

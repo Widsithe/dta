@@ -6,24 +6,34 @@ import { Admin } from './admin';
   providedIn: 'root'
 })
 export class LoginAdminServiceService {
+
   authenticated = false;
+  loginUrl = 'http://localhost:8080/DeTendresAnimaux/api/admin/user';
 
   constructor(private http: HttpClient) {
   }
+
   authenticate(credentials, callback) {
 
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    // A modifier avec la bonne url
-    this.http.get('http://localhost:8080/De_Tendres_Animaux/api/admin/logadmin', { headers: headers }).subscribe(response => {
-      if (response['username']) {
+    if (this.authenticated === false && credentials) {
+      sessionStorage.setItem('credentials', btoa(credentials.username + ':' + credentials.password));
+      console.log('Credentials dans la session ' + sessionStorage.getItem('credentials'));
+    }
+
+    this.http.get(this.loginUrl, { headers: headers }).subscribe(response => {
+      console.log('Headers : ' + headers);
+      console.log('Headers : ' + headers.get('authorization'));
+      console.log('Response : ' + response);
+      if (response && response['name']) {
         this.authenticated = true;
       } else {
         this.authenticated = false;
       }
-      return callback && callback();
+      return this.authenticated === true && callback && callback();
     });
 
   }

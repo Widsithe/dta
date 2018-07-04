@@ -137,7 +137,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>De Tendres Animaux</finalName>
+		<finalName>DeTendresAnimaux</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
