@@ -99,12 +99,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.3.1.Final</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.3.1.Final</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -140,9 +135,9 @@
 		
 		
 	</dependencies>
-	
+
 	<build>
-		<finalName>webapp</finalName>
+		<finalName>De Tendres Animaux</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

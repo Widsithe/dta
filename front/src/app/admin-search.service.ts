@@ -15,6 +15,6 @@ export class AdminSearchService {
   constructor(private http: HttpClient) { }
 
   adminSearch() {
-    this.http.get('/search/', httpOptions).subscribe();
+    this.http.get('./search/', httpOptions).subscribe();
   }
 }

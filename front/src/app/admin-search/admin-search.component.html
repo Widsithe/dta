@@ -1,7 +1,7 @@
 <div>
   Allez on s'y met !! Gg all nice !!
 </div>
-<form role="form" (submit)="" class="form-container">
+<form role="form" (submit)="adminSearch()" class="form-container">
   <div mdcTextField [helperText]="">
       <input mdcTextFieldInput type="text" #adminSearchId="ngModel" [(ngModel)]="adminSearch.id" [disabled]="disabled" [required]="required" name="id" />
       <label mdcFloatingLabel>Identifiant du produit</label>
