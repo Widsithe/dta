@@ -119,3 +119,4 @@ back/deTendresAnimaux/src/main/resources/database.properties
 # System Files
 .DS_Store
 Thumbs.db
+back/deTendresAnimaux/WebContent/database\.properties
