@@ -15,7 +15,7 @@ public class App {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
 		Main appli = context.getBean(Main.class);
 		appli.start();
-		//context.close();
+		context.close();
 
 	}
 

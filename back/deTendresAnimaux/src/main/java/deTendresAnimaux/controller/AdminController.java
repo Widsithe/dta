@@ -80,7 +80,7 @@ public class AdminController {
 		// ProduitDao produit=new ProduitDao();
 
 		List<Produit> produit = new ArrayList<>();
-		produit = (adminService.getProduits(name, null, null));
+		produit = (adminService.getProduits(name, type,referenceProduit));
 		for (int i = 0; i < produit.size(); i++) {
 			System.out.println(
 					"gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg" + produit.get(i).getIdproduit());
@@ -96,5 +96,36 @@ public class AdminController {
 		// produit=(adminService.getProduits(name,type,referenceProduit));
 		// System.out.println("gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"+produit.get(0).getPrix());
 	}
+	@GetMapping(value = "CreerProduits", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Produit> addProduct(@RequestParam(value = "name", required = true) String name,
+			@RequestParam(value = "type", required = true) String type,
+			@RequestParam(value = "prix", required = true) Integer prix, 
+	        @RequestParam(value = "stock", required = true) Integer stock,
+            @RequestParam(value = "description", required = true) String description,
+            @RequestParam(value = "photo", required = true) String photo,
+	        @RequestParam(value = "statut", required = true) Boolean statut)
+	{
+		// return new ResponseEntity<String>(" Je suis au bout de ma vie!",
+		// HttpStatus.OK);
+		// ProduitDao.findProduits(name, type, referenceProduit);
+		// ProduitDao produit=new ProduitDao();
 
+		List<Produit> produit = new ArrayList<>();
+		produit = (adminService.getProduits(name, type,referenceProduit));
+		for (int i = 0; i < produit.size(); i++) {
+			System.out.println(
+					"gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg" + produit.get(i).getIdproduit());
+		}
+		return produit;
+		// System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX"+
+		// name);//adminService.majUtilisateur(id, user);S
+		// System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX" + type);
+		// System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX" +referenceProduit);
+		// //System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+		// +adminService.getProduits(name,type,referenceProduit));
+		// List<Produit>produit = new ArrayList<>();
+		// produit=(adminService.getProduits(name,type,referenceProduit));
+		// System.out.println("gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"+produit.get(0).getPrix());
+	}
+	
 }

@@ -45,6 +45,22 @@ public class ProduitDao {
 
 		return entityManager.createQuery(query).getResultList();
 	}
-
+   
+	public Boolean creerProduit(Produit produit)
+	{
+		Boolean valeur;
+		valeur=false;
+		try {
+		entityManager.persist(produit);
+		valeur=true;
+		}
+		catch(Exception e)
+		{
+	     valeur= false;
+		}
+		
+		 return valeur;
+		
+	}
     
 }
