@@ -29,7 +29,7 @@ public class AdminService implements UserDetailsService {
 		}
 		// FIN DE DEGUEULASSE
 		
-		Admin myAdmin = adminDao.getAdminByUsername(username);
+		Admin myAdmin = adminDao.findAdminName(username);
 		UserDetails myUserDetails = new org.springframework.security.core.userdetails.User(username, myAdmin.getMdp(), authorities);
 		return myUserDetails;
 	}
