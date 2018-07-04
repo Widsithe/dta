@@ -72,6 +72,11 @@ const appRoutes: Routes = [
     data: { title: 'Tous les produits' }
   },
   {
+    path: 'connexion',
+    component: ConnexionComponent,
+    data: { title: 'Connexion' }
+  },
+  {
     path: 'panier',
     component: PanierComponent,
     data: { title: 'Votre panier' }
