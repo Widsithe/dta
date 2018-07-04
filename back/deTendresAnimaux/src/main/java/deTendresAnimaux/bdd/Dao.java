@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Dao {
 //	
-//	public List <Produit> rechercheProduit(String Nom,)
+//	public List <Produit> rechercheProduit(String reference)
 //	{
 //		public static void livreAchete_client(Client client, Connection conn) {
 //			try {
-//				// PreparedStatement stmt2= conn.prepareStatement("Select title from book where
+//				PreparedStatement stmt2= conn.prepareStatement("Select * from produit where 
 //				// id_book=(Select id_book_achete from table_id_book_client where id_book_achete
 //				// = (select id_client from client where lastname='AMI' and
 //				// firstname='Jean'))");

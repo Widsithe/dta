@@ -1,5 +1,7 @@
 package deTendresAnimaux.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,11 @@ public class AdminController {
 //
 //		adminService.supprimerUtilisateur( id);
 //	}
+	@RequestMapping("/logadmin")
+	public Principal admin (Principal admin) {
+		return admin;
+	}
+	
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public ResponseEntity<String> foo() {
 		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);

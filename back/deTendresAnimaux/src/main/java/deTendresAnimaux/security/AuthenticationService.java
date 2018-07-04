@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import deTendresAnimaux.bdd.Admin;
-import deTendresAnimaux.bdd.Client;
 import deTendresAnimaux.bdd.Droit;
 import deTendresAnimaux.dao.AdminDao;
 import deTendresAnimaux.dao.ClientDao;
@@ -30,7 +29,7 @@ public class AuthenticationService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(final String identifiant) throws UsernameNotFoundException {
 		Admin admin = adminDao.findAdminName(identifiant);
-		Client client = clientDao.findClientName(identifiant);
+		//Client client = clientDao.findClientName(identifiant);
 
 		Set<Droit> droits = new HashSet<>();
 		droits.add(admin.getiddroit());
