@@ -25,44 +25,40 @@ import deTendresAnimaux.service.AdminService;
 public class AdminController {
 	@Autowired
 	private AuthenticationService authenticationService;
-
+	@RequestMapping("user")
+	public Principal user(Principal user) {
+		return user;
 	@Autowired
 	private AdminService adminService;
-
-	// @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	// public ResponseEntity<String> foo2() {
-	// return new ResponseEntity<String>("Ferme la...", HttpStatus.OK);
-	// }
-	//
-	// @RequestMapping(value = "hello", method = RequestMethod.GET)
-	// public ResponseEntity<String> foo() {
-	// return new ResponseEntity<String>(" Je suis au bout de ma vie!",
-	// HttpStatus.OK);
-	// }
-	//
-	//
-	// @GetMapping(value = "utilisateurs", produces = "application/json")
-	// public @ResponseBody List<AdminService> getUsers() {
-	// //utilisateurService.addUser();
-	// return adminService.getUsers();
-	// }
-	//
-	// @PostMapping(value="/", consumes= "application/json")
-	// public @ResponseBody void setUser(@RequestBody @Valid AdminService
-	// user/*,BindingResult bindingResult*/)
-	// {
-	// /*System.out.println(bindingResult.getAllErrors());*/
-	// adminService.addUser(user);
-	// }
-	// @DeleteMapping(value="/{id}", consumes= "application/json")
-	// public @ResponseBody void supprimerUser(@PathVariable("id") int id)
-	// {
-	//
-	// adminService.supprimerUtilisateur( id);
-	// }
-	@RequestMapping("/logadmin")
-	public Principal admin(Principal admin) {
-		return admin;
+	
+//	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+//		return new ResponseEntity<String>("Ferme la...", HttpStatus.OK);
+//	public ResponseEntity<String> foo2() {
+//	}
+//	@RequestMapping(value = "hello", method = RequestMethod.GET)
+//
+//	public ResponseEntity<String> foo() {
+//		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
+//	}
+//
+//	
+//	@GetMapping(value = "utilisateurs", produces = "application/json")
+//		//utilisateurService.addUser();
+//	public @ResponseBody List<AdminService> getUsers() {
+//		return adminService.getUsers();
+//	}
+//	@PostMapping(value="/", consumes= "application/json")
+//	
+//	public @ResponseBody void setUser(@RequestBody @Valid AdminService user/*,BindingResult bindingResult*/)
+//	{
+//		/*System.out.println(bindingResult.getAllErrors());*/
+//		adminService.addUser(user);
+//	}
+//	@DeleteMapping(value="/{id}", consumes= "application/json")
+//	public @ResponseBody void supprimerUser(@PathVariable("id") int id)
+//	{
+//
+//		adminService.supprimerUtilisateur( id);
 	}
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)

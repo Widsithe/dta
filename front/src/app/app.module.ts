@@ -33,6 +33,7 @@ import { AdminCommandesDetailComponent } from './admin-commandes-detail/admin-co
 import { AdminProduitDetailComponent } from './admin-produit-detail/admin-produit-detail.component';
 import { LoginAdminServiceService } from './login-admin-service.service';
 import { AdminSearchComponent } from './admin-search/admin-search.component';
+import { TokenInterceptor } from './token-interceptor';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -120,7 +121,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatGridListModule,
   ],
-  providers: [LoginAdminServiceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [
+    LoginAdminServiceService,
+     { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
