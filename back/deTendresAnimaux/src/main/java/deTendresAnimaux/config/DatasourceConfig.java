@@ -2,7 +2,6 @@ package deTendresAnimaux.config;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -15,11 +14,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
+//import javax.persistence.EntityManagerFactory;
+//import org.springframework.orm.jpa.JpaTransactionManager;
+//import org.springframework.orm.jpa.JpaVendorAdapter;
+//import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+//import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+//import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -29,28 +29,47 @@ public class DatasourceConfig {
 
 	@Autowired
 	private Environment env;
-	
+
+//	@Bean
+//	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+//		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+//		em.setDataSource(restDataSource());
+//		em.setPackagesToScan(new String[] { "deTendresAnimaux" });
+//
+//		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//		em.setJpaVendorAdapter(vendorAdapter);
+//		em.setJpaProperties(hibernateProperties());
+//
+//		return em;
+//	}
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(restDataSource());
-		em.setPackagesToScan(new String[] { "org.baeldung.persistence.model" });
+	public LocalSessionFactoryBean sessionFactory() {
+		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+		sessionFactory.setDataSource(restDataSource());
+		sessionFactory.setPackagesToScan(new String[] {  "deTendresAnimaux" });
+		sessionFactory.setHibernateProperties(hibernateProperties());
 
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		em.setJpaVendorAdapter(vendorAdapter);
-		em.setJpaProperties(hibernateProperties());
-
-		return em;
+		return sessionFactory;
 	}
 
 	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(emf);
+	@Autowired
+	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 
-		return transactionManager;
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(sessionFactory);
+
+		return txManager;
 	}
+
+//	@Bean
+//	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+//		JpaTransactionManager transactionManager = new JpaTransactionManager();
+//		transactionManager.setEntityManagerFactory(emf);
+//
+//		return transactionManager;
+//	}
 
 	@Bean
 	public DataSource restDataSource() {
