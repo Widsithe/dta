@@ -44,4 +44,5 @@ public class ProduitDao {
 		return entityManager.createQuery(query).getResultList();
 	}
 
+    
 }

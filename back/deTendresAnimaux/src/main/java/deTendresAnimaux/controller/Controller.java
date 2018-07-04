@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import deTendresAnimaux.bdd.Admin;
 import deTendresAnimaux.bdd.Client;
 import deTendresAnimaux.dao.AdminDao;
+import deTendresAnimaux.service.AdminService;
 
 
 
@@ -18,6 +19,8 @@ public class Controller {
 	
 	@Autowired
 	AdminDao adminDao;
+	
+
 	
 	
 	@PreAuthorize(value = "hasAuthority('READ')")

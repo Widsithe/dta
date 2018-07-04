@@ -1,6 +1,8 @@
 package deTendresAnimaux.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,13 +14,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import deTendresAnimaux.bdd.Produit;
+import deTendresAnimaux.dao.ProduitDao;
 import deTendresAnimaux.security.AuthenticationService;
+import deTendresAnimaux.service.AdminService;
 
 @RestController
 @RequestMapping("/api/admin/")
 public class AdminController {
 	@Autowired
 	private AuthenticationService authenticationService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 //	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 //	public ResponseEntity<String> foo2() {
@@ -59,10 +67,18 @@ public class AdminController {
 		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
 	}
 	@GetMapping(value="produits/")
-	public @ResponseBody  void updateUser( @RequestParam(value="name",required=false)String name, @RequestParam(value="type",required=false)String type, @RequestParam(value="referenceProduit",required=false)String referenceProduit)
+	public @ResponseBody  void updateUser( @RequestParam(value="name",required=false)String name, @RequestParam(value="type",required=false)String type, @RequestParam(value="referenceProduit",required=false)int referenceProduit)
 	{
 		//return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
-		System.out.println(name);//adminService.majUtilisateur(id, user);S
+	   //ProduitDao.findProduits(name, type, referenceProduit);
+		//ProduitDao produit=new ProduitDao();
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX"+ name);//adminService.majUtilisateur(id, user);S
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX" + type);
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX" +referenceProduit);
+		//System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv" +adminService.getProduits(name,type,referenceProduit));
+		List<Produit>produit = new ArrayList<>();
+		produit=(adminService.getProduits(name,type,referenceProduit));
+		System.out.println("gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"+produit.get(0).getPrix());
 	}
 
 }
