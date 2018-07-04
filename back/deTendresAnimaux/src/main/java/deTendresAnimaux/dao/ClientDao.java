@@ -1,11 +1,9 @@
 package deTendresAnimaux.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,20 +13,14 @@ import deTendresAnimaux.bdd.Client;
 @Transactional
 public class ClientDao {
 
-	@Autowired
-	@Qualifier("sessionFactory")
-	private SessionFactory sessionFactory;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	public Client findClientName(String email) {
-		List<Client> clients = new ArrayList<Client>();
-		clients = sessionFactory.getCurrentSession().createQuery("from Admin where identifiant=?") .setParameter(0, email).list(); 
-		if (clients.size() > 0) {
-			return clients.get(0);
-		} else {
-			return null;
-		}
+	public Client findClientByEmail(String email) {
+		TypedQuery<Client> query = entityManager.createQuery("from Client c where c.email = :email", Client.class);
+		query.setParameter("email", email);
 
+		return query.getSingleResult();
 	}
-
 
 }
