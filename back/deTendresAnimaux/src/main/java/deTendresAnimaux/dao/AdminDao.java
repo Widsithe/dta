@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import application.dao.UserRowMapper;
 import deTendresAnimaux.bdd.Admin;
 
 @Repository
@@ -35,10 +34,6 @@ public class AdminDao {
 		}
 
 
-	public Admin getAdminByUsername(String username) {
-		AdminMapper rowmap = new AdminMapper();
-		return this.jdbcTemplate.queryForObject("select * from users where nickname= ?", new Object[] { username }, rowmap);
-	}
-	
+
 
 }
