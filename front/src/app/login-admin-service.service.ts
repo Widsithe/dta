@@ -17,8 +17,8 @@ export class LoginAdminServiceService {
     } : {});
 
     // A modifier avec la bonne url
-    this.http.get('http://localhost:8080/webapp/api/users/user', { headers: headers }).subscribe(response => {
-      if (response['name']) {
+    this.http.get('http://localhost:8080/De_Tendres_Animaux/api/admin/logadmin', { headers: headers }).subscribe(response => {
+      if (response['username']) {
         this.authenticated = true;
       } else {
         this.authenticated = false;
