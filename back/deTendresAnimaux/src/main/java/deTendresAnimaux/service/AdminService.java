@@ -13,7 +13,7 @@ public class AdminService {
 	@Autowired
 	private ProduitDao produit;
 	
-	public List<Produit> getProduits(String name, String type,int ref) {
+	public List<Produit> getProduits(String name, String type,Integer ref) {
 		return produit.findProduits(name,type,ref);
 	}
 

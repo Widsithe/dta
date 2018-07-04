@@ -40,6 +40,8 @@ public class ProduitDao {
 		if (reference != null) {
 			query.where(builder.equal(rootProduit.get("idproduit"), reference));
 		}
+		
+		
 
 		return entityManager.createQuery(query).getResultList();
 	}
