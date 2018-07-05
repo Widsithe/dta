@@ -28,6 +28,7 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
 	@RequestMapping("user")
 	public Principal user(Principal user) {
 		return user;
@@ -53,7 +54,7 @@ public class AdminController {
 	@GetMapping(value = "CreerProduits", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean addProduct(@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "type", required = true) String type,
-			@RequestParam(value = "prix", required = true) Integer prix, 
+			@RequestParam(value = "prix", required = true) Double prix, 
 	        @RequestParam(value = "stock", required = true) Integer stock,
             @RequestParam(value = "description", required = true) String description,
             @RequestParam(value = "photo", required = true) String photo,
@@ -72,16 +73,14 @@ public class AdminController {
 	public Boolean updateProduct(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
 	@RequestParam(value = "name", required = true) String name,
 	@RequestParam(value = "type", required = true) String type,
-	@RequestParam(value = "prix", required = true) Integer prix, 
+	@RequestParam(value = "prix", required = true) Double prix, 
     @RequestParam(value = "stock", required = true) Integer stock,
     @RequestParam(value = "description", required = true) String description,
     @RequestParam(value = "photo", required = true) String photo,
     @RequestParam(value = "statut", required = true) Boolean statut)
 	{
         Boolean resultat;
-        Produit produit;
-        produit=new Produit(referenceProduit, type, name, prix, stock, photo , description, statut);
-        resultat=adminService.modifierProduits(produit);
+        resultat=adminService.modifierProduits(referenceProduit,type,name,prix,stock, photo ,description,statut);
 		return resultat;
 		
 	}

@@ -11,7 +11,7 @@ public class Produit {
 	@GeneratedValue
 	private Integer idproduit;
 
-	public Produit(Integer idproduit, String type, String nom, Integer prix, Integer stock, String image,
+	public Produit(Integer idproduit, String type, String nom, Double prix, Integer stock, String image,
 			String description, Boolean active) {
 		super();
 		this.idproduit = idproduit;
@@ -24,7 +24,7 @@ public class Produit {
 		this.active = active;
 	}
 
-	public Produit(String type, String nom, Integer prix, Integer stock, String image, String description, Boolean active) {
+	public Produit(String type, String nom, Double prix, Integer stock, String image, String description, Boolean active) {
 		this.type = type;
 		this.nom = nom;
 		this.prix = prix;
@@ -42,7 +42,7 @@ public class Produit {
 
 	private String nom;
 
-	private Integer prix;
+	private Double prix;
 
 	private Integer stock;
 
@@ -76,11 +76,11 @@ public class Produit {
 		this.nom = nom;
 	}
 
-	public Integer getPrix() {
+	public Double getPrix() {
 		return prix;
 	}
 
-	public void setPrix(Integer prix) {
+	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
 

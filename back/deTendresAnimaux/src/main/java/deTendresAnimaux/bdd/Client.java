@@ -11,7 +11,7 @@ public class Client {
 
 	@Id
 	@GeneratedValue
-	private int idclient;
+	private Integer idclient;
 
 	public Client(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance, String motDePasse) {
 		this.nom = nom;
@@ -41,11 +41,11 @@ public class Client {
 
 	private String motDePasse;
 
-	public int getIdclient() {
+	public Integer getIdclient() {
 		return idclient;
 	}
 
-	public void setIdclient(int idclient) {
+	public void setIdclient(Integer idclient) {
 		this.idclient = idclient;
 	}
 

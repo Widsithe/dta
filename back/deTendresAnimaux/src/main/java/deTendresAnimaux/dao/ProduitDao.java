@@ -8,9 +8,12 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.sql.DataSource;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,13 @@ public class ProduitDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	private JdbcTemplate jdbcTemplate;
+	
+	
+	@Autowired
+	public void stDataSource(DataSource ds) {
+		this.jdbcTemplate = new JdbcTemplate(ds);
+	}
 
 	public List<Produit> findProduits(String name, String type, Integer reference) {
 
@@ -60,27 +70,32 @@ public class ProduitDao {
 
 	}
 
-	public Boolean modifierProduit(Produit produit) {
+	public Boolean modifierProduit(Integer referenceProduit,String type,String name,Double prix,Integer stock,String photo ,String description,Boolean statut) {
 
-		// Session session = sessionFactory.openSession();
-		// Transaction tx = session.beginTransaction();
-		//
-		Integer identifiantProduit = produit.getIdproduit();
-
-		String hqlUpdate = "update produit set produit.active = :active, produit.description = :description,  produit.image = :image, produit.nom=:nom,"
-				+ "produit.prix=:prix,produit.stock=:stock,produit.type=:type"
-				+ " where produit.idproduit = :identifiantProduit";
-		// // or String hqlUpdate = "update Customer set name = :newName where name =
-		// :oldName";
-
-		int updatedEntities = entityManager.createQuery(hqlUpdate)
-
-				.setParameter("description", produit.getDescription()).setParameter("image", produit.getImage())
-				.setParameter("nom", produit.getNom()).setParameter("prix", produit.getPrix())
-				.setParameter("stock", produit.getStock()).setParameter("type", produit.getType())
-				.setParameter("active", produit.getActive()).executeUpdate();
+		Integer identifiantProduit =referenceProduit ;
+		Produit produit;
+		produit=new Produit(referenceProduit,type,name,prix,stock,photo ,description,statut);
+//		String hqlUpdate = "update produit set produit.active = :active produit.description = :description  produit.image = :image, produit.nom=:nom,"
+//				+ "produit.prix=:prix produit.stock=:stock,produit.type=:type"
+//				+ " where idproduit = :identifiantProduit";
+//
+//		int updatedEntities = entityManager.createQuery(hqlUpdate)
+//				.setParameter("active", statut)
+//				.setParameter("identifiantProduit", identifiantProduit)
+//				.setParameter("description", description)
+//				.setParameter("image", photo)
+//				.setParameter("nom",name)
+//				.setParameter("prix", prix)
+//				.setParameter("stock", stock)
+//				.setParameter("type", type)
+//				
+//				.executeUpdate();
+		this.jdbcTemplate.update("update produit set active=?,description=?,image=?,nom=?,prix=?,stock=?,type=? where idproduit=?"
+				,statut,description, photo,name, prix, stock,type,referenceProduit);
 		return true;
-		// updatedEntities.commit();
+		
+
+	
 
 	}
 }

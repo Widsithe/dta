@@ -23,10 +23,10 @@ public class AdminService {
     	return valeur;
     }
     
-    public Boolean modifierProduits(Produit product)
+    public Boolean modifierProduits(Integer referenceProduit,String type,String name,Double prix,Integer stock,String photo ,String description,Boolean statut)
     {
     	Boolean valeur;
-    	valeur = produit.modifierProduit(product);
+    	valeur = produit.modifierProduit(referenceProduit,type,name,prix,stock,photo ,description,statut);
     	return valeur;
     }
     
