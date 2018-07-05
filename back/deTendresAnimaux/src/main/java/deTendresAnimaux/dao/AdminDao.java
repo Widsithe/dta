@@ -19,8 +19,10 @@ public class AdminDao {
 	public Admin findAdminName(String identifiant) {
 		TypedQuery<Admin> query = entityManager.createQuery("from Admin a where a.identifiant = :idAdmin", Admin.class);
 		query.setParameter("idAdmin", identifiant);
+		Admin admin = query.getSingleResult();
+		System.err.println("dans le dao "+admin.getIdentifiant());
+			return admin;
 
-		return query.getSingleResult();
 	}
 
 }

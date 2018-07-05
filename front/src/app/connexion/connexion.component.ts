@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginAdminService } from '../login-admin.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginUserService } from '../login-user.service';
 
 @Component({
   selector: 'app-connexion',
@@ -12,12 +12,12 @@ export class ConnexionComponent {
 
   credentials = { identifiant: '', mdp: '' };
 
-  constructor(private loginService: LoginAdminService, private http: HttpClient, private router: Router) {
+  constructor(private loginService: LoginUserService, private http: HttpClient, private router: Router) {
     this.loginService = loginService;
    }
    login() {
     console.log(this.credentials);
-    this.loginService.authenticate(this.credentials, () => {
+    this.loginService.userAuthenticate(this.credentials, () => {
       this.router.navigateByUrl('/');
     });
     return false;

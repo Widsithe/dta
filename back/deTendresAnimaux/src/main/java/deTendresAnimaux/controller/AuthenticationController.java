@@ -11,6 +11,7 @@ public class AuthenticationController {
 
 	@RequestMapping("/user")
 	public Principal getConnectedUser(Principal principal) {
+		System.err.println("getConnectedUser");
 		return principal;
 	}
 }
