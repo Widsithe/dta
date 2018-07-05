@@ -14,6 +14,8 @@ public class Droit {
 	@GeneratedValue
 	private Integer idDroit;
 	private String nomDroit;
+	
+	
 	@OneToMany(mappedBy = "droit")
 	private List<Admin> droit;
 	

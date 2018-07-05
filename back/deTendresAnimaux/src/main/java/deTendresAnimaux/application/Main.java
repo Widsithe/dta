@@ -30,6 +30,10 @@ public class Main {
 	@RequestMapping("db")
 	@Transactional
 	public void start() {
+	  //public static void main(String[] args)
+	  
+	  
+	  
 		Droit droit1=new Droit("Admin");
 		Droit droit2=new Droit("Client");
 		List<Droit> droits = new ArrayList<>();
@@ -38,9 +42,9 @@ public class Main {
 		droits.add(droit2);
 		Admin adiministrateur1=new Admin("identifiant","mot de passe", droit1);
 		Client client= new Client("eea", "ee","eee", "ee","545", LocalDate.of(2018,12,12),"455") ;
-		Produit produit=new Produit("telephone", "iphone", 33, 22, "////","Rien du tout" ,true) ;
-		Produit produit2=new Produit("telephone", "samsung", 33, 22, "////","Rien du tout" ,true) ;
-		Produit produit3=new Produit("telephone", "samsung", 33, 22, "////","Rien du tout" ,true) ;
+		Produit produit=new Produit("telephone", "iphone", 33.0, 22, "////","Rien du tout" ,true) ;
+		Produit produit2=new Produit("telephone", "samsung", 33.0, 22, "////","Rien du tout" ,true) ;
+		Produit produit3=new Produit("telephone", "samsung", 33.0, 22, "////","Rien du tout" ,true) ;
 		Commande commande=new Commande ( LocalDate.of(2018,12,12),client);
 		Quantite quantite=new Quantite(commande,produit,32);
 		Quantite quantite2=new Quantite(commande,produit2,33);
@@ -53,5 +57,8 @@ public class Main {
 		em.persist(quantite2);
 		em.persist(quantite3);
 	}
+	
 
+	
+	
 }

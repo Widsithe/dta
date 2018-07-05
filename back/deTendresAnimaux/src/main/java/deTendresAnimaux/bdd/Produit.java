@@ -9,9 +9,22 @@ public class Produit {
 
 	@Id
 	@GeneratedValue
-	private int idproduit;
+	private Integer idproduit;
 
-	public Produit(String type, String nom, int prix, int stock, String image, String description, Boolean active) {
+	public Produit(Integer idproduit, String type, String nom, Double prix, Integer stock, String image,
+			String description, Boolean active) {
+		super();
+		this.idproduit = idproduit;
+		this.type = type;
+		this.nom = nom;
+		this.prix = prix;
+		this.stock = stock;
+		this.image = image;
+		this.description = description;
+		this.active = active;
+	}
+
+	public Produit(String type, String nom, Double prix, Integer stock, String image, String description, Boolean active) {
 		this.type = type;
 		this.nom = nom;
 		this.prix = prix;
@@ -29,9 +42,9 @@ public class Produit {
 
 	private String nom;
 
-	private int prix;
+	private Double prix;
 
-	private int stock;
+	private Integer stock;
 
 	private String image;
 
@@ -39,11 +52,11 @@ public class Produit {
 
 	private Boolean active; // statut
 
-	public int getIdproduit() {
+	public Integer getIdproduit() {
 		return idproduit;
 	}
 
-	public void setIdproduit(int idproduit) {
+	public void setIdproduit(Integer idproduit) {
 		this.idproduit = idproduit;
 	}
 
@@ -63,11 +76,11 @@ public class Produit {
 		this.nom = nom;
 	}
 
-	public int getPrix() {
+	public Double getPrix() {
 		return prix;
 	}
 
-	public void setPrix(int prix) {
+	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
 
@@ -75,7 +88,7 @@ public class Produit {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 

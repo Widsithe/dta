@@ -12,7 +12,7 @@ public class Client implements User {
 
 	@Id
 	@GeneratedValue
-	private int idclient;
+	private Integer idclient;
 
 	@ManyToOne
 	private Droit droit;
@@ -31,6 +31,7 @@ public class Client implements User {
 
 	private String motDePasse;
 
+	
 	public Client() {
 		
 	}
@@ -55,11 +56,11 @@ public class Client implements User {
 		this.motDePasse = motDePasse;
 	}
 	
-	public int getIdclient() {
+	public Integer getIdclient() {
 		return idclient;
 	}
 
-	public void setIdclient(int idclient) {
+	public void setIdclient(Integer idclient) {
 		this.idclient = idclient;
 	}
 
