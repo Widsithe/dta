@@ -31,7 +31,7 @@ public class Client implements User {
 
 	private String motDePasse;
 
-	public Integer getIdclient() {
+	
 	public Client() {
 		
 	}
@@ -56,7 +56,7 @@ public class Client implements User {
 		this.motDePasse = motDePasse;
 	}
 	
-	public int getIdclient() {
+	public Integer getIdclient() {
 		return idclient;
 	}
 
