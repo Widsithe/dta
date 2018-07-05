@@ -34,6 +34,7 @@ import { AdminCommandesDetailComponent } from './admin-commandes-detail/admin-co
 import { AdminProduitDetailComponent } from './admin-produit-detail/admin-produit-detail.component';
 import { LoginAdminService } from './login-admin.service';
 import { AdminSearchComponent } from './admin-search/admin-search.component';
+import { AdminSearchService } from './admin-search.service';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -81,6 +82,11 @@ const appRoutes: Routes = [
     path: 'panier',
     component: PanierComponent,
     data: { title: 'Votre panier' }
+  },
+  {
+    path: 'admin/search',
+    component: AdminSearchService,
+    data: { title: 'Recherche'}
   }
 ];
 
