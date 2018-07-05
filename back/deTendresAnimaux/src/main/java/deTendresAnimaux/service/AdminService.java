@@ -17,17 +17,8 @@ public class AdminService {
 		return produit.findProduits(name,type,ref);
 	}
 
-/*	public Produit save(Produit p) {
-		return produit.save(p);
-	}
-	*/
 	
 	
-	public List<Produit> activate() {
-		//Produit p = this.get(prodid);
-		//if(p==null) 
-			return produit.statutProduits("iphone");
-	}
 
 
 }

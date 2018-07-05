@@ -88,7 +88,7 @@ public class AdminController {
 	}
 	
 	
-	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
+/*	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
 	public  Boolean statut(@RequestParam(value = "nom", required = true) String nom) {
 		List<Produit> produit = new ArrayList<>();
 		produit = (adminService.getProduits(nom, null, null).activate());
@@ -100,7 +100,7 @@ public class AdminController {
 		
 
 
-		}
+		}*/
 	
 
 }
