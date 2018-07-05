@@ -13,7 +13,9 @@ export class AppComponent {
   title = 'De Tendres Animaux';
 
   constructor(private loginService: LoginAdminService, private http: HttpClient, private router: Router) {
-    this.loginService.authenticate(undefined, undefined);
+  }
+  authenticated() {
+    return this.loginService.authenticated;
   }
   logout() {
     this.http.post('logout', {}).pipe(finalize(() => {
