@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import { LoginAdminServiceService } from './login-admin-service.service';
+import { LoginAdminService } from './login-admin.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ import { LoginAdminServiceService } from './login-admin-service.service';
 export class AppComponent {
   title = 'De Tendres Animaux';
 
-  constructor(private loginService: LoginAdminServiceService, private http: HttpClient, private router: Router) {
+  constructor(private loginService: LoginAdminService, private http: HttpClient, private router: Router) {
     this.loginService.authenticate(undefined, undefined);
   }
   logout() {

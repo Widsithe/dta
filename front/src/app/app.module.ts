@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './auth-interceptor';
 
 import { MaterialModule } from '@blox/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AdopterComponent } from './adopter/adopter.component';
 import { AnimauxComponent } from './animaux/animaux.component';
@@ -31,9 +32,8 @@ import { AdminProduitComponent } from './admin-produit/admin-produit.component';
 import { AdminCommandesComponent } from './admin-commandes/admin-commandes.component';
 import { AdminCommandesDetailComponent } from './admin-commandes-detail/admin-commandes-detail.component';
 import { AdminProduitDetailComponent } from './admin-produit-detail/admin-produit-detail.component';
-import { LoginAdminServiceService } from './login-admin-service.service';
+import { LoginAdminService } from './login-admin.service';
 import { AdminSearchComponent } from './admin-search/admin-search.component';
-import { TokenInterceptor } from './token-interceptor';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -122,9 +122,10 @@ const appRoutes: Routes = [
     MatGridListModule,
   ],
   providers: [
-    LoginAdminServiceService,
-     { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
-     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    LoginAdminService,
+    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })

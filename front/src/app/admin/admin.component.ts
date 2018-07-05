@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginAdminServiceService } from '../login-admin-service.service';
+import { LoginAdminService } from '../login-admin.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   greeting = {};
 
 
-  constructor(private loginService: LoginAdminServiceService, private http: HttpClient) {
+  constructor(private loginService: LoginAdminService, private http: HttpClient) {
     http.get('resource').subscribe(data => this.greeting = data);
   }
   authenticated() {
