@@ -3,6 +3,7 @@
     <p>The ID is {{greeting.id}}</p>
     <p>The content is {{greeting.content}}</p>
 </div>
+<button (click)="getHello()">Hello</button>
 <div [hidden]="authenticated()">
     <p>Login to see your greeting</p>
 </div>

@@ -40,8 +40,27 @@ public class ProduitDao {
 		if (reference != null) {
 			query.where(builder.equal(rootProduit.get("idproduit"), reference));
 		}
+		
+		
 
 		return entityManager.createQuery(query).getResultList();
 	}
-
+   
+	public Boolean creerProduit(Produit produit)
+	{
+		Boolean valeur;
+		valeur=false;
+		try {
+		entityManager.persist(produit);
+		valeur=true;
+		}
+		catch(Exception e)
+		{
+	     valeur= false;
+		}
+		
+		 return valeur;
+		
+	}
+    
 }
