@@ -16,5 +16,18 @@ public class AdminService {
 	public List<Produit> getProduits(String name, String type,Integer ref) {
 		return produit.findProduits(name,type,ref);
 	}
-
+    public Boolean ajouterProduits(Produit product)
+    {
+    	Boolean valeur;
+    	valeur = produit.creerProduit(product);
+    	return valeur;
+    }
+    
+    public Boolean modifierProduits(Produit product)
+    {
+    	Boolean valeur;
+    	valeur = produit.modifierProduit(product);
+    	return valeur;
+    }
+    
 }

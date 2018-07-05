@@ -26,7 +26,7 @@ public class Admin {
 		this.droit = droit;
 	}
 
-	public int getidadmin() {
+	public Integer getidadmin() {
 		return idAdmin;
 	}
 
