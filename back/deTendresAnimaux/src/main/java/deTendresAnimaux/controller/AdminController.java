@@ -1,6 +1,5 @@
 package deTendresAnimaux.controller;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import deTendresAnimaux.bdd.Produit;
-import deTendresAnimaux.dao.ProduitDao;
 import deTendresAnimaux.security.AuthenticationService;
 import deTendresAnimaux.service.AdminService;
 
@@ -25,6 +22,38 @@ import deTendresAnimaux.service.AdminService;
 public class AdminController {
 	@Autowired
 	private AuthenticationService authenticationService;
+	@Autowired
+	private AdminService adminService;
+
+//	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+//		return new ResponseEntity<String>("Ferme la...", HttpStatus.OK);
+//	public ResponseEntity<String> foo2() {
+//	}
+//	@RequestMapping(value = "hello", method = RequestMethod.GET)
+//
+//	public ResponseEntity<String> foo() {
+//		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
+//	}
+//
+//	
+//	@GetMapping(value = "utilisateurs", produces = "application/json")
+//		//utilisateurService.addUser();
+//	public @ResponseBody List<AdminService> getUsers() {
+//		return adminService.getUsers();
+//	}
+//	@PostMapping(value="/", consumes= "application/json")
+//	
+//	public @ResponseBody void setUser(@RequestBody @Valid AdminService user/*,BindingResult bindingResult*/)
+//	{
+//		/*System.out.println(bindingResult.getAllErrors());*/
+//		adminService.addUser(user);
+//	}
+//	@DeleteMapping(value="/{id}", consumes= "application/json")
+//	public @ResponseBody void supprimerUser(@PathVariable("id") int id)
+//	{
+//
+//		adminService.supprimerUtilisateur( id);
+//	}
 	
 	@Autowired
 	private AdminService adminService;
@@ -37,7 +66,7 @@ public class AdminController {
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public ResponseEntity<String> foo() {
-		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
+		return new ResponseEntity<String>("Je suis au bout de ma vie!", HttpStatus.OK);
 	}
 
 	@GetMapping(value = "produits", produces = MediaType.APPLICATION_JSON_VALUE)

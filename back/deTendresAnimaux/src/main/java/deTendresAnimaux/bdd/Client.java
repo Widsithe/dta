@@ -5,27 +5,17 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Client {
+public class Client implements User {
 
 	@Id
 	@GeneratedValue
 	private Integer idclient;
 
-	public Client(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance, String motDePasse) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.telephone = telephone;
-		this.email = email;
-		this.dateDeNaissance = dateDeNaissance;
-		this.motDePasse = motDePasse;
-	}
-	
-	public Client() {
-		
-	}
+	@ManyToOne
+	private Droit droit;
 
 	private String nom;
 
@@ -42,6 +32,31 @@ public class Client {
 	private String motDePasse;
 
 	public Integer getIdclient() {
+	public Client() {
+		
+	}
+	public Client(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance, String motDePasse) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.email = email;
+		this.dateDeNaissance = dateDeNaissance;
+		this.motDePasse = motDePasse;
+	}
+	
+	public Client(Droit droit, String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance, String motDePasse) {
+		this.droit = droit;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.email = email;
+		this.dateDeNaissance = dateDeNaissance;
+		this.motDePasse = motDePasse;
+	}
+	
+	public int getIdclient() {
 		return idclient;
 	}
 
@@ -96,7 +111,8 @@ public class Client {
 	public void setDateDeNaissance(LocalDate date) {
 		this.dateDeNaissance = date;
 	}
-
+	
+	@Override
 	public String getMotDePasse() {
 		return motDePasse;
 	}
@@ -104,5 +120,16 @@ public class Client {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	public Droit getiddroit() {
+		return droit;
+	}
 
+	public void setiddroit(Droit droit) {
+		this.droit = droit;
+	}
+	
+	@Override
+	public String getIdentifiant() {
+		return email;
+	}
 }
