@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import deTendresAnimaux.bdd.Produit;
+import deTendresAnimaux.dao.ProduitDao;
 import deTendresAnimaux.security.AuthenticationService;
 import deTendresAnimaux.service.AdminService;
 
@@ -26,6 +27,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private ProduitDao produitDao;
 	
 	@RequestMapping("user")
 	public Principal user(Principal user) {
@@ -97,12 +101,13 @@ public class AdminController {
 	
 	
 	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
-	public  Boolean statut(@RequestParam(value = "idproduit", required = true) Integer idproduit) {
-		 Boolean resultat;
-	        Produit produit;
-	        produit=new Produit(null, null, idproduit, idproduit, null, null, resultat);
-	        resultat=adminService.statutProduits();
-	        return resultat;
+	public  Boolean statut(@RequestParam(value = "nom", required = true) String nom) {
+		List<Produit> produit = new ArrayList<>();
+		produit = (adminService.getProduits(nom, null, null).activate());
+		
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" + produitDao.statutProduits(nom));
+
+	        return true;
 
 		
 

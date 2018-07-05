@@ -17,10 +17,10 @@ import deTendresAnimaux.bdd.Produit;
 @Repository
 @Transactional
 public class ProduitDao {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	Produit produit = new Produit();
 
 	public List<Produit> findProduits(String name, String type, Integer reference) {
@@ -47,25 +47,42 @@ public class ProduitDao {
 
 		return entityManager.createQuery(query).getResultList();
 	}
-	
-	public boolean statutProduits(int idproduit) {//select produit actif via id et désactive
-		TypedQuery<Produit> query =entityManager.createQuery(
-				"select p from Produit p where p.idproduit=:idproduit", Produit.class);
-		query.setParameter("idproduit", produit.getIdproduit());
+
+	public List<Produit> statutProduits(String nom) {//select produit actif via id et désactive
+		TypedQuery<Produit> query = entityManager.createQuery(
+				"update  Produit  set active = false  where Produit.nom=:nom", Produit.class);
 		List<Produit> produit = query.getResultList();
 		for(Produit prod: produit) {
-			if(prod.getActive()==true) {
+			if(prod.getActive().equals(true)) {
 				prod.setActive(false);
-			}else if(prod.getActive()==false) {
+			}else if(prod.getActive().equals(false)) {
 				prod.setActive(true);
-			}
-			
+
+					
+				}
 		}
+		return (List<Produit>) query;
+		
+				
+
+		
+		
+		/*query.setParameter("idproduit", produit.getIdproduit());
+		List<Produit> produit = query.getResultList();
+		for(Produit prod: produit) {
+			if(prod.getActive().equals(true)) {
+				prod.setActive(false);
+			}else if(prod.getActive().equals(false)) {
+				prod.setActive(true);*/
+			
+			
+		
 		
 
-		return true;
+		
 		
 	}
+	
 
     
 }
