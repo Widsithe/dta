@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.httpBasic()
+			http.csrf().disable().httpBasic()
 					.and().addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class)
 					.authorizeRequests().anyRequest().permitAll();
 		}

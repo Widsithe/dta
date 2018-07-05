@@ -85,7 +85,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'admin/search',
-    component: AdminSearchService,
+    component: AdminSearchComponent,
     data: { title: 'Recherche'}
   }
 ];
