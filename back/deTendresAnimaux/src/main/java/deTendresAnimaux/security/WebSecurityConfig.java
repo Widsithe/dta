@@ -8,9 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -22,12 +20,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// The pages does not require login
-//		.and().authorizeRequests().antMatchers("/*").permitAll().anyRequest().authenticated()
-//		.and().addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class);
+		// .and().authorizeRequests().antMatchers("/*").permitAll().anyRequest().authenticated()
+		// .and().addFilterBefore(new WebSecurityCorsFilter(),
+		// ChannelProcessingFilter.class);
 
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/api/**").permitAll().anyRequest().authenticated().and().httpBasic().and().csrf()
-				.disable().exceptionHandling().and().addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class);
+		// http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+		// .antMatchers("/api/**").permitAll().anyRequest();
+		// .authenticated().and().httpBasic().and().csrf()
+		// .disable().exceptionHandling().and().addFilterBefore(new
+		// WebSecurityCorsFilter(), ChannelProcessingFilter.class);
+		// The pages does not require login //
+		 http.authorizeRequests() 
+		    .antMatchers("/login").permitAll(); 
 	}
 
 	@Bean

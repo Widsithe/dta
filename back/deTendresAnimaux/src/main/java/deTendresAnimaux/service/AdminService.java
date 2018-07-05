@@ -17,4 +17,12 @@ public class AdminService {
 		return produit.findProduits(name,type,ref);
 	}
 
+	
+	public boolean modifStatus(Produit prod) {
+		
+		
+		return prod.statusProduits(idproduit);
+		
+	}
+
 }

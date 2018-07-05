@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import deTendresAnimaux.bdd.Produit;
-import deTendresAnimaux.dao.ProduitDao;
 import deTendresAnimaux.security.AuthenticationService;
 import deTendresAnimaux.service.AdminService;
 
@@ -25,11 +23,15 @@ import deTendresAnimaux.service.AdminService;
 public class AdminController {
 	@Autowired
 	private AuthenticationService authenticationService;
+	
+	@Autowired
+	private AdminService adminService;
+	
 	@RequestMapping("user")
 	public Principal user(Principal user) {
 		return user;
-	@Autowired
-	private AdminService adminService;
+		
+	
 	
 //	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 //		return new ResponseEntity<String>("Ferme la...", HttpStatus.OK);
@@ -92,5 +94,20 @@ public class AdminController {
 		// produit=(adminService.getProduits(name,type,referenceProduit));
 		// System.out.println("gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"+produit.get(0).getPrix());
 	}
+	
+	
+	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
+	public  Boolean statut(@RequestParam(value = "idproduit", required = true) Integer idproduit) {
+		 Boolean resultat;
+	        Produit produit;
+	        produit=new Produit(null, null, idproduit, idproduit, null, null, resultat);
+	        resultat=adminService.statutProduits();
+	        return resultat;
+
+		
+
+
+		}
+	
 
 }

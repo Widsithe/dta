@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +20,8 @@ public class ProduitDao {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	Produit produit = new Produit();
 
 	public List<Produit> findProduits(String name, String type, Integer reference) {
 		
@@ -44,6 +46,25 @@ public class ProduitDao {
 		
 
 		return entityManager.createQuery(query).getResultList();
+	}
+	
+	public boolean statutProduits(int idproduit) {//select produit actif via id et désactive
+		TypedQuery<Produit> query =entityManager.createQuery(
+				"select p from Produit p where p.idproduit=:idproduit", Produit.class);
+		query.setParameter("idproduit", produit.getIdproduit());
+		List<Produit> produit = query.getResultList();
+		for(Produit prod: produit) {
+			if(prod.getActive()==true) {
+				prod.setActive(false);
+			}else if(prod.getActive()==false) {
+				prod.setActive(true);
+			}
+			
+		}
+		
+
+		return true;
+		
 	}
 
     
