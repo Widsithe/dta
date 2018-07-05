@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginAdminServiceService } from '../login-admin-service.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
+import { LoginAdminService } from '../login-admin.service';
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -16,14 +11,11 @@ export class AdminComponent implements OnInit {
   greeting = {};
 
 
-  constructor(private loginService: LoginAdminServiceService, private http: HttpClient) {
-    http.get('resource').subscribe(data => this.greeting = data);
+  constructor(private loginService: LoginAdminService) {
+
   }
   authenticated() {
     return this.loginService.authenticated;
-  }
-  getHello() {
-    return this.http.get('http://localhost:8080/DeTendresAnimaux/api/admin/hello', httpOptions).subscribe();
   }
   ngOnInit() {
   }

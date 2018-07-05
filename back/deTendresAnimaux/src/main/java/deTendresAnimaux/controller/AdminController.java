@@ -1,6 +1,5 @@
 package deTendresAnimaux.controller;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import deTendresAnimaux.bdd.Produit;
-import deTendresAnimaux.dao.ProduitDao;
 import deTendresAnimaux.security.AuthenticationService;
 import deTendresAnimaux.service.AdminService;
 
@@ -24,19 +22,9 @@ import deTendresAnimaux.service.AdminService;
 public class AdminController {
 	@Autowired
 	private AuthenticationService authenticationService;
-	
 	@Autowired
 	private AdminService adminService;
-	
-	@Autowired
-	private ProduitDao produitDao;
-	
-	@RequestMapping("user")
-	public Principal user(Principal user) {
-		return user;
-		
-	
-	
+
 //	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 //		return new ResponseEntity<String>("Ferme la...", HttpStatus.OK);
 //	public ResponseEntity<String> foo2() {
@@ -65,11 +53,11 @@ public class AdminController {
 //	{
 //
 //		adminService.supprimerUtilisateur( id);
-	}
+//	}
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public ResponseEntity<String> foo() {
-		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
+		return new ResponseEntity<String>("Je suis au bout de ma vie!", HttpStatus.OK);
 	}
 
 	@GetMapping(value = "produits", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -82,7 +70,7 @@ public class AdminController {
 		// ProduitDao produit=new ProduitDao();
 
 		List<Produit> produit = new ArrayList<>();
-		produit = (adminService.getProduits(name, null, null));
+		produit = (adminService.getProduits(name, type,referenceProduit));
 		for (int i = 0; i < produit.size(); i++) {
 			System.out.println(
 					"gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg" + produit.get(i).getIdproduit());

@@ -5,7 +5,13 @@
         </figure>
     </a>
     <span class="fill-remaining-space"></span>
-    <app-menu></app-menu>
+    <div [hidden]="authenticated()">
+        <app-menu></app-menu>
+    </div>
+    <div [hidden]="!authenticated()">
+        <app-menuadmin></app-menuadmin>
+    </div>
+
 </mat-toolbar>
 
 <section class="mce-container-body m-container">

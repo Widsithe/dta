@@ -47,8 +47,25 @@ public class ProduitDao {
 
 		return entityManager.createQuery(query).getResultList();
 	}
+   
+	public Boolean creerProduit(Produit produit)
+	{
+		Boolean valeur;
+		valeur=false;
+		try {
+		entityManager.persist(produit);
+		valeur=true;
+		}
+		catch(Exception e)
+		{
+	     valeur= false;
+		}
+		
+		 return valeur;
+		
+	}
 
-	public List<Produit> statutProduits(String nom) {//select produit actif via id et désactive
+	public List<Produit> statutProduits(String nom) {//select produit actif via id et dï¿½sactive
 		TypedQuery<Produit> query = entityManager.createQuery(
 				"update  Produit  set active = false  where Produit.nom=:nom", Produit.class);
 		List<Produit> produit = query.getResultList();

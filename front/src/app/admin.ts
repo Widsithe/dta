@@ -1,5 +1,5 @@
 export class Admin {
-    idadmin: number;
+    idadmin?: number;
     identifiant: string;
     mdp: string;
 
