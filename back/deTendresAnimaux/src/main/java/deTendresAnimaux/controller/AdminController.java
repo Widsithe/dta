@@ -42,7 +42,7 @@ public class AdminController {
 
 	@GetMapping(value = "produits", produces = MediaType.APPLICATION_JSON_VALUE)
 	//recuperer tous les produits
-	public List<Produit> updateUser(@RequestParam(value = "name", required = false) String name,
+	public List<Produit> listeProduits(@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "type", required = false) String type,
 			@RequestParam(value = "referenceProduit", required = false) Integer referenceProduit) {
 
