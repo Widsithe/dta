@@ -6,23 +6,26 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Admin {
+public class Admin implements User {
 	@Id
 	@GeneratedValue
 	private Integer idAdmin;
 	private String identifiant;
-	private String mdp;
+	private String motDePasse;
 	@ManyToOne
 	private Droit droit;
-
+	
+	public Admin() {
+		// TODO Auto-generated constructor stub
+	}
 	public Admin(String identifiant, String mdp) {
 		this.identifiant = identifiant;
-		this.mdp = mdp;
+		this.motDePasse = mdp;
 	}
 
 	public Admin(String identifiant, String mdp, Droit droit) {
 		this.identifiant = identifiant;
-		this.mdp = mdp;
+		this.motDePasse = mdp;
 		this.droit = droit;
 	}
 
@@ -33,7 +36,8 @@ public class Admin {
 	public void setidadmin(Integer idadmin) {
 		this.idAdmin = idadmin;
 	}
-
+	
+	@Override
 	public String getIdentifiant() {
 		return identifiant;
 	}
@@ -42,12 +46,13 @@ public class Admin {
 		this.identifiant = identifiant;
 	}
 
-	public String getMdp() {
-		return mdp;
+	@Override
+	public String getMotDePasse() {
+		return motDePasse;
 	}
 
 	public void setMdp(String mdp) {
-		this.mdp = mdp;
+		this.motDePasse = mdp;
 	}
 
 	public Droit getiddroit() {
@@ -56,10 +61,6 @@ public class Admin {
 
 	public void setiddroit(Droit droit) {
 		this.droit = droit;
-	}
-
-	public Admin() {
-		// TODO Auto-generated constructor stub
 	}
 
 }
