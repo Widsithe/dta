@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+
 
 import { AdopterComponent } from './adopter/adopter.component';
 import { AnimauxComponent } from './animaux/animaux.component';
@@ -127,6 +129,7 @@ const appRoutes: Routes = [
     MatIconModule,
     HttpClientModule,
     MatGridListModule,
+    MatCardModule
   ],
   providers: [
     LoginAdminService,
