@@ -25,67 +25,55 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-//	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-//		return new ResponseEntity<String>("Ferme la...", HttpStatus.OK);
-//	public ResponseEntity<String> foo2() {
-//	}
-//	@RequestMapping(value = "hello", method = RequestMethod.GET)
-//
-//	public ResponseEntity<String> foo() {
-//		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
-//	}
-//
-//	
-//	@GetMapping(value = "utilisateurs", produces = "application/json")
-//		//utilisateurService.addUser();
-//	public @ResponseBody List<AdminService> getUsers() {
-//		return adminService.getUsers();
-//	}
-//	@PostMapping(value="/", consumes= "application/json")
-//	
-//	public @ResponseBody void setUser(@RequestBody @Valid AdminService user/*,BindingResult bindingResult*/)
-//	{
-//		/*System.out.println(bindingResult.getAllErrors());*/
-//		adminService.addUser(user);
-//	}
-//	@DeleteMapping(value="/{id}", consumes= "application/json")
-//	public @ResponseBody void supprimerUser(@PathVariable("id") int id)
-//	{
-//
-//		adminService.supprimerUtilisateur( id);
-//	}
-
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public ResponseEntity<String> foo() {
 		return new ResponseEntity<String>("Je suis au bout de ma vie!", HttpStatus.OK);
 	}
 
 	@GetMapping(value = "produits", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Produit> updateUser(@RequestParam(value = "name", required = false) String name,
+	// recuperer tous les produits
+	public List<Produit> listeProduits(@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "type", required = false) String type,
 			@RequestParam(value = "referenceProduit", required = false) Integer referenceProduit) {
-		// return new ResponseEntity<String>(" Je suis au bout de ma vie!",
-		// HttpStatus.OK);
-		// ProduitDao.findProduits(name, type, referenceProduit);
-		// ProduitDao produit=new ProduitDao();
 
 		List<Produit> produit = new ArrayList<>();
-		produit = (adminService.getProduits(name, type,referenceProduit));
-		for (int i = 0; i < produit.size(); i++) {
-			System.out.println(
-					"gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg" + produit.get(i).getIdproduit());
-		}
+		produit = (adminService.getProduits(name, type, referenceProduit));
 		return produit;
-		// System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX"+
-		// name);//adminService.majUtilisateur(id, user);S
-		// System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX" + type);
-		// System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX" +referenceProduit);
-		// //System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
-		// +adminService.getProduits(name,type,referenceProduit));
-		// List<Produit>produit = new ArrayList<>();
-		// produit=(adminService.getProduits(name,type,referenceProduit));
-		// System.out.println("gdfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"+produit.get(0).getPrix());
+
 	}
+
+	@GetMapping(value = "CreerProduits", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Boolean addProduct(@RequestParam(value = "name", required = true) String name,
+			@RequestParam(value = "type", required = true) String type,
+			@RequestParam(value = "prix", required = true) Double prix,
+			@RequestParam(value = "stock", required = true) Integer stock,
+			@RequestParam(value = "description", required = true) String description,
+			@RequestParam(value = "photo", required = true) String photo,
+			@RequestParam(value = "statut", required = true) Boolean statut) {
+
+		Boolean resultat;
+		Produit produit;
+		produit = new Produit(type, name, prix, stock, photo, description, statut);
+		resultat = adminService.ajouterProduits(produit);
+		return resultat;
+
+	}
+
+	@GetMapping(value = "ModifierProduit", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Boolean updateProduct(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
+			@RequestParam(value = "name", required = true) String name,
+			@RequestParam(value = "type", required = true) String type,
+			@RequestParam(value = "prix", required = true) Double prix,
+			@RequestParam(value = "stock", required = true) Integer stock,
+			@RequestParam(value = "description", required = true) String description,
+			@RequestParam(value = "photo", required = true) String photo,
+			@RequestParam(value = "statut", required = true) Boolean statut) {
+		Boolean resultat;
+		resultat = adminService.modifierProduits(referenceProduit, type, name, prix, stock, photo, description, statut);
+		return resultat;
+
+	}
+
 	
 	
 /*	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)

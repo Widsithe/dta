@@ -29,7 +29,7 @@ public class Admin implements User {
 		this.droit = droit;
 	}
 
-	public int getidadmin() {
+	public Integer getidadmin() {
 		return idAdmin;
 	}
 
