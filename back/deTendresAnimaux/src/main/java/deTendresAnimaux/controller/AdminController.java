@@ -57,7 +57,7 @@ public class AdminController {
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public ResponseEntity<String> foo() {
-		return new ResponseEntity<String>(" Je suis au bout de ma vie!", HttpStatus.OK);
+		return new ResponseEntity<String>("Je suis au bout de ma vie!", HttpStatus.OK);
 	}
 
 	@GetMapping(value = "produits", produces = MediaType.APPLICATION_JSON_VALUE)
