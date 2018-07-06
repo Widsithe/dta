@@ -98,43 +98,13 @@ public class ProduitDao {
 
 	}
 
-/*	public List<Produit> statutProduits(String nom) {//select produit actif
-		TypedQuery<Produit> query = entityManager.createQuery(
-				"update  Produit  set active = false  where Produit.nom=:nom", Produit.class);
-		List<Produit> produit = query.getResultList();
-		for(Produit prod: produit) {
-			if(prod.getActive().equals(true)) {
-				prod.setActive(false);
-			}else if(prod.getActive().equals(false)) {
-				prod.setActive(true);
-
-					
-				}
-		}
-		return (List<Produit>) query;
-		
-	
-	}*/
-	
-	public Boolean statusProduit(Integer referenceProduit,String type,String name,Double prix,Integer stock,String photo ,String description,Boolean statut) {
-		Integer identifiantProduit =referenceProduit ;
-		Produit produit;
-		produit=new Produit(referenceProduit,type,name,prix,stock,photo ,description,statut);
-		//int statut = this.jdbcTemplate.update("update produit set active=? where iduser = ?", new Object[]{ referenceProduit });
-
-		this.jdbcTemplate.update("update produit set active=?,description=?,image=?,nom=?,prix=?,stock=?,type=? where idproduit=?"
-				,statut,description, photo,name, prix, stock,type,referenceProduit);
-		return true;
-		
 
 	
 
-	}
 	
-	 public Boolean update(Integer id, Boolean statut){
+	 public Boolean statutProduit(Integer id, Boolean statut){
 	      String SQL = "update produit set active = ? where idproduit = ?";
 	      jdbcTemplate.update(SQL, statut, id);
-	      System.out.println("Updated Record with ID = " + id );
 	      return true;
 	   }
 	

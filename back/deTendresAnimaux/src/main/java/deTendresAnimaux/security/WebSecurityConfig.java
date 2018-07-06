@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.web.server.session.HeaderWebSessionIdResolver;
 import org.springframework.web.server.session.WebSessionIdResolver;
 
@@ -28,10 +27,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable().httpBasic().and();
-					.addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class).authorizeRequests()
-					.antMatchers("/", "/connexion", "/panier").permitAll().anyRequest().authenticated()
-					.antMatchers("/admin/").hasRole("ADMIN").antMatchers("/api/**")
-					.access("hasRole('ROLE_ADMIN')");
+					//.addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class).authorizeRequests()
+					//.antMatchers("/", "/connexion", "/panier").permitAll().anyRequest().authenticated()
+					//.antMatchers("/admin/").hasRole("ADMIN").antMatchers("/api/**")
+					//.access("hasRole('ROLE_ADMIN')");
 			
 			System.out.println("BOUH");
 		}

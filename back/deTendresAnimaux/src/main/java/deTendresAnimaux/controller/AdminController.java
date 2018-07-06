@@ -76,7 +76,7 @@ public class AdminController {
 
 	
 	
-	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
+/*	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
 	public  Boolean statut(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
 				@RequestParam(value = "name", required = false) String name,
 				@RequestParam(value = "type", required = false) String type,
@@ -92,9 +92,9 @@ public class AdminController {
 		
 
 
-		}
+		}*/
 	
-	@GetMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/Statut", produces = MediaType.APPLICATION_JSON_VALUE)
 	public  Boolean update(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
 				//@RequestParam(value = "name", required = false) String name,
 				//@RequestParam(value = "type", required = false) String type,
@@ -104,7 +104,7 @@ public class AdminController {
 				//@RequestParam(value = "photo", required = false) String photo,
 				@RequestParam(value = "statut", required = true) Boolean statut) {
 		Boolean resultat;
-		resultat = adminService.up(referenceProduit, statut);
+		resultat = adminService.statProduit(referenceProduit, statut);
 		return resultat;
 
 		
