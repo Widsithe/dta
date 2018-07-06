@@ -36,10 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().cors()
 			.and().addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class)
 			.authorizeRequests()
+			
 			.antMatchers("/", "/test", "/user").permitAll()
 			.anyRequest().authenticated();
-			
-			System.out.println("BOUH");
 		}
 	}
 	@Bean
@@ -66,8 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return authProvider;
 	}
 	
-	@Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+/*	@Bean 
+	public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
@@ -76,6 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
-
+		
+	}
+*/
 }
