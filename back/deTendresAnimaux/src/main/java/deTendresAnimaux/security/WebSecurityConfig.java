@@ -1,5 +1,7 @@
 package deTendresAnimaux.security;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.server.session.HeaderWebSessionIdResolver;
 import org.springframework.web.server.session.WebSessionIdResolver;
 
@@ -23,13 +28,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private AuthenticationService userDetailsService;
 
 	@Configuration
-	@Order(1)
+	@Order(
+)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable().httpBasic()
+			.and().cors()
 			.and().addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class)
 			.authorizeRequests()
+			
 			.antMatchers("/", "/test", "/user").permitAll()
 			.anyRequest().authenticated();
 		}
@@ -57,5 +65,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		authProvider.setPasswordEncoder(new NoEncodingEncoder());
 		return authProvider;
 	}
-
+	
+/*	@Bean 
+	public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+        configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+		
+	}
+*/
 }

@@ -34,5 +34,10 @@ export class LoginAdminService {
       return this.authenticated === true && callback && callback();
     });
   }
+
+  logout(){ 
+    sessionStorage.removeItem('auth');
+    this.authenticated = false;
+  }
 }
 
