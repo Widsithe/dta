@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.csrf().disable().httpBasic().and()
+			http.csrf().disable().httpBasic().and();
 					.addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class).authorizeRequests()
 					.antMatchers("/", "/connexion", "/panier").permitAll().anyRequest().authenticated()
 					.antMatchers("/admin/").hasRole("ADMIN").antMatchers("/api/**")

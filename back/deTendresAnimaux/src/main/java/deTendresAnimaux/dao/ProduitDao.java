@@ -4,16 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.sql.DataSource;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -102,7 +98,7 @@ public class ProduitDao {
 
 	}
 
-	public List<Produit> statutProduits(String nom) {//select produit actif via id et d�sactive
+/*	public List<Produit> statutProduits(String nom) {//select produit actif
 		TypedQuery<Produit> query = entityManager.createQuery(
 				"update  Produit  set active = false  where Produit.nom=:nom", Produit.class);
 		List<Produit> produit = query.getResultList();
@@ -117,25 +113,30 @@ public class ProduitDao {
 		}
 		return (List<Produit>) query;
 		
-				
+	
+	}*/
+	
+	public Boolean statusProduit(Integer referenceProduit,String type,String name,Double prix,Integer stock,String photo ,String description,Boolean statut) {
+		Integer identifiantProduit =referenceProduit ;
+		Produit produit;
+		produit=new Produit(referenceProduit,type,name,prix,stock,photo ,description,statut);
+		//int statut = this.jdbcTemplate.update("update produit set active=? where iduser = ?", new Object[]{ referenceProduit });
 
-		
-		
-		/*query.setParameter("idproduit", produit.getIdproduit());
-		List<Produit> produit = query.getResultList();
-		for(Produit prod: produit) {
-			if(prod.getActive().equals(true)) {
-				prod.setActive(false);
-			}else if(prod.getActive().equals(false)) {
-				prod.setActive(true);*/
-			
-			
-		
+		this.jdbcTemplate.update("update produit set active=?,description=?,image=?,nom=?,prix=?,stock=?,type=? where idproduit=?"
+				,statut,description, photo,name, prix, stock,type,referenceProduit);
+		return true;
 		
 
-		
-		
+	
+
 	}
+	
+	 public Boolean update(Integer id, Boolean statut){
+	      String SQL = "update produit set active = ? where idproduit = ?";
+	      jdbcTemplate.update(SQL, statut, id);
+	      System.out.println("Updated Record with ID = " + id );
+	      return true;
+	   }
 	
 
     

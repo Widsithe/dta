@@ -30,4 +30,17 @@ public class AdminService {
     	return valeur;
     }
     
+    public Boolean statProduit(Integer referenceProduit,String type,String name,Double prix,Integer stock,String photo ,String description,Boolean statut) {
+    	Boolean valeur;
+    	valeur = produit.statusProduit(referenceProduit,type,name,prix,stock,photo ,description,statut);  	
+		return valeur;
+    	
+    }
+    
+    
+    public Boolean up(Integer id, Boolean statut) {
+    	Boolean valeur;
+    	valeur = produit.update(id, statut);  	
+		return valeur;    	
+    }
 }
