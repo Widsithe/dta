@@ -30,4 +30,12 @@ public class AdminService {
     	return valeur;
     }
     
+
+    
+    
+    public Boolean statProduit(Integer id, Boolean statut) {
+    	Boolean valeur;
+    	valeur = produit.statutProduit(id, statut);  	
+		return valeur;    	
+    }
 }

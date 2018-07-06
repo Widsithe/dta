@@ -77,18 +77,39 @@ public class AdminController {
 	
 	
 /*	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
-	public  Boolean statut(@RequestParam(value = "nom", required = true) String nom) {
-		List<Produit> produit = new ArrayList<>();
-		produit = (adminService.getProduits(nom, null, null).activate());
-		
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" + produitDao.statutProduits(nom));
-
-	        return true;
+	public  Boolean statut(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
+				@RequestParam(value = "name", required = false) String name,
+				@RequestParam(value = "type", required = false) String type,
+				@RequestParam(value = "prix", required = false) Double prix,
+				@RequestParam(value = "stock", required = false) Integer stock,
+				@RequestParam(value = "description", required = false) String description,
+				@RequestParam(value = "photo", required = false) String photo,
+				@RequestParam(value = "statut", required = true) Boolean statut) {
+		Boolean resultat;
+		resultat = adminService.statProduit(referenceProduit, type, name, prix, stock, photo, description, statut);
+		return resultat;
 
 		
 
 
 		}*/
 	
+	@GetMapping(value = "/Statut", produces = MediaType.APPLICATION_JSON_VALUE)
+	public  Boolean update(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
+				//@RequestParam(value = "name", required = false) String name,
+				//@RequestParam(value = "type", required = false) String type,
+				//@RequestParam(value = "prix", required = false) Double prix,
+				//@RequestParam(value = "stock", required = false) Integer stock,
+				//@RequestParam(value = "description", required = false) String description,
+				//@RequestParam(value = "photo", required = false) String photo,
+				@RequestParam(value = "statut", required = true) Boolean statut) {
+		Boolean resultat;
+		resultat = adminService.statProduit(referenceProduit, statut);
+		return resultat;
+
+		
+
+
+		}
 
 }
