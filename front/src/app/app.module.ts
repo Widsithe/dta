@@ -17,8 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AdopterComponent } from './adopter/adopter.component';
 import { AnimauxComponent } from './animaux/animaux.component';
@@ -39,6 +39,7 @@ import { AdminSearchComponent } from './admin-search/admin-search.component';
 import { AdminSearchService } from './admin-search.service';
 import { LoginUserService } from './login-user.service';
 import { SearchComponent } from './search/search.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -90,7 +91,7 @@ const appRoutes: Routes = [
   {
     path: 'admin/search',
     component: AdminSearchComponent,
-    data: { title: 'Recherche'}
+    data: { title: 'Recherche' }
   }
 ];
 
@@ -112,7 +113,8 @@ const appRoutes: Routes = [
     AdminCommandesDetailComponent,
     AdminProduitDetailComponent,
     AdminSearchComponent,
-    SearchComponent
+    SearchComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +133,8 @@ const appRoutes: Routes = [
     MatIconModule,
     HttpClientModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ],
   providers: [
     LoginAdminService,
