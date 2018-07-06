@@ -23,15 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private AuthenticationService userDetailsService;
 
 	@Configuration
-	@Order(1)
+	@Order(SecurityProperties.BASIC_AUTH_ORDER-1)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.csrf().disable().httpBasic().and()
-					.addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class).authorizeRequests()
-					.antMatchers("/", "/connexion", "/panier").permitAll().anyRequest().authenticated()
-					.antMatchers("/admin/").hasRole("ADMIN").antMatchers("/api/**")
-					.access("hasRole('ROLE_ADMIN')");
+			http.csrf().disable().httpBasic()
+			.and().addFilterBefore(new WebSecurityCorsFilter(), ChannelProcessingFilter.class)
+			.authorizeRequests()
+			.antMatchers("/", "/test", "/user").permitAll()
+			.anyRequest().authenticated();
 			
 			System.out.println("BOUH");
 		}
