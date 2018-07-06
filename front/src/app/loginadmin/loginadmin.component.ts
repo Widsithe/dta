@@ -15,6 +15,11 @@ export class LoginadminComponent {
   constructor(private loginService: LoginAdminService, private http: HttpClient, private router: Router) {
     this.loginService = loginService;
   }
+
+  ngOnInit(){
+    this.loginService.logout();
+  }
+
   login() {
     console.log(this.credentials);
     this.loginService.authenticate(this.credentials, () => {
