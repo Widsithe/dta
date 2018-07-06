@@ -38,6 +38,7 @@ import { LoginAdminService } from './login-admin.service';
 import { AdminSearchComponent } from './admin-search/admin-search.component';
 import { AdminSearchService } from './admin-search.service';
 import { LoginUserService } from './login-user.service';
+import { SearchComponent } from './search/search.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -110,7 +111,8 @@ const appRoutes: Routes = [
     AdminCommandesComponent,
     AdminCommandesDetailComponent,
     AdminProduitDetailComponent,
-    AdminSearchComponent
+    AdminSearchComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+<form role="form" (submit)="search()" class="form-container">
+    <div mdcTextField [helperText]="">
+        <input mdcTextFieldInput type="text" #searchNom="ngModel" [(ngModel)]="search.nom" [disabled]="disabled" [required]="required" name="nom" />
+        <label mdcFloatingLabel>Nom</label>
+    </div>
+    <div mdcSelect [box]="box">
+        <select mdcSelectControl [(ngModel)]="type">
+          <option value="" disabled selected></option>
+          <option value="amphibien">Amphibien</option>
+          <option value="aves">Aves</option>
+          <option value="mammifere">Mammifère</option>
+          <option value="reptile">Reptile</option>
+        </select>
+        <label mdcFloatingLabel>Type</label>
+    </div>
+    <div>
+        <div mdcFormField [alignEnd]="alignEnd">
+            <div mdcRadio>
+                <input mdcRadioInput type="radio" name="fourchetteprix" id="fourchetteprixsmall" value="small" [(ngModel)]="fourchetteprix" />
+            </div>
+            <label mdcFormFieldLabel for="fourchetteprixsmall">De 10&euro; à 50&euro;</label>
+        </div>
+        <div mdcFormField [alignEnd]="alignEnd">
+            <div mdcRadio>
+                <input mdcRadioInput type="radio" name="fourchetteprix" id="fourchetteprixbig" value="big" [(ngModel)]="fourchetteprix" />
+            </div>
+            <label mdcFormFieldLabel for="fourchetteprixbig">De 50&euro; à 200&euro;</label>
+        </div>
+    </div>
+
+    <button mdcButton raised type="submit">Rechercher</button>
+</form>
