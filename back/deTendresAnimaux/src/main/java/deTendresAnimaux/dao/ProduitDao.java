@@ -70,10 +70,22 @@ public class ProduitDao {
 	}
 
 	public List<Produit> afficherProduit(int val) {
-		// pagination
+		// pagination affiche les produits avec une limite par page
 		List<Produit> produitPagination = new ArrayList<>();
 		produitPagination = entityManager.createQuery("SELECT p FROM Produit p").setMaxResults(val).getResultList();
 		return produitPagination;
+	}
+
+	public List<Produit> afficherProduitRecherche(String name, String type, Integer reference, Integer nb) {
+		// pagination affiche les produits avec une limite prenant en compte la
+		// recherche
+		List<Produit> produitPaginationRecherche = new ArrayList<>();
+		produitPaginationRecherche = entityManager
+				.createQuery("SELECT p FROM Produit p WHERE p.name = :name "
+						+ "AND p.type = :type AND p.reference = :reference ")
+				.setParameter("name", name).setParameter("type", type).setParameter("reference", reference)
+				.setMaxResults(nb).getResultList();
+		return produitPaginationRecherche;
 	}
 
 	public Boolean modifierProduit(Integer referenceProduit, String type, String name, Double prix, Integer stock,

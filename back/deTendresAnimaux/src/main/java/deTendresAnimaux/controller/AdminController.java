@@ -44,13 +44,23 @@ public class AdminController {
 
 	@GetMapping(value = "AffichageProduits", produces = MediaType.APPLICATION_JSON_VALUE)
 	// Afficher un nombre de produit, pagination
-	public List<Produit> listeProduitsAfficher(@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "type", required = false) String type,
-			@RequestParam(value = "referenceProduit", required = false) Integer referenceProduit,
-			@RequestParam(value = "nb", required = false) Integer nb) {
+	public List<Produit> listeProduitsAfficher(@RequestParam(value = "nb", required = true) Integer nb) {
 
 		List<Produit> produit = new ArrayList<>();
 		produit = (adminService.getProduitsAfficher(nb));
+		return produit;
+
+	}
+
+	@GetMapping(value = "AffichageProduitsRecherche", produces = MediaType.APPLICATION_JSON_VALUE)
+	// Afficher un nombre de produit, pagination
+	public List<Produit> listeProduitsAfficherRecherche(@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "type", required = false) String type,
+			@RequestParam(value = "referenceProduit", required = false) Integer reference,
+			@RequestParam(value = "nb", required = true) Integer nb) {
+
+		List<Produit> produit = new ArrayList<>();
+		produit = (adminService.getProduitsAfficherRecherche(name, type, reference, nb));
 		return produit;
 
 	}

@@ -34,6 +34,10 @@ public class AdminService {
 		return produit.afficherProduit(val);
 	}
 
+	public List<Produit> getProduitsAfficherRecherche(String name, String type, Integer reference, Integer nb) {
+		return produit.afficherProduitRecherche(name, type, reference, nb);
+	}
+
 	public Boolean statProduit(Integer id, Boolean statut) {
 		Boolean valeur;
 		valeur = produit.statutProduit(id, statut);
