@@ -42,6 +42,19 @@ public class AdminController {
 
 	}
 
+	@GetMapping(value = "AffichageProduits", produces = MediaType.APPLICATION_JSON_VALUE)
+	// Afficher un nombre de produit, pagination
+	public List<Produit> listeProduitsAfficher(@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "type", required = false) String type,
+			@RequestParam(value = "referenceProduit", required = false) Integer referenceProduit,
+			@RequestParam(value = "nb", required = false) Integer nb) {
+
+		List<Produit> produit = new ArrayList<>();
+		produit = (adminService.getProduitsAfficher(nb));
+		return produit;
+
+	}
+
 	@GetMapping(value = "CreerProduits", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean addProduct(@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "type", required = true) String type,
@@ -74,42 +87,49 @@ public class AdminController {
 
 	}
 
-	
-	
-/*	@GetMapping(value = "/statut", produces = MediaType.APPLICATION_JSON_VALUE)
-	public  Boolean statut(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
-				@RequestParam(value = "name", required = false) String name,
-				@RequestParam(value = "type", required = false) String type,
-				@RequestParam(value = "prix", required = false) Double prix,
-				@RequestParam(value = "stock", required = false) Integer stock,
-				@RequestParam(value = "description", required = false) String description,
-				@RequestParam(value = "photo", required = false) String photo,
-				@RequestParam(value = "statut", required = true) Boolean statut) {
-		Boolean resultat;
-		resultat = adminService.statProduit(referenceProduit, type, name, prix, stock, photo, description, statut);
-		return resultat;
+	/*
+	 * @GetMapping(value = "/statut", produces =
+	 * MediaType.APPLICATION_JSON_VALUE) public Boolean
+	 * statut(@RequestParam(value = "referenceProduit", required = true) Integer
+	 * referenceProduit,
+	 * 
+	 * @RequestParam(value = "name", required = false) String name,
+	 * 
+	 * @RequestParam(value = "type", required = false) String type,
+	 * 
+	 * @RequestParam(value = "prix", required = false) Double prix,
+	 * 
+	 * @RequestParam(value = "stock", required = false) Integer stock,
+	 * 
+	 * @RequestParam(value = "description", required = false) String
+	 * description,
+	 * 
+	 * @RequestParam(value = "photo", required = false) String photo,
+	 * 
+	 * @RequestParam(value = "statut", required = true) Boolean statut) {
+	 * Boolean resultat; resultat = adminService.statProduit(referenceProduit,
+	 * type, name, prix, stock, photo, description, statut); return resultat;
+	 * 
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
 
-		
-
-
-		}*/
-	
 	@GetMapping(value = "/Statut", produces = MediaType.APPLICATION_JSON_VALUE)
-	public  Boolean update(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
-				//@RequestParam(value = "name", required = false) String name,
-				//@RequestParam(value = "type", required = false) String type,
-				//@RequestParam(value = "prix", required = false) Double prix,
-				//@RequestParam(value = "stock", required = false) Integer stock,
-				//@RequestParam(value = "description", required = false) String description,
-				//@RequestParam(value = "photo", required = false) String photo,
-				@RequestParam(value = "statut", required = true) Boolean statut) {
+	public Boolean update(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
+			// @RequestParam(value = "name", required = false) String name,
+			// @RequestParam(value = "type", required = false) String type,
+			// @RequestParam(value = "prix", required = false) Double prix,
+			// @RequestParam(value = "stock", required = false) Integer stock,
+			// @RequestParam(value = "description", required = false) String
+			// description,
+			// @RequestParam(value = "photo", required = false) String photo,
+			@RequestParam(value = "statut", required = true) Boolean statut) {
 		Boolean resultat;
 		resultat = adminService.statProduit(referenceProduit, statut);
 		return resultat;
 
-		
-
-
-		}
+	}
 
 }
