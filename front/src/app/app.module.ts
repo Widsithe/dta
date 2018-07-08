@@ -21,8 +21,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AdopterComponent } from './adopter/adopter.component';
-import { AnimauxComponent } from './animaux/animaux.component';
-import { AnimauxDetailComponent } from './animaux-detail/animaux-detail.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginadminComponent } from './loginadmin/loginadmin.component';
@@ -114,7 +112,11 @@ const appRoutes: Routes = [
     AdminProduitDetailComponent,
     AdminSearchComponent,
     SearchComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    ProductItemComponent,
+    SharedComponent,
+    PriceComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
