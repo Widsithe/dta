@@ -1,8 +1,30 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injectable } from '@angular/core';
+
 
 import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+// Modules
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { ProductsModule } from './products/products.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
+import { CheckoutModule } from './checkout/checkout.module';
+import { AccountModule } from './account/account.module';
+import { AdminModule } from './admin/admin.module';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+
+// Components
+import { AppComponent } from './app.component';
+import { CartComponent } from './cart/cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -50,55 +72,10 @@ export class XhrInterceptor implements HttpInterceptor {
   }
 }
 
-const appRoutes: Routes = [
-  {
-    path: 'adopter',
-    component: AdopterComponent,
-    data: { title: 'Tous nos animaux' }
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    data: { title: 'Votre interface d"administration' }
-  },
-  {
-    path: 'login-admin',
-    component: LoginadminComponent,
-    data: { title: 'Connectez vous' }
-  },
-  {
-    path: 'admin/commandes',
-    component: AdminCommandesComponent,
-    data: { title: 'Toutes les commandes' }
-  },
-  {
-    path: 'admin/produits',
-    component: AdminProduitComponent,
-    data: { title: 'Tous les produits' }
-  },
-  {
-    path: 'connexion',
-    component: ConnexionComponent,
-    data: { title: 'Connexion' }
-  },
-  {
-    path: 'panier',
-    component: PanierComponent,
-    data: { title: 'Votre panier' }
-  },
-  {
-    path: 'admin/search',
-    component: AdminSearchComponent,
-    data: { title: 'Recherche' }
-  }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
     AdopterComponent,
-    AnimauxComponent,
-    AnimauxDetailComponent,
     ConnexionComponent,
     AdminComponent,
     LoginadminComponent,
@@ -113,18 +90,11 @@ const appRoutes: Routes = [
     AdminSearchComponent,
     SearchComponent,
     PaginatorComponent,
-    ProductItemComponent,
-    SharedComponent,
-    PriceComponent,
-    ProductsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
+    RouterModule,
     NoopAnimationsModule,
     FormsModule,
     MaterialModule,
