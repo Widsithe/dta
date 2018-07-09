@@ -4,14 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import deTendresAnimaux.bdd.User;
 import deTendresAnimaux.dao.AdminDao;
 import deTendresAnimaux.dao.ClientDao;
+import deTendresAnimaux.dao.UserDao;
 
 @Component
 public class AuthenticationService implements UserDetailsService {
@@ -22,7 +23,7 @@ public class AuthenticationService implements UserDetailsService {
 	private ClientDao clientDao;
 
 	@Autowired
-	private UserRepository urep;
+	private UserDao userDao;
 
 	/*
 	 * @Override public UserDetails loadUserByUsername(final String identifiant)
@@ -48,13 +49,13 @@ public class AuthenticationService implements UserDetailsService {
 	 */
 
 	@Override
-	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-		User user = urep.findByUsername(mail);
+		User user = userDao.findByUserMail(email);
 
 		if (user != null) {
 			List<GrantedAuthority> rules = user.getDroits();
-			return new org.springframework.security.core.userdetails.User(user.getMail(), user.getPassword(), rules);
+			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getMotDePasse(), rules);
 		}
 
 		throw new UsernameNotFoundException("User not found");
