@@ -1,35 +1,39 @@
-<div class="container container-fluid">
-  <div id="menu" class="row">
-    <div class="col-md-2 col-3 mr-auto">
-      <a routerLink='/'>
-        <img src="../../assets/logo.jpg" class="rounded img-fluid">
-      </a>
+<nav class=" blue lighten-2" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" routerLink='/' class="brand-logo logomenu">
+            <figure>
+                <img src="../../assets//images/teddy-bear.png" alt="logo">
+            </figure>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li>
+                <a (click)="goToProfile()">Profil</a>
+            </li>
+            <li>
+                <p-menu #burgerMenu popup="popup" [model]="items"></p-menu>
+            </li>
+            <li>
+                <a (click)='logout()'>Déconnexion</a>
+            </li>
+            <li>
+                <button mat-raised-button color="primary" (click)="goToCart()">Panier</button>
+            </li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li>
+                <a (click)="goToProfile()">Profil</a>
+            </li>
+            <li>
+                <p-menu #burgerMenu popup="popup" [model]="items"></p-menu>
+            </li>
+            <li>
+                <a (click)='logout()'>Déconnexion</a>
+            </li>
+            <li>
+                <button mat-raised-button color="primary" (click)="goToCart()">Panier</button>
+            </li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-    <div class="col-md-7 col-5" id="title">
-      <h1>La forme à fond</h1>
-    </div>
-    <div id="menuItems" class="col-3 mr-auto">
-      <div class="row">
-        <div class="col-4 mr-auto circle" (click)="goToCart()">
-          <i class="fa fa-shopping-cart"></i>
-        </div>
-        <div class="col-4 mr-auto circle" (click)="goToProfile()">
-          <i class="fa fa-user-circle"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="menuCont" class="container">
-  <p-menubar [model]="items" [autoDisplay]="false">
-    <p-button label="Deconnexion" icon="fa fa-sign-out" (click)='logout()'></p-button>
-  </p-menubar>
-</div>
-<div id="burgerMenuCont" class="container">
-  <div class="row">
-    <div class="col-4 mr-auto">
-      <button type="button" pButton icon="fa fa-list" label="Menu" (click)="burgerMenu.toggle($event)"></button>
-    </div>
-  </div>
-</div>
-<p-menu #burgerMenu popup="popup" [model]="items"></p-menu>
+</nav>

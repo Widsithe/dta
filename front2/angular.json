@@ -24,10 +24,10 @@
                         "tsConfig": "src/tsconfig.app.json",
                         "assets": [
                             "src/favicon.ico",
-                            "./node_modules/materialize-css/dist/css/materialize.min.css",
                             "src/assets"
                         ],
                         "styles": [
+                            "./node_modules/materialize-css/dist/css/materialize.css",
                             "src/styles.scss"
                         ],
                         "stylePreprocessorOptions": {

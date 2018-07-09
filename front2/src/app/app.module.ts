@@ -36,29 +36,29 @@ import {CardModule} from 'primeng/card';
 
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
-import { ProductService } from './product.service';
+import { ProductService } from './products/product.service';
 import { MenuComponent } from './menu/menu.component';
-import { NewProductComponent } from './new-product/new-product.component';
-import { NewUserComponent } from './new-user/new-user.component';
-import { AdminProductsComponent } from './admin-products/admin-products.component';
-import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
-import { AuthentificationComponent } from './authentification/authentification.component';
-import { UserService } from './user.service';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { PanierComponent } from './panier/panier.component';
-import { PanierService } from './panier.service';
-import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
-import { UserOrderComponent } from './user-order/user-order.component';
-import { CommandeService } from './commande.service';
+import { NewProductComponent } from './products/new-product/new-product.component';
+import { NewUserComponent } from './user/new-user/new-user.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AuthentificationComponent } from './security/authentification/authentification.component';
+import { UserService } from './user/user.service';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { PanierComponent } from './cart/panier/panier.component';
+import { PanierService } from './cart/panier.service';
+import { ProfileDetailComponent } from './user/profile-detail/profile-detail.component';
+import { UserOrderComponent } from './user/user-order/user-order.component';
+import { CommandeService } from './cart/commande.service';
 import { FooterComponent } from './footer/footer.component';
-import { InfosComponent } from './infos/infos.component';
-import { CguComponent } from './cgu/cgu.component';
-import { CgvComponent } from './cgv/cgv.component';
-import { ContactComponent } from './contact/contact.component';
-import { SocialComponent } from './social/social.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
+// Material for angular
+import {MatButtonModule} from '@angular/material/button';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: 'accueil', component: AccueilComponent },
   { path: 'Products', component: ProductsComponent },
   { path: 'AdminProducts', component: AdminProductsComponent },
   { path: 'AdminOrders', component: AdminOrdersComponent },
@@ -66,13 +66,8 @@ const appRoutes: Routes = [
   { path: 'newUser', component: NewUserComponent },
   { path: 'newProduct', component: NewProductComponent },
   { path: 'panier', component: PanierComponent },
-  { path: 'Profile', component: UserProfileComponent },
+  { path: 'profil', component: UserProfileComponent },
   { path: 'order', component: UserOrderComponent },
-  { path: 'infos', component: InfosComponent },
-  { path: 'cgu', component: CguComponent},
-  { path: 'cgv', component: CgvComponent},
-  { path: 'social', component: SocialComponent},
-  { path: 'contact', component: ContactComponent}
 ];
 
 @NgModule({
@@ -90,11 +85,7 @@ const appRoutes: Routes = [
     ProfileDetailComponent,
     UserOrderComponent,
     FooterComponent,
-    InfosComponent,
-    CguComponent,
-    CgvComponent,
-    ContactComponent,
-    SocialComponent
+    AccueilComponent,
 
   ],
   imports: [
@@ -132,7 +123,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    MatButtonModule
   ],
   providers: [ProductService, UserService, PanierService, CommandeService],
   bootstrap: [AppComponent]

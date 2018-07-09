@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { Product } from './product';
+import { ProductService } from './product.service';
 import { Observable } from 'rxjs';
 import { DataGridModule } from 'primeng/datagrid';
 import { PanelModule } from 'primeng/panel';
@@ -9,7 +9,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { SpinnerModule } from 'primeng/spinner';
 import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { PanierService } from '../panier.service';
+import { PanierService } from './../cart/panier.service';
 import { Message } from 'primeng/components/common/api';
 
 @Component({

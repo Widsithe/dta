@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Formafond';
+  title = 'De tendres animaux';
 
   constructor(private router:Router) {
     this.router=router;
-    //this.router.navigate(['/Products']);
+    //this.router.navigate(['/products']);
   }
 }

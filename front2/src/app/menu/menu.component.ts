@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { User } from './../user.model';
-import { UserService } from '../user.service';
+import { User } from './../user/user.model';
+import { UserService } from './../user/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -31,12 +31,12 @@ export class MenuComponent implements OnInit {
   buildItems(u?: User) {
     this.items = [{ label: "Shopping", icon: "fa fa-shopping-cart", routerLink: "/Products" }];
     if (u && u.role && u.role.toLowerCase() == "admin") {
-      this.items.push({ label: "Gestion des produits", routerLink: '/AdminProducts' }, { label: "Gestion des commandes", routerLink: '/AdminOrders' });
+      this.items.push({ label: "Produits", routerLink: '/AdminProducts' }, { label: "Commandes", routerLink: '/AdminOrders' });
     }
   }
 
   goToCart() {
-    this.router.navigate(['/Profile'], {
+    this.router.navigate(['/profil'], {
       queryParams: {
         page: "panier"
       }
@@ -44,12 +44,12 @@ export class MenuComponent implements OnInit {
   }
 
   goToProfile() {
-    if (this.uServ.getConnectedUserInSession()) this.router.navigate(['/Profile']);
+    if (this.uServ.getConnectedUserInSession()) this.router.navigate(['/profil']);
     else this.router.navigate(["/authentification"], {
       queryParams: {
         severity: "warn",
-        summary: "Vous n'êtes pas connecté",
-        message: "Connectez-vous afin de pouvoir accéder à votre profile."
+        summary: "Attention ! Vous n'êtes pas connecté",
+        message: "Connectez-vous pour accéder à votre profil."
       }
     });
   }
