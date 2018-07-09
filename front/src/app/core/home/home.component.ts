@@ -33,59 +33,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.productsCache
-      .get('products', this.productService.getProducts())
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((products) => {
-        this.products = <Product[]>products;
-      });
-
-    this.productService
-      .getFeaturedProducts()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (products) => {
-          this.productsFeatured = products;
-        },
-        (err) => console.error(err)
-      );
-
-    this.productService
-      .getProductsByDate(3)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (products) => {
-          this.productsNewArrivals = products;
-        },
-        (err) => console.error(err)
-      );
-
-    this.productService
-      .getProductsByRating(3)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (products) => {
-          this.productsBestRated = products;
-        },
-        (err) => console.error(err)
-      );
-
-    this.productService
-      .getProductsQuery('sale', true, 3)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (products) => {
-          this.productsOnSale = products;
-        },
-        (err) => console.error(err)
-      );
-
-    this.promoService
-      .getPromos()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((promos) => {
-        this.promos = promos;
-      });
   }
 
   ngOnDestroy() {

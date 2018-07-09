@@ -4,11 +4,11 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from '../../account/shared/auth.service';
-import { PagerService } from '../../pager/pager.service';
+import { PagerService } from './../../pager/pager.service';
 import { ProductsCacheService } from '../shared/products-cache.service';
-import { ProductService } from '../shared/product.service';
-import { UiService } from '../shared/ui.service';
-import { SortPipe } from '../shared/sort.pipe';
+import { ProductService } from './../shared/product.service';
+import { UiService } from './../shared/ui.service';
+import { SortPipe } from './../shared/sort.pipe';
 
 import { Product } from '../../models/product.model';
 import { User } from '../../models/user.model';

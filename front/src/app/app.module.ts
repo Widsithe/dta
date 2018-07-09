@@ -5,8 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, Injectable } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
@@ -14,24 +13,9 @@ import { CoreModule } from './core/core.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireStorageModule } from 'angularfire2/storage';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
-
-// Components
-import { AppComponent } from './app.component';
-import { CartComponent } from './cart/cart.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { AuthInterceptor } from './auth-interceptor';
-
 import { MaterialModule } from '@blox/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -41,6 +25,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+
+// Components
+import { AppComponent } from './app.component';
+import { CartComponent } from './cart/cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { AuthInterceptor } from './auth-interceptor';
+
 
 import { AdopterComponent } from './adopter/adopter.component';
 import { ConnexionComponent } from './connexion/connexion.component';
@@ -56,8 +48,8 @@ import { AdminCommandesDetailComponent } from './admin-commandes-detail/admin-co
 import { AdminProduitDetailComponent } from './admin-produit-detail/admin-produit-detail.component';
 import { LoginAdminService } from './login-admin.service';
 import { AdminSearchComponent } from './admin-search/admin-search.component';
-import { AdminSearchService } from './admin-search.service';
-import { LoginUserService } from './login-user.service';
+import { AdminSearchService } from './admin/admin-search.service';
+import { LoginUserService } from './account/login-user.service';
 import { SearchComponent } from './search/search.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 

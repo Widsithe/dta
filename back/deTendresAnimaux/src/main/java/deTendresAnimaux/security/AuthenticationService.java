@@ -35,13 +35,10 @@ public class AuthenticationService implements UserDetailsService {
 		Admin admin = adminDao.findAdminName(identifiant);
 		Set<Droit> droits = new HashSet<>();
 		if(admin == null) {
-			try {
+
 				Client client = clientDao.findClientByEmail(identifiant);
 				droits.add(client.getiddroit()); // rajout du droit client ou pas ?
-			}catch(Exception e) {
-				System.out.println("id "+identifiant);
-				e.printStackTrace();
-			}
+				System.err.println("id "+identifiant);
 			
 		}else {
 			droits.add(admin.getiddroit());

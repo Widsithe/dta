@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './loginadmin.component.html',
   styleUrls: ['./loginadmin.component.scss']
 })
-export class LoginadminComponent {
+export class LoginadminComponent implements OnInit {
 
   credentials = { identifiant: '', mdp: '' };
 
@@ -16,7 +16,7 @@ export class LoginadminComponent {
     this.loginService = loginService;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loginService.logout();
   }
 

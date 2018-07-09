@@ -8,6 +8,8 @@ import {
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MessageService } from '../../messages/message.service';
 import { AuthService } from '../shared/auth.service';
+import { LoginUserService } from '../login-user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-login',
@@ -18,18 +20,28 @@ export class RegisterLoginComponent implements OnInit {
   public loginForm: FormGroup;
   public registerForm: FormGroup;
   public registerErrors: string;
+  credentials = { identifiant: '', mdp: '' };
 
   constructor(
     private authenticationService: AuthService,
     private router: Router,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService, private loginService: LoginUserService, private http: HttpClient
+  ) {
+    this.loginService = loginService;
+  }
 
   ngOnInit() {
     this.initLoginForm();
     this.initRegisterForm();
   }
+  login() {
+    console.log(this.credentials);
+    this.loginService.userAuthenticate(this.credentials, () => {
+      this.router.navigateByUrl('/');
+    });
+    return false;
 
+  }
   private initLoginForm() {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -52,23 +64,23 @@ export class RegisterLoginComponent implements OnInit {
       this.registerForm.controls.confirmPassword.setErrors({ confirmPassword: true });
     } else {
       this.authenticationService.emailSignUp(this.registerForm.value.email, this.registerForm.value.password)
-      .then(
-        () => {
-          this.messageService.add('Account created successfully. Please login with your new credentials!');
-          this.loginForm.setValue({ email: this.registerForm.value.email, password: ''});
-          this.initRegisterForm();
-        },
-        (error) => {
-          this.registerErrors = error.message;
-          if (error.code === 'auth/weak-password') {
-            this.registerForm.controls.password.setErrors({ password: true });
-            this.registerForm.controls.confirmPassword.setErrors({ confirmPassword: true });
+        .then(
+          () => {
+            this.messageService.add('Account created successfully. Please login with your new credentials!');
+            this.loginForm.setValue({ email: this.registerForm.value.email, password: '' });
+            this.initRegisterForm();
+          },
+          (error) => {
+            this.registerErrors = error.message;
+            if (error.code === 'auth/weak-password') {
+              this.registerForm.controls.password.setErrors({ password: true });
+              this.registerForm.controls.confirmPassword.setErrors({ confirmPassword: true });
+            }
+            if (error.code === 'auth/email-already-in-use') {
+              this.registerForm.controls.email.setErrors({ email: true });
+            }
           }
-          if (error.code === 'auth/email-already-in-use') {
-            this.registerForm.controls.email.setErrors({ email: true });
-          }
-        }
-      );
+        );
     }
   }
 

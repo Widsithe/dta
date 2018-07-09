@@ -4,14 +4,13 @@ import { Injectable } from '@angular/core';
 
 import { catchError ,  tap, switchMap, map } from 'rxjs/operators';
 
-import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
 import { MessageService } from '../../messages/message.service';
-import { ProductRatingService } from './product-rating.service';
 
 import { Product } from '../../models/product.model';
 import { ProductsUrl } from './productsUrl';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ProductService {
@@ -19,10 +18,9 @@ export class ProductService {
 
   constructor(
     private messageService: MessageService,
-    private angularFireDatabase: AngularFireDatabase,
     public authService: AuthService,
     private uploadService: FileUploadService,
-    private productRatingService: ProductRatingService
+    private http: HttpClient
   ) {}
 
   /** Log a ProductService message with the MessageService */
@@ -46,7 +44,7 @@ export class ProductService {
   }
 
   public getProducts(): Observable<Product[]> {
-    return this.angularFireDatabase
+    return this.http
       .list<Product>('products', (ref) => ref.orderByChild('date'))
       .valueChanges()
       .pipe(map((arr) => arr.reverse()), catchError(this.handleError<Product[]>(`getProducts`)));
@@ -57,7 +55,7 @@ export class ProductService {
     equalTo: string | boolean,
     limitToFirst: number
   ): Observable<Product[]> {
-    return this.angularFireDatabase
+    return this.http
       .list<Product>('products', (ref) =>
         ref
           .orderByChild(byChild)
@@ -69,7 +67,7 @@ export class ProductService {
   }
 
   public findProducts(term): Observable<any> {
-    return this.angularFireDatabase
+    return this.http
       .list<Product>('products', (ref) =>
         ref
           .orderByChild('name')
@@ -81,7 +79,7 @@ export class ProductService {
   }
 
   public getProductsByDate(limitToLast: number): Observable<Product[]> {
-    return this.angularFireDatabase
+    return this.http
       .list<Product>('products', (ref) =>
         ref.orderByChild('date').limitToLast(limitToLast)
       )
@@ -92,42 +90,9 @@ export class ProductService {
         );
   }
 
-  public getProductsByRating(limitToLast: number): Observable<Product[]> {
-    return this.angularFireDatabase
-      .list<Product>('products', (ref) =>
-        ref.orderByChild('currentRating').limitToLast(limitToLast)
-      )
-      .valueChanges()
-      .pipe(map((arr) => arr.reverse()), catchError(this.handleError<Product[]>(`getProductsByRating`)));
-  }
-
-  public getFeaturedProducts(): Observable<any[]> {
-    return this.angularFireDatabase
-      .list<Product>('featured')
-      .snapshotChanges()
-      .pipe(
-        switchMap(
-          (actions) => {
-            return observableCombineLatest(
-              actions.map((action) => this.getProduct(action.key))
-            );
-          },
-          (actionsFromSource, resolvedProducts) => {
-            resolvedProducts.map((product, i) => {
-              product['imageFeaturedUrl'] = actionsFromSource[
-                i
-              ].payload.val().imageFeaturedUrl;
-              return product;
-            });
-            return resolvedProducts;
-          }
-        ),
-        catchError(this.handleError<Product[]>(`getFeaturedProducts`)));
-  }
-
   public getProduct(id: any): Observable<Product | null> {
     const url = `${this.productsUrl}/${id}`;
-    return this.angularFireDatabase
+    return this.http
       .object<Product>(url)
       .valueChanges()
       .pipe(
@@ -159,28 +124,13 @@ export class ProductService {
         return data;
       })
       .then((dataWithImagePath) => {
-        return this.angularFireDatabase
+        return this.http
           .object<Product>(url)
           .update(data.product);
       })
       .then((response) => {
         this.log(`Updated Product ${data.product.name}`);
         return data.product;
-      })
-      .catch((error) => {
-        this.handleError(error);
-        return error;
-      });
-    return fromPromise(dbOperation);
-  }
-
-  private updateProductWithoutNewImage(product: Product, url: string) {
-    const dbOperation = this.angularFireDatabase
-      .object<Product>(url)
-      .update(product)
-      .then((response) => {
-        this.log(`Updated Product ${product.name}`);
-        return product;
       })
       .catch((error) => {
         this.handleError(error);
@@ -196,7 +146,7 @@ export class ProductService {
         data.product.imageURLs.push(task.downloadURL);
         data.product.imageRefs.push(task.ref.fullPath);
 
-        return this.angularFireDatabase
+        return this.http
           .list('products')
           .set(data.product.id.toString(), data.product);
       }, (error) => error)
@@ -219,7 +169,7 @@ export class ProductService {
 
     this.uploadService.deleteFile(product.imageRefs);
 
-    return this.angularFireDatabase
+    return this.http
       .object<Product>(url)
       .remove()
       .then(() => this.log('success deleting' + product.name))
