@@ -6,6 +6,6 @@ export class Product {
     public description: string = '',
     public type: string = '',
     public image: string = '',
-    public idproduit?: number = 1,
+    public idproduit?: number,
   ) { }
 }

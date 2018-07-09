@@ -47,13 +47,13 @@ describe('CartService', () => {
 
     it('addItem() should add 3 of the same products at once', () => {
       const testProduct = new Product(
-        666,
-        new Date().toISOString().split('T')[0],
-        'Foo Product',
-        'Lorem Ipsum...',
-        89,
-        99,
-        10
+        'Manon le dindon',
+        50,
+        49.99,
+        'Ceci est un dindon',
+        'Aves',
+        '../assets/images/products/dindon.png',
+        1,
       );
 
       spyOn(cartService.itemsChanged, 'emit');
@@ -70,13 +70,13 @@ describe('CartService', () => {
 
     it('addItem() called twice with the same product should increase amount', () => {
       const testProduct = new Product(
-        666,
-        new Date().toISOString().split('T')[0],
-        'Foo Product',
-        'Lorem Ipsum...',
-        89,
-        99,
-        10
+        'Manon le dindon',
+        50,
+        49.99,
+        'Ceci est un dindon',
+        'Aves',
+        '../assets/images/products/dindon.png',
+        1,
       );
 
       spyOn(cartService.itemsChanged, 'emit');
@@ -102,13 +102,13 @@ describe('CartService', () => {
 
     it('addItems() should be able to handle 3 products in array at once', () => {
       const testProduct = new Product(
-        666,
-        new Date().toISOString().split('T')[0],
-        'Foo Product',
-        'Lorem Ipsum...',
-        89,
-        99,
-        10
+        'Manon le dindon',
+        50,
+        49.99,
+        'Ceci est un dindon',
+        'Aves',
+        '../assets/images/products/dindon.png',
+        1,
       );
 
       const testArray = [
@@ -130,13 +130,13 @@ describe('CartService', () => {
 
     it('removeItem() should remove a distinct item', () => {
       const testProduct = new Product(
-        666,
-        new Date().toISOString().split('T')[0],
-        'Foo Product',
-        'Lorem Ipsum...',
-        89,
-        99,
-        10
+        'Manon le dindon',
+        50,
+        49.99,
+        'Ceci est un dindon',
+        'Aves',
+        '../assets/images/products/dindon.png',
+        1,
       );
 
       spyOn(cartService.itemsChanged, 'emit');

@@ -5,7 +5,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable ,  Subscription ,  of } from 'rxjs';
 
 import { MessageService } from '../../messages/message.service';
-import { FileUploadService } from '../../products/shared/file-upload.service';
 import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
@@ -23,7 +22,7 @@ export class DomainProduct extends Product {
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.scss']
 })
-export class AddEditComponent implements OnInit, OnDestroy {
+export class AddEditComponent {
   private productSubscription: Subscription;
   private formSubscription: Subscription;
   @ViewChild('photos') photos;
@@ -37,11 +36,10 @@ export class AddEditComponent implements OnInit, OnDestroy {
     private router: Router,
     public route: ActivatedRoute,
     private productService: ProductService,
-    public fileUploadService: FileUploadService,
     private productsCacheService: ProductsCacheService,
     private log: MessageService
   ) {}
-
+/*
   ngOnInit(): void {
     this.setProduct();
   }
@@ -49,19 +47,15 @@ export class AddEditComponent implements OnInit, OnDestroy {
   private initForm() {
     this.productForm = new FormGroup({
       name: new FormControl(
-        this.product && this.product.name,
+        this.product && this.product.nom,
         Validators.required
       ),
       id: new FormControl(
         {
-          value: this.product && this.product.id,
+          value: this.product && this.product.idproduit,
           disabled: true
         },
         [Validators.required, Validators.min(0)]
-      ),
-      date: new FormControl(
-        this.product && this.product.date,
-        Validators.required
       ),
       categories: new FormControl(
         this.product && this.product.categories,
@@ -71,11 +65,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
         this.product && this.product.description,
         Validators.required
       ),
-      price: new FormControl(this.product && this.product.price, [
-        Validators.required,
-        Validators.min(0)
-      ]),
-      priceNormal: new FormControl(this.product && this.product.priceNormal, [
+      price: new FormControl(this.product && this.product.prix, [
         Validators.required,
         Validators.min(0)
       ])
@@ -102,7 +92,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
 
   private constructProduct() {
     const product = this.constructMockProduct();
-    product.categories = this.categoriesFromObjectToString(product.categories);
+    product.type = this.categoriesFromObjectToString(product.type);
     this.syncProduct(product);
     this.initForm();
   }
@@ -266,5 +256,5 @@ export class AddEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.formSubscription.unsubscribe();
-  }
+  }*/
 }

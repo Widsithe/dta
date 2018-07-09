@@ -40,16 +40,9 @@ export class AnimauxDetailComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private productsCacheService: ProductsCacheService,
     private productService: ProductService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.authService.user
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((user) => {
-        this.user = user;
-      });
-
-    this.ratingValues = [1, 2, 3, 4, 5];
     this.selectedQuantity = 1;
     this.imagesLoaded = [];
 
@@ -78,13 +71,6 @@ export class AnimauxDetailComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  public onSelectThumbnail(event, index) {
-    event.preventDefault();
-    this.activeImageUrl = this.product.imageURLs[index];
-    this.activeImageIndex = index;
-  }
-
   public onAddToCart() {
     this.cartService.addItem(new CartItem(this.product, this.selectedQuantity));
   }
@@ -100,22 +86,16 @@ export class AnimauxDetailComponent implements OnInit, OnDestroy {
   private setupProduct() {
     if (this.product) {
       this.checkCategories();
-      this.activeImageUrl = this.product.imageURLs[0];
-      this.activeImageIndex = 0;
     }
   }
 
   private checkCategories() {
-    const categories = Object.keys(this.product.categories).map(
+    const categories = Object.keys(this.product.type).map(
       (category, index, inputArray) => {
         category = index < inputArray.length - 1 ? category + ',' : category;
         return category;
       }
     );
-    this.product.categories =
-      categories.length >= 1 && !Array.isArray(this.product.categories)
-        ? categories
-        : [];
   }
 
   ngOnDestroy() {

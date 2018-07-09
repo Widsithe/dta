@@ -2,23 +2,23 @@
 <nav class="site-menu">
     <ul>
         <li routerLinkActive="active">
-            <a routerLink="/home" href="">
-                <span>Home</span>
+            <a routerLink="/accueil" href="">
+                <span>Accueil</span>
             </a>
         </li>
         <li routerLinkActive="active">
             <a routerLink="/products" href="">
-                <span>Products</span>
+                <span>Adopter</span>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+            <a routerLink="/register-login" href="">
+                <span>Connexion</span>
             </a>
         </li>
         <li routerLinkActive="active">
             <a routerLink="/cart" href="">
-                <span>Cart</span>
-            </a>
-        </li>
-        <li *ngIf="user && user.roles.admin" routerLinkActive="active">
-            <a routerLink="/admin/add" href="">
-                <span>Add Product</span>
+                <span>Mon panier</span>
             </a>
         </li>
     </ul>
