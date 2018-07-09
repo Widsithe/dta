@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Product } from '../../product';
-import { User } from '../../user';
+import { Product } from '../../products/product';
+import { User } from '../../account/user';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { AuthService } from '../../account/shared/auth.service';
+// import { AuthService } from '../../account/shared/auth.service';
 import { CartService } from '../../cart/shared/cart.service';
-import { ProductsCacheService } from '../products-cache.service';
-import { ProductService } from '../product.service';
+import { ProductsCacheService } from '../shared/products-cache.service';
+import { ProductService } from '../shared/product.service';
 import { CartItem } from '../../models/cart-item.model';
 
 @Component({
@@ -36,20 +36,13 @@ export class AnimauxDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
-    private authService: AuthService,
+ //   private authService: AuthService,
     private cartService: CartService,
     private productsCacheService: ProductsCacheService,
     private productService: ProductService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.authService.user
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((user) => {
-        this.user = user;
-      });
-
-    this.ratingValues = [1, 2, 3, 4, 5];
     this.selectedQuantity = 1;
     this.imagesLoaded = [];
 
@@ -78,13 +71,6 @@ export class AnimauxDetailComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  public onSelectThumbnail(event, index) {
-    event.preventDefault();
-    this.activeImageUrl = this.product.imageURLs[index];
-    this.activeImageIndex = index;
-  }
-
   public onAddToCart() {
     this.cartService.addItem(new CartItem(this.product, this.selectedQuantity));
   }
@@ -100,22 +86,16 @@ export class AnimauxDetailComponent implements OnInit, OnDestroy {
   private setupProduct() {
     if (this.product) {
       this.checkCategories();
-      this.activeImageUrl = this.product.imageURLs[0];
-      this.activeImageIndex = 0;
     }
   }
 
   private checkCategories() {
-    const categories = Object.keys(this.product.categories).map(
+    const categories = Object.keys(this.product.type).map(
       (category, index, inputArray) => {
         category = index < inputArray.length - 1 ? category + ',' : category;
         return category;
       }
     );
-    this.product.categories =
-      categories.length >= 1 && !Array.isArray(this.product.categories)
-        ? categories
-        : [];
   }
 
   ngOnDestroy() {

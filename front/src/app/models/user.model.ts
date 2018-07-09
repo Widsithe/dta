@@ -17,8 +17,8 @@ export class User {
 
   constructor(authData) {
     this.email = authData.email;
-    this.firstName = authData.firstName ? authData.firstName : '';
-    this.lastName = authData.lastName ? authData.lastName : '';
+  //  this.firstName = firstName;
+  //  this.lastName = lastName;
     this.roles = {
       admin: false
     };

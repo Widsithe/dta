@@ -6,14 +6,14 @@ import {
   Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 import { take ,  tap ,  map } from 'rxjs/operators';
+import { LoginUserService } from '../login-user.service';
 
 @Injectable()
-export class UserGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
-
+export class UserGuard {
+  constructor(private authService: LoginUserService, private router: Router) {}
+/*
   public canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -27,5 +27,5 @@ export class UserGuard implements CanActivate {
         }
       })
     );
-  }
+  }*/
 }

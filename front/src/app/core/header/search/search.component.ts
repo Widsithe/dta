@@ -17,8 +17,8 @@ import { ProductService } from '../../../products/shared/product.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
-  products: any[];
+export class SearchComponent {
+  /*products: any[];
   term$ = new Subject<string>();
   @Input() showSearch: boolean;
   @Output() onHideSearch = new EventEmitter<boolean>();
@@ -56,5 +56,5 @@ export class SearchComponent implements OnInit {
   public onCloseSearch() {
     this.showSearch = false;
     this.onHideSearch.emit(false);
-  }
+  }*/
 }

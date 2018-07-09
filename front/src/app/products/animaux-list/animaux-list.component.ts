@@ -3,20 +3,20 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { AuthService } from '../../account/shared/auth.service';
-import { PagerService } from '../../pager/pager.service';
+// import { AuthService } from '../../account/shared/auth.service';
+// import { PagerService } from './../../pager/pager.service';
 import { ProductsCacheService } from '../shared/products-cache.service';
-import { ProductService } from '../shared/product.service';
-import { UiService } from '../shared/ui.service';
-import { SortPipe } from '../shared/sort.pipe';
+import { ProductService } from './../shared/product.service';
+import { UiService } from './../shared/ui.service';
+import { SortPipe } from './../shared/sort.pipe';
 
 import { Product } from '../../models/product.model';
 import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-products',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss']
+  templateUrl: './animaux-list.component.html',
+  styleUrls: ['./animaux-list.component.scss']
 })
 export class AnimauxListComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject();
@@ -30,14 +30,14 @@ export class AnimauxListComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductService,
     private productsCacheService: ProductsCacheService,
-    private pagerService: PagerService,
+   // private pagerService: PagerService,
     private sortPipe: SortPipe,
-    private authService: AuthService,
+    // private authService: AuthService,
     public uiService: UiService
   ) {}
 
   ngOnInit() {
-    this.authService.user
+    /*this.authService.user
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((user) => {
         this.user = user;
@@ -47,9 +47,9 @@ export class AnimauxListComponent implements OnInit, OnDestroy {
       .subscribe((page) => {
         this.currentPagingPage = page;
       });
-    this.getProducts();
+    this.getProducts();*/
   }
-
+/*
   getProducts() {
     this.productsLoading = true;
     this.productsCacheService
@@ -88,7 +88,7 @@ export class AnimauxListComponent implements OnInit, OnDestroy {
     this.uiService.sorting$.next(sortBy);
     this.setPage(1);
   }
-
+*/
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();

@@ -1,6 +1,10 @@
     /* You can add global styles to this file, and also import other style files */
     
+    @import "C:/Users/formation/eclipse-workspace/dta/front/node_modules/bootstrap/scss/bootstrap.scss";
+    // add material styles
     @import "material-components-web/material-components-web";
+    // regular style toast 
+    // @import "assets/css/toastr.css";
     @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Raleway');
     $mdc-theme-primary: #1978d4;
     $mdc-theme-secondary: #018786;
