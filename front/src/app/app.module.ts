@@ -2,15 +2,15 @@
 
 import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, Injectable } from '@angular/core';
-import { ToastrModule } from 'ngx-toastr';
+//import { ToastrModule } from 'ngx-toastr';
 import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { CheckoutModule } from './checkout/checkout.module';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
 import { environment } from '../environments/environment';
@@ -30,27 +30,22 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppComponent } from './app.component';
 import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
 import { AuthInterceptor } from './auth-interceptor';
-
-
 import { AdopterComponent } from './adopter/adopter.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
-import { LoginadminComponent } from './loginadmin/loginadmin.component';
-import { PanierComponent } from './panier/panier.component';
+import { LoginadminComponent } from './admin/loginadmin/loginadmin.component';
 import { MenuComponent } from './menu/menu.component';
-import { MenuadminComponent } from './menuadmin/menuadmin.component';
-import { MenuloginComponent } from './menulogin/menulogin.component';
-import { AdminProduitComponent } from './admin-produit/admin-produit.component';
-import { AdminCommandesComponent } from './admin-commandes/admin-commandes.component';
-import { AdminCommandesDetailComponent } from './admin-commandes-detail/admin-commandes-detail.component';
-import { AdminProduitDetailComponent } from './admin-produit-detail/admin-produit-detail.component';
-import { LoginAdminService } from './login-admin.service';
-import { AdminSearchComponent } from './admin-search/admin-search.component';
+import { MenuadminComponent } from './menu/menuadmin/menuadmin.component';
+import { MenuloginComponent } from './menu/menulogin/menulogin.component';
+import { AdminProduitComponent } from './admin/admin-produit/admin-produit.component';
+import { AdminCommandesComponent } from './admin/admin-commandes/admin-commandes.component';
+import { AdminCommandesDetailComponent } from './admin/admin-commandes-detail/admin-commandes-detail.component';
+import { AdminProduitDetailComponent } from './admin/admin-produit-detail/admin-produit-detail.component';
+import { LoginAdminService } from './admin/loginadmin/login-admin.service';
+import { AdminSearchComponent } from './admin/admin-search/admin-search.component';
 import { AdminSearchService } from './admin/admin-search.service';
 import { LoginUserService } from './account/login-user.service';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './core/header/search/search.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 
 @Injectable()
@@ -68,10 +63,9 @@ export class XhrInterceptor implements HttpInterceptor {
   declarations: [
     AppComponent,
     AdopterComponent,
-    ConnexionComponent,
     AdminComponent,
     LoginadminComponent,
-    PanierComponent,
+    CartComponent,
     MenuComponent,
     MenuadminComponent,
     MenuloginComponent,
