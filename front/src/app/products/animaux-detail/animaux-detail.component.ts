@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Product } from '../../product';
-import { User } from '../../user';
+import { Product } from '../../products/product';
+import { User } from '../../account/user';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../account/shared/auth.service';
 import { CartService } from '../../cart/shared/cart.service';
-import { ProductsCacheService } from '../products-cache.service';
-import { ProductService } from '../product.service';
+import { ProductsCacheService } from '../shared/products-cache.service';
+import { ProductService } from '../shared/product.service';
 import { CartItem } from '../../models/cart-item.model';
 
 @Component({
