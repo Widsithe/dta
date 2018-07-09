@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="well">
+      <div class="page-header">
+        <h3>Mes commandes</h3>
+      </div>
+      <table *ngIf="hasOrder" class = "com" style="background-color: azure">
+         
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id commande</th>
+            <th scope="col">date</th>
+            <th scope="col">Nombre produits</th>
+            <th scope="col">Prix total</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of mesCommandes" (click)="selectedOrder(c)" style="cursor:pointer">
+          <td>{{c.id}}</td>
+          <td>{{c.date| date: 'dd/MM/yyyy'}}</td>
+          <td>{{nbProduit(c)}}</td>
+          <td>{{prixTotal(c)}}</td>
+        </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <p-dialog *ngIf="selectedCommande" header="COMMANDE DU {{selectedCommande.date| date: 'dd/MM/yyyy'}}" [(visible)]="display"
+      [responsive]="true" showEffect="fade" [modal]="true" width="500" (onAfterHide)="onDialogHide()" [dismissableMask]="true">
+      <div class="ui-grid ui-grid-responsive ui-grid-pad" style="font-size:16px;text-align:center;padding:20px">
+        <div class="col-12 " style="text-align:center">
+  
+          <div class="row">
+            <table class="tablediag diag" align="center" cellpadding="100">
+              <thead class="table-success">
+                <tr>
+                  <th scope="col">Produit</th>
+                  <th scope="col">Prix</th>
+                  <th scope="col">Quantité</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let p of selectedCommande.products" style="text-align:center">
+                <td>{{p.name}}</td>
+                <td>{{p.price}}€</td>
+                <td>{{p.qty}}</td>
+                <td>
+                
+                  <img src="{{p.src}}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure." width="140" height="100">
+
+                </td>
+              </tr>
+            </tbody>
+              <tfoot>
+                <tr class="table-secondary ">
+                  <td colspan="3">Total</td>
+                  <td>{{prixTotal(selectedCommande)}}€</td>
+                </tr>
+              </tfoot>
+           
+            </table>
+          </div>
+        </div>
+      </div>
+    </p-dialog>
+  </div>

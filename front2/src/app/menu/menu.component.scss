@@ -1,0 +1,129 @@
+.container:first-of-type {
+    height: 8em;
+    margin-top: 1em;
+}
+.circle {
+    cursor:pointer;
+    box-shadow: 2px 3px 2px darkgreen;
+    background-color: rgb(98, 168, 107);
+    border-radius: 100%;
+    height: 70%;
+    margin: auto;
+    padding:10%;
+    
+}
+.circle:hover {
+    box-shadow:0;
+    background-color: rgb(51, 109, 58);
+}
+.row {
+    height: 100%;
+    margin: auto;
+}
+
+.container>div>div {
+    /* height: 80%; */
+    margin: auto;
+}
+
+.col-2>.row {
+    height: 100%;
+}
+
+#menuItems {
+    margin:auto;
+}
+#menu {
+    text-align:center;
+    background-color: rgb(18, 101, 184);
+}
+
+#title h1 {
+    margin:auto;
+    color:white;
+    font-weight: bold;
+    font-size:5em;
+}
+
+.circle i {
+    font-size:xx-large;
+}
+
+#burgerMenuCont {
+    margin-top:1em;
+    display:none;
+}
+
+#burgerMenuCont .row>* {
+    width:100%;
+}
+
+button[label] {
+    width:100%;
+}
+
+#menuCont {
+    margin:1em auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .circle {
+      height: 60%;
+    }
+    #title h1 {
+        font-size:4em;
+    }
+    .circle i {
+        font-size:x-large;
+    }
+  }
+@media screen and (max-width: 990px) {
+    .circle {
+      height: 40%;
+    }
+
+    #title h1 {
+        font-size:3em;
+    }
+    .circle i {
+        font-size:large;
+    }
+  }
+
+  @media screen and (max-width: 760px) {
+    .circle {
+      height: 30%;
+      padding:7%;
+    }
+    .circle i {
+        font-size:small;
+    }
+    #title h1 {
+        font-size:2em;
+    }
+    #burgerMenuCont {
+        display:block;
+    }
+
+    #menuCont {
+        display:none;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .circle {
+      height: 25%;
+      padding:5%
+    }
+    #title {
+        display:none;
+        visibility:hidden;
+    }
+  }
+
+  h1{
+    font-family: "Arial";
+      font-family: fantasy;
+      text-shadow: 10px 2px black;
+  }
+
