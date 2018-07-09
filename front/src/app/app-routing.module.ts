@@ -18,6 +18,7 @@ import { AnimauxDetailComponent } from './products/animaux-detail/animaux-detail
 import { AdminGuard } from './admin/shared/admin.guard';
 import { AddEditComponent } from './admin.1/add-edit/add-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { OrderCompleteComponent } from './cart/order-complete/order-complete.component';
 
 const routes: Routes = [
   {
@@ -46,11 +47,6 @@ const routes: Routes = [
     data: { title: 'Tous les produits' }
   },
   {
-    path: 'connexion',
-    component: ConnexionComponent,
-    data: { title: 'Connexion' }
-  },
-  {
     path: 'cart',
     component: CartComponent,
     data: { title: 'Votre panier' }
@@ -71,7 +67,6 @@ const routes: Routes = [
     component: AddEditComponent,
     canActivate: [AdminGuard]
   },
-  { path: 'checkout', component: CheckoutComponent },
   { path: 'register-login', component: RegisterLoginComponent },
   {
     path: 'account',
@@ -82,7 +77,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent }
     ]
   },
-  { path: 'order-complete', component: CompleteComponent },
+  { path: 'order-complete', component: OrderCompleteComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
