@@ -35,10 +35,32 @@ public class AdminController {
 	//recuperer tous les produits
 	public List<Produit> listeProduits(@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "type", required = false) String type,
-			@RequestParam(value = "referenceProduit", required = false) Integer referenceProduit) {
+			@RequestParam(value = "referenceProduit", required = false) Integer referenceProduit,
+			// rajout pagination sur la recherche
+			@RequestParam(value = "pagination", required = false) Integer pagination) {
+		List<Produit> produit = new ArrayList<>();
+		produit = (adminService.getProduits(name, type, referenceProduit));
+		if (pagination == null) {// quand pagination non mentionn� renvoit tout
+			return produit;
+		} else if (pagination == 5 && produit.size() >= 5) {
+			// renvoit 5 produits
+			return produit.subList(0, 5);
+		} else if (pagination == 10 && produit.size() >= 10) {
+			// renvoit 10 produits
+			return produit.subList(0, 10);
+		} else if (pagination == 20 && produit.size() >= 20) {
+			// renvoit 20 produits
+			return produit.subList(0, 20);
+		}
+		return produit;
+	}
+
+	@GetMapping(value = "AffichageProduits", produces = MediaType.APPLICATION_JSON_VALUE)
+	// Afficher un nombre de produit, pagination
+	public List<Produit> listeProduitsAfficher(@RequestParam(value = "nb", required = true) Integer nb) {
 
 		List<Produit> produit = new ArrayList<>();
-		produit = (adminService.getProduits(name, type,referenceProduit));
+		produit = (adminService.getProduitsAfficher(nb));
 		return produit;
 
 	}
@@ -91,4 +113,14 @@ public class AdminController {
 		return resultat;
 		
 	}
+
+	@GetMapping(value = "/Statut", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Boolean update(@RequestParam(value = "referenceProduit", required = true) Integer referenceProduit,
+			@RequestParam(value = "statut", required = true) Boolean statut) {
+		Boolean resultat;
+		resultat = adminService.statProduit(referenceProduit, statut);
+		return resultat;
+
+	}
+
 }

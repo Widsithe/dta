@@ -8,12 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import deTendresAnimaux.bdd.Admin;
 import deTendresAnimaux.bdd.Client;
 import deTendresAnimaux.bdd.Commande;
 import deTendresAnimaux.bdd.Droit;
@@ -23,42 +20,50 @@ import deTendresAnimaux.bdd.Quantite;
 @RestController
 @RequestMapping("/test/")
 public class Main {
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@RequestMapping("db")
 	@Transactional
 	public void start() {
-	  //public static void main(String[] args)
-	  
-	  
-	  
-		Droit droit1=new Droit("Admin");
-		Droit droit2=new Droit("Client");
+		// public static void main(String[] args)
+
+		// Droit droit1=new Droit("Admin");
+		Droit droit2 = new Droit("Client");
 		List<Droit> droits = new ArrayList<>();
-		
-		droits.add(droit1);
+
+		// droits.add(droit1);
 		droits.add(droit2);
-		Admin administrateur1=new Admin("identifiant","mot de passe", droit1);
-		Client client= new Client("eea", "ee","eee", "ee","545", LocalDate.of(2018,12,12),"455") ;
-		Produit produit=new Produit("telephone", "iphone", 33.0, 22, "////","Rien du tout" ,true) ;
-		Produit produit2=new Produit("telephone", "samsung", 33.0, 22, "////","Rien du tout" ,true) ;
-		Produit produit3=new Produit("telephone", "samsung", 33.0, 22, "////","Rien du tout" ,true) ;
-		Commande commande=new Commande ( LocalDate.of(2018,12,12),client);
-		Quantite quantite=new Quantite(commande,produit,32);
-		Quantite quantite2=new Quantite(commande,produit2,33);
-		Quantite quantite3=new Quantite(commande,produit3,1);
-		em.persist(droit1);
-		em.persist(administrateur1);
+		// Admin adiministrateur1=new Admin("admin","admin", droit1);
+		Client client = new Client("eea", "ee", "eee", "ee", "545", LocalDate.of(2018, 12, 12), "455");
+		Produit produit = new Produit("mammal", "tigre", 33.0, 22, "////", "Rien du tout", true);
+		Produit produit2 = new Produit("mammal", "dromadaire", 33.0, 22, "////", "Rien du tout", true);
+		Produit produit3 = new Produit("mammal", "vache", 33.0, 22, "////", "Rien du tout", true);
+		Produit produit4 = new Produit("mammal", "elephant", 33.0, 22, "////", "Rien du tout", true);
+		Produit produit5 = new Produit("mammal", "renard", 33.0, 22, "////", "Rien du tout", true);
+		Produit produit6 = new Produit("mammal", "lapin", 33.0, 22, "////", "Rien du tout", true);
+		Produit produit7 = new Produit("ave", "corbeau", 33.0, 22, "////", "Rien du tout", true);
+		Produit produit8 = new Produit("ave", "aigle", 33.0, 22, "////", "Rien du tout", true);
+		Commande commande = new Commande(LocalDate.of(2018, 12, 12), client);
+		Quantite quantite = new Quantite(commande, produit, 32);
+		// Quantite quantite2=new Quantite(commande,produit2,33);
+		// Quantite quantite3=new Quantite(commande,produit3,1);
+		// em.persist(droit1);
+		// em.persist(adiministrateur1);
 		em.persist(client);
 		em.persist(commande);
 		em.persist(quantite);
-		em.persist(quantite2);
-		em.persist(quantite3);
+		// em.persist(quantite2);
+		// em.persist(quantite3);
+		em.persist(produit);
+		em.persist(produit2);
+		em.persist(produit3);
+		em.persist(produit4);
+		em.persist(produit5);
+		em.persist(produit6);
+		em.persist(produit7);
+		em.persist(produit8);
 	}
-	
 
-	
-	
 }

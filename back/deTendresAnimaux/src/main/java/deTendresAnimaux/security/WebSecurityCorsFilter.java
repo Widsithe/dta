@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 public class WebSecurityCorsFilter implements Filter {
-    @Override
+	@Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
     
@@ -27,4 +27,5 @@ public class WebSecurityCorsFilter implements Filter {
 	@Override
 	public void destroy() {
 	}
+
 }
