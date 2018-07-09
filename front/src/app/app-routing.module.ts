@@ -3,18 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/home/home.component';
 import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { RegisterLoginComponent } from './account/register-login/register-login.component';
 import { OrdersComponent } from './account/orders/orders.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { AccountComponent } from './account/account.component';
-import { CompleteComponent } from './checkout/complete/complete.component';
 import { AdminSearchComponent } from './admin/admin-search/admin-search.component';
-import { PanierComponent } from './panier/panier.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminProduitComponent } from './admin/admin-produit/admin-produit.component';
 import { AdminCommandesComponent } from './admin/admin-commandes/admin-commandes.component';
-import { LoginadminComponent } from './loginadmin/loginadmin.component';
+import { LoginadminComponent } from './admin/loginadmin/loginadmin.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdopterComponent } from './adopter/adopter.component';
 import { AnimauxListComponent } from './products/animaux-list/animaux-list.component';
@@ -35,7 +31,7 @@ const routes: Routes = [
     data: { title: 'Votre interface d"administration' }
   },
   {
-    path: 'login-admin',
+    path: 'admin/login-admin',
     component: LoginadminComponent,
     data: { title: 'Connectez vous' }
   },
@@ -55,8 +51,8 @@ const routes: Routes = [
     data: { title: 'Connexion' }
   },
   {
-    path: 'panier',
-    component: PanierComponent,
+    path: 'cart',
+    component: CartComponent,
     data: { title: 'Votre panier' }
   },
   {
