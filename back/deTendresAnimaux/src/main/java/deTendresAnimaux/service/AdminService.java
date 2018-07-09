@@ -30,4 +30,11 @@ public class AdminService {
     	return valeur;
     }
     
+    public Boolean deleteProduct(Integer referenceProduit)
+    {
+    	Boolean valeur;
+    	valeur = produit.supprimerProduit(referenceProduit);
+    	return valeur;
+    }
+    
 }
