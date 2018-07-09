@@ -44,7 +44,7 @@ import { AdminSearchService } from './admin/admin-search.service';
 import { LoginUserService } from './account/login-user.service';
 import { SearchComponent } from './core/header/search/search.component';
 import { PaginatorComponent } from './paginator/paginator.component';
-import { OrderCompleteComponent } from './order-complete/order-complete.component';
+import { OrderCompleteComponent } from './cart/order-complete/order-complete.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {

@@ -17,12 +17,15 @@ import { Order } from '../../models/order.model';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit, OnDestroy {
+export class OrdersComponent
+implements
+// OnInit,
+OnDestroy {
   public orders: Order[];
   private ordersSubscription: Subscription;
 
   constructor(public orderService: OrderService) {}
-
+/*
   ngOnInit() {
     this.ordersSubscription = this.orderService
       .getOrders()
@@ -32,7 +35,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         }
       });
   }
-
+*/
   ngOnDestroy() {
     this.ordersSubscription.unsubscribe();
   }

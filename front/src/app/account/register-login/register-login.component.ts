@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MessageService } from '../../messages/message.service';
-import { AuthService } from '../shared/auth.service';
+// import { AuthService } from '../shared/auth.service';
 import { LoginUserService } from '../login-user.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,20 +16,20 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './register-login.component.html',
   styleUrls: ['./register-login.component.scss']
 })
-export class RegisterLoginComponent implements OnInit {
+export class RegisterLoginComponent {
   public loginForm: FormGroup;
   public registerForm: FormGroup;
   public registerErrors: string;
   credentials = { identifiant: '', mdp: '' };
 
   constructor(
-    private authenticationService: AuthService,
+   // private authenticationService: AuthService,
     private router: Router,
     private messageService: MessageService, private loginService: LoginUserService, private http: HttpClient
   ) {
     this.loginService = loginService;
   }
-
+/*
   ngOnInit() {
     this.initLoginForm();
     this.initRegisterForm();
@@ -101,5 +101,5 @@ export class RegisterLoginComponent implements OnInit {
           }
         }
       );
-  }
+  }*/
 }
