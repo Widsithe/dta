@@ -1,16 +1,39 @@
 export class Product {
-    constructor(public id: number, public first_name: String, public added: boolean, public last_name: String, public current_location: String, public current_company: String, public total_experience: String, profile_picture: String, current_role: String) { 
+    idproduit: number;
+    nom: string;
+    stock: number;
+    prix: number;
+    description: string;
+    type: string;
+    image: string;
 
+    constructor(
+    nom: string,
+    stock: number,
+    prix: number,
+    description: string,
+    type: string,
+    image: string,
+    idproduit?: number,
+    ) {
+        this.nom = nom;
+        this.stock = stock;
+        this.prix = prix;
+        this.description = description;
+        this.type = type;
+        this.image = image;
+        this.idproduit = idproduit;
     }
 }
 
-export const productsCollection = [
+export const PRODUCTS = [
     {
+        nom: 'Manon le dindon',
+        stock: 50,
+        prix: 49.99,
+        description: 'Ceci est un dindon',
+        type: 'Aves',
+        image: '../assets/images/products/dindon.png',
         id: 1,
-        name: 'United Color beniton',
-        price: 499.99,
-        currency: 'EUR',
-        image: 'images/01.jpg',
-        url: 'https://static2.jassets.com/p/Puma-917-Mid-2.0-Ind.-Blue-Sneakers-4118-935263-1-product2.jpg'
     }
 ];

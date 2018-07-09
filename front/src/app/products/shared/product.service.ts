@@ -1,8 +1,8 @@
 
-import {combineLatest as observableCombineLatest,  Observable ,  from as fromPromise ,  of } from 'rxjs';
+import { combineLatest as observableCombineLatest, Observable, from as fromPromise, of, config } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { catchError ,  tap, switchMap, map } from 'rxjs/operators';
+import { catchError, tap, switchMap, map } from 'rxjs/operators';
 
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
@@ -10,18 +10,28 @@ import { MessageService } from '../../messages/message.service';
 
 import { Product } from '../../models/product.model';
 import { ProductsUrl } from './productsUrl';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Config } from '../../config';
+import { PRODUCTS } from '../product';
 
 @Injectable()
 export class ProductService {
   private productsUrl = ProductsUrl.productsUrl;
+  products = new Array<Product>();
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
   constructor(
     private messageService: MessageService,
     public authService: AuthService,
     private uploadService: FileUploadService,
     private http: HttpClient
-  ) {}
+  ) {
+    this.products = PRODUCTS;
+  }
 
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
@@ -43,139 +53,15 @@ export class ProductService {
     };
   }
 
-  public getProducts(): Observable<Product[]> {
-    return this.http
-      .list<Product>('products', (ref) => ref.orderByChild('date'))
-      .valueChanges()
-      .pipe(map((arr) => arr.reverse()), catchError(this.handleError<Product[]>(`getProducts`)));
+  getProducts(): Observable<Product[]> {
+    return of(this.products);
   }
 
-  public getProductsQuery(
-    byChild: string,
-    equalTo: string | boolean,
-    limitToFirst: number
-  ): Observable<Product[]> {
-    return this.http
-      .list<Product>('products', (ref) =>
-        ref
-          .orderByChild(byChild)
-          .equalTo(equalTo)
-          .limitToFirst(limitToFirst)
-      )
-      .valueChanges()
-      .pipe(catchError(this.handleError<Product[]>(`getProductsQuery`)));
+
+  uploadImage(image: any) {
   }
 
-  public findProducts(term): Observable<any> {
-    return this.http
-      .list<Product>('products', (ref) =>
-        ref
-          .orderByChild('name')
-          .startAt(term)
-          .endAt(term + '\uf8ff')
-      )
-      .valueChanges()
-      .pipe(catchError(this.handleError<Product[]>(`getProductsQuery`)));
-  }
-
-  public getProductsByDate(limitToLast: number): Observable<Product[]> {
-    return this.http
-      .list<Product>('products', (ref) =>
-        ref.orderByChild('date').limitToLast(limitToLast)
-      )
-      .valueChanges()
-        .pipe(
-          map((arr) => arr.reverse()),
-          catchError(this.handleError<Product[]>(`getProductsByDate`))
-        );
-  }
-
-  public getProduct(id: any): Observable<Product | null> {
-    const url = `${this.productsUrl}/${id}`;
-    return this.http
-      .object<Product>(url)
-      .valueChanges()
-      .pipe(
-        tap((result) => {
-          if (result) {
-            return of(result);
-          } else {
-            this.messageService.addError(`Found no Product with id=${id}`);
-            return of(null);
-          }
-        }),
-        catchError(this.handleError<Product>(`getProduct id=${id}`))
-      );
-  }
-
-  public updateProduct(data: { product: Product; files: FileList }) {
-    const url = `${this.productsUrl}/${data.product.id}`;
-
-    if (!data.files.length) {
-      return this.updateProductWithoutNewImage(data.product, url);
-    }
-
-    const dbOperation = this.uploadService
-      .startUpload(data)
-      .then((task) => {
-        data.product.imageURLs[0] = task.downloadURL;
-        data.product.imageRefs[0] = task.ref.fullPath;
-
-        return data;
-      })
-      .then((dataWithImagePath) => {
-        return this.http
-          .object<Product>(url)
-          .update(data.product);
-      })
-      .then((response) => {
-        this.log(`Updated Product ${data.product.name}`);
-        return data.product;
-      })
-      .catch((error) => {
-        this.handleError(error);
-        return error;
-      });
-    return fromPromise(dbOperation);
-  }
-
-  public addProduct(data: { product: Product; files: FileList }) {
-    const dbOperation = this.uploadService
-      .startUpload(data)
-      .then((task) => {
-        data.product.imageURLs.push(task.downloadURL);
-        data.product.imageRefs.push(task.ref.fullPath);
-
-        return this.http
-          .list('products')
-          .set(data.product.id.toString(), data.product);
-      }, (error) => error)
-      .then((response) => {
-        this.log(`Added Product ${data.product.name}`);
-        return data.product;
-      })
-      .catch((error) => {
-        this.messageService.addError(
-          `Add Failed, Product ${data.product.name}`
-        );
-        this.handleError(error);
-        return error;
-      });
-    return fromPromise(dbOperation);
-  }
-
-  public deleteProduct(product: Product) {
-    const url = `${this.productsUrl}/${product.id}`;
-
-    this.uploadService.deleteFile(product.imageRefs);
-
-    return this.http
-      .object<Product>(url)
-      .remove()
-      .then(() => this.log('success deleting' + product.name))
-      .catch((error) => {
-        this.messageService.addError('Delete failed ' + product.name);
-        this.handleError('delete product');
-      });
+  addProduct(product: Product) {
+    this.http.post<Product>(Config.restApi + '/addProduit', product, this.httpOptions).subscribe();
   }
 }
