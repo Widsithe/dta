@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, Injectable } from '@angular/core';
 import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { ToastrModule } from 'ngx-toastr';
+//import { ToastrModule } from 'ngx-toastr';
 import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -44,7 +44,7 @@ import { AdminSearchService } from './admin/admin-search.service';
 import { LoginUserService } from './account/login-user.service';
 import { SearchComponent } from './core/header/search/search.component';
 import { PaginatorComponent } from './paginator/paginator.component';
-import { OrderCompleteComponent } from './order-complete/order-complete.component';
+//import { OrderCompleteComponent } from './order-complete/order-complete.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -81,7 +81,7 @@ export class XhrInterceptor implements HttpInterceptor {
     AdminModule,
     PageNotFoundComponent,
     AdminSearchService,
-    OrderCompleteComponent
+   // OrderCompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +99,7 @@ export class XhrInterceptor implements HttpInterceptor {
     MatGridListModule,
     MatCardModule,
     MatPaginatorModule,
-    ToastrModule
+    //ToastrModule
   ],
   providers: [
     LoginAdminService,
