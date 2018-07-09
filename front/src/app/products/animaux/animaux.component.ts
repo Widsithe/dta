@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../../models/product.model';
+import { ProductService } from '../shared/product.service';
 
 @Component({
   selector: 'app-animaux',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./animaux.component.scss']
 })
 export class AnimauxComponent implements OnInit {
-
-  constructor() { }
+  products: Array<Product>;
+  constructor(private productService: ProductService) {
+    this.productService = productService;
+    this.products = [];
+   }
 
   ngOnInit() {
+    this.productService.getProducts().subscribe(myProds => this.products = myProds);
   }
 
 }

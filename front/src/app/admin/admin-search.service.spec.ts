@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AdminSearchService } from './admin-search.service';
+import { AdminSearchService } from './admin/admin-search.service';
 
 describe('AdminSearchService', () => {
   beforeEach(() => {
