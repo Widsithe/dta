@@ -1,20 +1,17 @@
-
-
-import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, Injectable } from '@angular/core';
-//import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
-import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
+
 import { MaterialModule } from '@blox/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
@@ -76,6 +73,13 @@ export class XhrInterceptor implements HttpInterceptor {
     AdminSearchComponent,
     SearchComponent,
     PaginatorComponent,
+    ProductsModule,
+    SharedModule,
+    CoreModule,
+    AccountModule,
+    AdminModule,
+    PageNotFoundComponent,
+    AdminSearchService
   ],
   imports: [
     BrowserModule,
@@ -92,7 +96,8 @@ export class XhrInterceptor implements HttpInterceptor {
     HttpClientModule,
     MatGridListModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ToastrModule
   ],
   providers: [
     LoginAdminService,
