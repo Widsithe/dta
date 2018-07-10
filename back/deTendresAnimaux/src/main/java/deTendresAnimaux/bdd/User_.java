@@ -7,20 +7,19 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
-public class User {
+public class User_ {
 
 	@Id
 	@GeneratedValue
 	private Integer iduser;
 
-	@ManyToOne
-	private Droit droit;
+
 
 	private String nom;
 
@@ -36,14 +35,19 @@ public class User {
 
 	private String motDePasse;
 
+
+
 	private String role;
+	
+	@OneToMany(mappedBy="user")
+	private List<Commande> commandes;
 
-	public User() {
+	public User_() {
 
 	}
-
-	public User(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance,
-			String motDePasse) {
+	
+	public User_(String nom, String prenom, String adresse, String telephone, String email,  LocalDate dateDeNaissance, String motDePasse) {
+		//super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
@@ -51,19 +55,12 @@ public class User {
 		this.email = email;
 		this.dateDeNaissance = dateDeNaissance;
 		this.motDePasse = motDePasse;
+		this.role = "visiteur";
 	}
 
-	public User(Droit droit, String nom, String prenom, String adresse, String telephone, String email,
-			LocalDate dateDeNaissance, String motDePasse) {
-		this.droit = droit;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.telephone = telephone;
-		this.email = email;
-		this.dateDeNaissance = dateDeNaissance;
-		this.motDePasse = motDePasse;
-	}
+
+
+	
 
 	public Integer getIduser() {
 		return iduser;
@@ -135,5 +132,20 @@ public class User {
 		else
 			return Arrays.asList();
 	}
+	
+	public List<Commande> getCommande() {
+		return commandes;
+	}
 
+	public void setCommande(List<Commande> orders) {
+		this.commandes = orders;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

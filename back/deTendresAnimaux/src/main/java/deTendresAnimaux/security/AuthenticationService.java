@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import deTendresAnimaux.bdd.User;
+import deTendresAnimaux.bdd.User_;
 import deTendresAnimaux.dao.AdminDao;
 import deTendresAnimaux.dao.ClientDao;
 import deTendresAnimaux.dao.UserDao;
@@ -51,7 +51,7 @@ public class AuthenticationService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-		User user = userDao.findByUserMail(email);
+		User_ user = userDao.findByUserMail(email);
 
 		if (user != null) {
 			List<GrantedAuthority> rules = user.getDroits();
