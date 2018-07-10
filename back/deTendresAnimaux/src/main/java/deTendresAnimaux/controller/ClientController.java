@@ -31,4 +31,27 @@ public class ClientController {
     	valeur =userService.ListerProduit();
     	return valeur;
 	}
+	
+	@GetMapping(value = "produits", produces = MediaType.APPLICATION_JSON_VALUE)
+	//recuperer tous les produits
+	public List<Produit> listeProduits(
+			// rajout pagination sur la recherche
+			@RequestParam(value = "pagination", required = false) Integer pagination) {
+		List<Produit> produit = new ArrayList<>();
+		produit = (userService.ListerProduit());
+		if (pagination == null) {// quand pagination non mentionn� renvoit tout
+			return produit;
+		} else if (pagination == 5 && produit.size() >= 5) {
+			// renvoit 5 produits
+			return produit.subList(0, 5);
+		} else if (pagination == 10 && produit.size() >= 10) {
+			// renvoit 10 produits
+			return produit.subList(0, 10);
+		} else if (pagination == 20 && produit.size() >= 20) {
+			// renvoit 20 produits
+			return produit.subList(0, 20);
+		}
+		return produit;
+	}
+	
 }

@@ -70,14 +70,21 @@ public class ProduitDao {
 
 	}
 
-	public List<Produit> afficherProduit(int val) {
+	public List<Produit> afficherProduitAdmin(int val) {
 		// pagination affiche les produits avec une limite par page
 		List<Produit> produitPagination = new ArrayList<>();
 		produitPagination = entityManager.createQuery("SELECT p FROM Produit p").setMaxResults(val).getResultList();
 		return produitPagination;
 	}
 
-		
+	public Boolean modifierProduit(Integer referenceProduit, String type, String name, Double prix, Integer stock,
+			String photo, String description, Boolean statut)
+	{
+		this.jdbcTemplate.update("update produit set active=?,description=?,image=?,nom=?,prix=?,stock=?,type=? where idproduit=?"
+		,statut,description, photo,name, prix, stock,type,referenceProduit);
+
+        return true;
+	}
 //		Produit produit;
 //		produit=new Produit(referenceProduit,type,name,prix,stock,photo ,description,statut);
 //		String hqlUpdate = "update produit set produit.active = :active produit.description = :description  produit.image = :image, produit.nom=:nom,"
@@ -96,48 +103,57 @@ public class ProduitDao {
 //				
 //				.executeUpdate();
 	
-		this.jdbcTemplate.update("update produit set active=?,description=?,image=?,nom=?,prix=?,stock=?,type=? where idproduit=?"
-				,statut,description, photo,name, prix, stock,type,referenceProduit);
-	
-		return true;
-		
-	}
+//		this.jdbcTemplate.update("update produit set active=?,description=?,image=?,nom=?,prix=?,stock=?,type=? where idproduit=?"
+//				,statut,description, photo,name, prix, stock,type,referenceProduit);
+//	
+//		return true;
+//		
+//	}
 	
 	public Boolean supprimerProduit(Integer referenceProduit)
 	
 	{
 	    
-		
-//		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-//		CriteriaQuery<Quantite> query = builder.createQuery(Quantite.class);
-//
-//		Root<Quantite> rootProduit = query.from(Quantite.class);
-//		ArrayList<Quantite> resultat = new ArrayList();
-//		if (referenceProduit != null) {
-//			query.where(builder.equal(rootProduit.get("idproduit"), referenceProduit));
-//			
-//		}
-     
-		//resultat=(ArrayList<Quantite>) entityManager.createQuery(query).getResultList();
-		//System.out.println(resultat.get(0). +"5555555555555555555555555555555555555555555555555555555555555555555555");
-		//System.out.println(this.jdbcTemplate.update("SELECT idproduit from quantite where idproduit=?" ,referenceProduit));
-		
 		this.jdbcTemplate.update("delete from produit where idproduit=?" ,referenceProduit);
 		
-	
-			//return false;
-	
-		// INNER JOIN quantite ON quantite.id <> produit.idproduit
 		return true;
 	}
+	
 	public List<Produit>  afficherProduitClient()
 	{
 		ArrayList<Produit> resultat = new ArrayList<Produit>();
-		resultat=(ArrayList<Produit>) this.jdbcTemplate.query("SELECT * from produit where active=true", new ProduitMapper());
+		resultat=(ArrayList<Produit>) this.jdbcTemplate.query("SELECT * from produit where produit.active=true", new ProduitMapper());
 		return resultat;
 	}
     
-	public List<Produit> findProduitsClient(String name, String type, Double Prixmin, Double Prixmax) {
+	public List<Produit> findProduitsClient(String name, String type, Double prixMin, Double prixMax) {
+		
+//		List<Produit> produitPagination = new ArrayList<>();
+//		produitPagination = (List<Produit>) entityManager.createQuery("SELECT * FROM produit p where ");
+//		return produitPagination;
+		
+		// Create CriteriaBuilder
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Produit> query = builder.createQuery(Produit.class);
+
+		Root<Produit> rootProduit = query.from(Produit.class);
+
+		if (name != null) {
+			query.where(builder.equal(rootProduit.get("nom"), name));
+		}
+
+		if (type != null) {
+			query.where(builder.equal(rootProduit.get("type"), type));
+		}
+
+		if (prixMin != null) {
+			query.where(builder.between(rootProduit.get("Prix"), prixMin, prixMax));
+		}
+
+		return entityManager.createQuery(query).getResultList();
+		
+	}
+	
 
 	public Boolean statutProduit(Integer id, Boolean statut) {
 		String SQL = "update produit set active = ? where idproduit = ?";
@@ -146,3 +162,5 @@ public class ProduitDao {
 	}
 
 }
+
+

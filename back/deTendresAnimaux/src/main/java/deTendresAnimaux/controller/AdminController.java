@@ -60,7 +60,7 @@ public class AdminController {
 	public List<Produit> listeProduitsAfficher(@RequestParam(value = "nb", required = true) Integer nb) {
 
 		List<Produit> produit = new ArrayList<>();
-		produit = (adminService.getProduitsAfficher(nb));
+		produit = (adminService.getProduitsAfficherAdmin(nb));
 		return produit;
 
 	}

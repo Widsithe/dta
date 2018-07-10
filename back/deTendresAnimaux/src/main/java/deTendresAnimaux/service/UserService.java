@@ -22,4 +22,7 @@ public class UserService {
     	valeur =produit.afficherProduitClient();
     	return valeur;
     }
+	public List<Produit> getProduitsAfficherClient(String name, String type, Double prixMin, Double prixMax) {
+		return produit.findProduitsClient(name, type, prixMin, prixMax);
+	}
 }

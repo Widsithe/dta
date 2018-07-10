@@ -30,8 +30,8 @@ public class AdminService {
 		return valeur;
 	}
 
-	public List<Produit> getProduitsAfficher(Integer val) {
-		return produit.afficherProduit(val);
+	public List<Produit> getProduitsAfficherAdmin(Integer val) {
+		return produit.afficherProduitAdmin(val);
 	}
 
 	public Boolean statProduit(Integer id, Boolean statut) {
@@ -42,7 +42,8 @@ public class AdminService {
     public Boolean deleteProduct(Integer referenceProduit)
     {
     	Boolean valeur;
-    	return valeur;
+    	
     	valeur = produit.supprimerProduit(referenceProduit);
+    	return valeur;
     }
 }
