@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -39,7 +40,7 @@ public class User_ {
 
 	private String role;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Commande> commandes;
 
 	public User_() {

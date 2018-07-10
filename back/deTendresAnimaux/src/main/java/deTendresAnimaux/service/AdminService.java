@@ -39,4 +39,5 @@ public class AdminService {
 		valeur = produit.statutProduit(id, statut);
 		return valeur;
 	}
+	
 }
