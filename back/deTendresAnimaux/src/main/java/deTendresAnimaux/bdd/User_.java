@@ -35,6 +35,8 @@ public class User_ {
 
 	private String motDePasse;
 
+
+
 	private String role;
 	
 	@OneToMany(mappedBy="user")
@@ -138,5 +140,12 @@ public class User_ {
 	public void setCommande(List<Commande> orders) {
 		this.commandes = orders;
 	}
+	
+	public String getRole() {
+		return role;
+	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
 }
