@@ -5,7 +5,7 @@ import { Product } from './product';
 
 @Injectable()
 export class ProductService {
-  static readonly restApi = 'http://localhost:8080/formafond/api/product';
+  static readonly restApi = 'http://localhost:8080/DeTendresAnimaux/api/admin/produits';
 
   constructor(private http: HttpClient) {
     this.http = http;
@@ -28,11 +28,12 @@ export class ProductService {
   }
 
   search(name, category, page, resultByPage): Observable<any> {
-    return this.http.get(ProductService.restApi + '/search?' +
-      'name=' + name +
-      '&category=' + category +
-      '&page=' + page +
-      '&resultByPage=' + resultByPage);
+    return this.http.get(ProductService.restApi  +
+      '?name=' + name);
+      // +
+      //'&category=' + category +
+      //'&page=' + page +
+      //'&resultByPage=' + resultByPage);
   }
 
   getCategories(): Observable<any> {
