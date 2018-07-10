@@ -5,7 +5,7 @@ import { Product } from './product';
 
 @Injectable()
 export class ProductService {
-  static readonly restApi = 'http://localhost:8082/formafond/api/product';
+  static readonly restApi = 'http://localhost:8080/formafond/api/product';
 
   constructor(private http: HttpClient) {
     this.http = http;
@@ -44,7 +44,7 @@ export class ProductService {
     formdata.append('file', image);
     formdata.append('filename', imagename);
 
-    const req = new HttpRequest('POST', 'http://localhost:8082/formafond/api/image', formdata, {
+    const req = new HttpRequest('POST', 'http://localhost:8080/formafond/api/image', formdata, {
       reportProgress: false,
       responseType: 'text'
     });

@@ -8,12 +8,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import deTendresAnimaux.bdd.User_;
 import deTendresAnimaux.dao.AdminDao;
 import deTendresAnimaux.dao.ClientDao;
 import deTendresAnimaux.dao.UserDao;
 
+@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @Component
 public class AuthenticationService implements UserDetailsService {
 	@Autowired

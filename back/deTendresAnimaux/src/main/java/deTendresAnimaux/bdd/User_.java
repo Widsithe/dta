@@ -9,18 +9,19 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
+@Table(name = "User_", uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }) })
 public class User_ {
 
 	@Id
 	@GeneratedValue
 	private Integer iduser;
-
-
 
 	private String nom;
 
@@ -36,19 +37,18 @@ public class User_ {
 
 	private String motDePasse;
 
-
-
 	private String role;
-	
+
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Commande> commandes;
 
 	public User_() {
 
 	}
-	
-	public User_(String nom, String prenom, String adresse, String telephone, String email,  LocalDate dateDeNaissance, String motDePasse) {
-		//super();
+
+	public User_(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance,
+			String motDePasse) {
+		// super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
@@ -58,10 +58,6 @@ public class User_ {
 		this.motDePasse = motDePasse;
 		this.role = "visiteur";
 	}
-
-
-
-	
 
 	public Integer getIduser() {
 		return iduser;
@@ -133,7 +129,7 @@ public class User_ {
 		else
 			return Arrays.asList();
 	}
-	
+
 	public List<Commande> getCommande() {
 		return commandes;
 	}
@@ -141,7 +137,7 @@ public class User_ {
 	public void setCommande(List<Commande> orders) {
 		this.commandes = orders;
 	}
-	
+
 	public String getRole() {
 		return role;
 	}
