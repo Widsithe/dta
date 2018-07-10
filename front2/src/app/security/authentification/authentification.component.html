@@ -1,24 +1,30 @@
-<main class="container">
+<main class="container grey lighten-4">
+    <div class="jumbotron card-panel deep-purple darken-1 text-center">
+        <h3 class="white-text">Connexion</h3>
+    </div>
     <form class="form col s12" #userAuthentification="ngForm" (ngSubmit)="OnSubmit(userAuthentification)">
         <p-messages [(value)]="msgs"></p-messages>
-        <mat-form-field class="input-field col s6">
-            <label for="UserName">Votre identifiant</label>
-            <input matInput placeholder="Email" class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required>
-        </mat-form-field>
-        <mat-form-field class="input-field col s6">
-            <label for="Password">Votre mot de passe</label>
-            <input matInput placeholder="Mot de passe" class="validate" type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" required minlength="3">
-            <mat-error *ngIf="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">
-                Le mot de passe est <strong>requis</strong>
-            </mat-error>
-        </mat-form-field>
-        <div class="col s12">
-            <button [disabled]="" class="btn-large btn-submit" type="submit">OK</button>
+        <div class="col s3">
+            <mat-form-field class="input-field">
+                <label for="UserName">Votre identifiant</label>
+                <input matInput class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required>
+            </mat-form-field>
         </div>
-
+        <div class="col s3">
+            <mat-form-field class="input-field col s6">
+                <label for="Password">Votre mot de passe</label>
+                <input matInput class="validate" type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" required minlength="3">
+                <mat-error *ngIf="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">
+                    Le mot de passe est <strong>requis</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col s12 text-center margin-top-50">
+            <button mdcButton raised type="submit">Je me connecte</button>
+        </div>
     </form>
 </main>
-
-
-<b>Pas encore de compte ?</b>
-<a routerLink="/newUser">Créer un compte</a>
+<div class="text-center margin-top-50">
+    <b>Pas encore inscrit ? </b>
+    <a routerLink="/newUser">Créer un compte</a>
+</div>

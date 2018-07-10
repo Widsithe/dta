@@ -26,7 +26,7 @@ export class AuthentificationComponent implements OnInit {
       this.msgs.push({ severity: map.get('severity'), summary: map.get('summary'), detail: map.get('message') });
     });
   }
-  
+
   resetForm(form?: NgForm) {
     if (form != null) {
       form.reset();
@@ -47,7 +47,7 @@ export class AuthentificationComponent implements OnInit {
       },
         error => this.msgs.push({
           severity: 'error',
-          summary: 'Échec de l"authentification',
+          summary: 'Oups !',
           detail: 'Votre authentification à échoué. Vérifiez les valeurs saisies ou créez votre compte.'
         }));
   }

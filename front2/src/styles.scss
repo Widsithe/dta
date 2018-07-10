@@ -1,5 +1,5 @@
-@import "../node_modules/primeng/resources/primeng.min.css";
-@import "../node_modules/materialize-css/dist/css/materialize.css";
+// @import "../node_modules/primeng/resources/primeng.min.css";
+// @import "../node_modules/materialize-css/dist/css/materialize.css";
 @import "../node_modules/material-components-web/material-components-web";
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Raleway');
 $mdc-theme-primary: #1978d4;
@@ -13,9 +13,22 @@ body {
     font-family: $font-body;
 }
 
+section.section {
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.margin-top-50 {
+    margin-top: 50px;
+}
+
 h1,
 h2 {
     font-family: $font-title;
+}
+
+.text-center {
+    text-align: center;
 }
 
 .logomenu {

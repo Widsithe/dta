@@ -39,7 +39,7 @@ export class ProductService {
     return this.http.get(ProductService.restApi + '/categories');  }
 
   saveImage(imagename, image: File): Observable<any> {
-    let formdata: FormData = new FormData();
+    const formdata: FormData = new FormData();
 
     formdata.append('file', image);
     formdata.append('filename', imagename);
@@ -55,6 +55,4 @@ export class ProductService {
   activProduct(id: number, activ: boolean) {
     return this.http.get(ProductService.restApi + '/' + id + (activ ? '/activate' : '/deactivate'));
   }
-
-
 }

@@ -53,6 +53,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
 
 // Material blox
 import { MaterialModule } from '@blox/material';
@@ -128,7 +129,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MaterialModule
+    MaterialModule,
+    MatMenuModule
   ],
   providers: [ProductService, UserService, PanierService, CommandeService],
   bootstrap: [AppComponent]

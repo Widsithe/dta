@@ -15,10 +15,5 @@ export class MenuadminComponent implements OnInit {
 
   ngOnInit() {
   }
-  logout() {
-    /*this.http.post('', {}).pipe(finalize(() => {
-      this.loginService.authenticated = false;
-      this.router.navigateByUrl('/login-admin');
-    })).subscribe();*/
-  }
+
 }
