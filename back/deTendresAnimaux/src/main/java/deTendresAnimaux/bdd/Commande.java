@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Commande {
@@ -24,7 +23,7 @@ public class Commande {
 	@ManyToOne
 	private Client client;
 	
-	@NotNull
+	
 	@ManyToOne
 	private User_ user;
 	
