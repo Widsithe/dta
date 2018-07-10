@@ -1,26 +1,25 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.model';
-import { Response } from "@angular/http";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
-  static readonly restApi = 'http://localhost:8082/formafond/api/user';
+  static readonly restApi = 'http://localhost:8080/DeTendresAnimaux/api/user';
 
   constructor(private httpClient: HttpClient) {
     this.httpClient = httpClient;
   }
 
   userAuthentification(username, password): Observable<any> {
-    return this.httpClient.post('http://localhost:8082/formafond/authenticate?username=' + username + '&password=' + password, null);
+    return this.httpClient.post('http://localhost:8080/DeTendresAnimaux/authenticate?username=' + username + '&password=' + password, null);
   }
 
   registerUser(user: User): Observable<any> {
     return this.httpClient.post(UserService.restApi, user);
   }
 
-  //get user name from session then get from server
+  // get user name from session then get from server
   getConnectedUser(): Observable<any> {
     return this.getUser(sessionStorage.getItem('user'));
   }
@@ -38,8 +37,8 @@ export class UserService {
   }
 
   getUser(username): Observable<any> {
-    username=username||'';
-    return this.httpClient.get(UserService.restApi + "/byName?name=" + username);
+    username = username || '';
+    return this.httpClient.get(UserService.restApi + '/byName?name=' + username);
   }
 
   getUserById(id): Observable<any> {
@@ -51,6 +50,6 @@ export class UserService {
   }
 
   logout() {
-    return this.httpClient.post('http://localhost:8082/formafond/logout', {}).subscribe();
+    return this.httpClient.post('http://localhost:8080/DeTendresAnimaux/logout', {}).subscribe();
   }
 }

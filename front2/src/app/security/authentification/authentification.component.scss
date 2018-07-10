@@ -1,26 +1,4 @@
-div.sm-jumbotron{
-    margin: 0px;
-    padding: 0.5rem;
-    background-color: rgb(18, 101, 184);
-    color: #fff;
-}
- 
-button.btn-submit{
-    background-color: rgb(18, 101, 184);
-    color: #fff;
+.input-field {
+    margin: 0 25px;
     width: 100%;
-}
-button.btn-submit:focus,button.btn-submit:hover{
-    background-color: rgb(18, 101, 184);
-}
-form {
-    margin: 20em;
-    margin-top: 3em;
-}
-
-#noAccount {
-    color:rgb(92, 92, 92);
-    background-color: aliceblue;
-    padding:1%;
-    border-radius:0.6em;
 }

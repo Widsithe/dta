@@ -23,35 +23,39 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.uServ.getConnectedUser().subscribe(user => {
-      if(user.state && user.state=='failed') this.buildItems();
-      else this.buildItems(User.fromJSON(user));
+      if (user.state && user.state === 'failed') {
+        this.buildItems();
+      } else {
+        this.buildItems(User.fromJSON(user));
+      }
     });
   }
 
   buildItems(u?: User) {
-    this.items = [{ label: "Shopping", icon: "fa fa-shopping-cart", routerLink: "/Products" }];
-    if (u && u.role && u.role.toLowerCase() == "admin") {
-      this.items.push({ label: "Produits", routerLink: '/AdminProducts' }, { label: "Commandes", routerLink: '/AdminOrders' });
+    if (u && u.role && u.role.toLowerCase() === 'admin') {
+      this.items.push({ label: 'Produits', routerLink: '/AdminProducts' }, { label: 'Commandes', routerLink: '/AdminOrders' });
     }
   }
 
   goToCart() {
     this.router.navigate(['/profil'], {
       queryParams: {
-        page: "panier"
+        page: 'panier'
       }
-    })
+    });
   }
 
   goToProfile() {
-    if (this.uServ.getConnectedUserInSession()) this.router.navigate(['/profil']);
-    else this.router.navigate(["/authentification"], {
+    if (this.uServ.getConnectedUserInSession()) {
+      this.router.navigate(['/profil']);
+    } else { this.router.navigate(['/authentification'], {
       queryParams: {
-        severity: "warn",
-        summary: "Attention ! Vous n'êtes pas connecté",
-        message: "Connectez-vous pour accéder à votre profil."
+        severity: 'warn',
+        summary: 'Attention ! Vous n"êtes pas connecté',
+        message: 'Connectez-vous pour accéder à votre profil.'
       }
     });
+    }
   }
 
   logout() {

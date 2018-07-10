@@ -1,38 +1,24 @@
-<div class="container container-fluid">
-  <div class="row">
-    <p-messages [(value)]="msgs"></p-messages>
-  </div>
-  <div class="row">
-    <div class="col s8 ">
-      <div class="card">
-        <div class="sm-jumbotron center-align">
-          <h2>Authentification</h2>
+<main class="container">
+    <form class="form col s12" #userAuthentification="ngForm" (ngSubmit)="OnSubmit(userAuthentification)">
+        <p-messages [(value)]="msgs"></p-messages>
+        <mat-form-field class="input-field col s6">
+            <label for="UserName">Votre identifiant</label>
+            <input matInput placeholder="Email" class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required>
+        </mat-form-field>
+        <mat-form-field class="input-field col s6">
+            <label for="Password">Votre mot de passe</label>
+            <input matInput placeholder="Mot de passe" class="validate" type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" required minlength="3">
+            <mat-error *ngIf="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">
+                Le mot de passe est <strong>requis</strong>
+            </mat-error>
+        </mat-form-field>
+        <div class="col s12">
+            <button [disabled]="" class="btn-large btn-submit" type="submit">OK</button>
         </div>
-        <form class="col s12 white" #userAuthentification="ngForm" (ngSubmit)="OnSubmit(userAuthentification)">
-          <div class="row">
-            <div class="input-field col s6">
-              <input class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required>
-              <label data-error="Required field!">Utilisateur</label>
-            </div>
-            <div class="input-field col s6">
-              <input class="validate" type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" required minlength="3">
-              <label [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">Mot de passe</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <button [disabled]="" class="btn-large btn-submit" type="submit">OK</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class='row' id="noAccount">
-    <div class='col mr-auto'>
-      <b>Pas encore de compte ?</b>
-      <a routerLink="/newUser">Créer un compte</a>
-    </div>
 
-  </div>
-</div>
+    </form>
+</main>
+
+
+<b>Pas encore de compte ?</b>
+<a routerLink="/newUser">Créer un compte</a>
