@@ -47,9 +47,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// .anyRequest().authenticated();
 		http.cors().and().sessionManagement().and().authorizeRequests().and().exceptionHandling()
 				.authenticationEntryPoint(myAuthenticationEntryPoint).accessDeniedHandler(myAccessDeniedHandler).and()
-				.formLogin().loginProcessingUrl("/authenticate").successHandler(myAuthenticationSuccessHandler)
-				.failureHandler(myAuthenticationFailureHandler).usernameParameter("username")
-				.passwordParameter("password").and().logout().logoutUrl("/logout")
+				.formLogin()
+				.loginProcessingUrl("/authenticate")
+				.successHandler(myAuthenticationSuccessHandler)
+				.failureHandler(myAuthenticationFailureHandler)
+				.usernameParameter("username")
+				.passwordParameter("password")
+				.and().logout().logoutUrl("/logout")
 				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()).permitAll().and().httpBasic().and()
 				.csrf().disable();
 

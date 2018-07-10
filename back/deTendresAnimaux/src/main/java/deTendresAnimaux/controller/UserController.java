@@ -11,7 +11,7 @@ import deTendresAnimaux.bdd.User_;
 import deTendresAnimaux.service.UserService;
 
 @RestController
-@RequestMapping("/api/admin/")
+@RequestMapping("/api/user/")
 public class UserController {
 	
 	@Autowired
