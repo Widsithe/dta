@@ -1,9 +1,21 @@
 .bg-img-home {
     background-image: url(../../assets/images/tigre.jpg);
     background-size: cover;
-    height: 550px;
+    height: 800px;
     text-align: center;
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
+    background-attachment: fixed;
+}
+
+.bg-img-home-t {
+    background-image: url(../../assets/images/tortue.jpg);
+    background-size: cover;
+    height: 800px;
+    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background-attachment: fixed;
 }
