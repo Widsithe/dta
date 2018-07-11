@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -41,7 +42,11 @@ public class User_ {
 
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Commande> commandes;
-
+	
+	@ManyToOne
+	private Droit  droit;
+	
+	
 	public User_() {
 
 	}
@@ -57,6 +62,19 @@ public class User_ {
 		this.dateDeNaissance = dateDeNaissance;
 		this.motDePasse = motDePasse;
 		this.role = "visiteur";
+	}
+	public User_(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance,
+			String motDePasse, Droit droit) {
+		// super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.email = email;
+		this.dateDeNaissance = dateDeNaissance;
+		this.motDePasse = motDePasse;
+		this.role = "visiteur";
+		this.droit = droit;
 	}
 
 	public Integer getIduser() {

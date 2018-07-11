@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import deTendresAnimaux.bdd.Client;
+
 import deTendresAnimaux.bdd.Commande;
 import deTendresAnimaux.bdd.Droit;
 import deTendresAnimaux.bdd.Produit;
@@ -31,14 +31,16 @@ public class Main {
 		// public static void main(String[] args)
 
 		// Droit droit1=new Droit("Admin");
-		Droit droit2 = new Droit("Client");
-		List<Droit> droits = new ArrayList<>();
+//		Droit droit2 = new Droit("Client");
+//		List<Droit> droits = new ArrayList<>();
 
 		// droits.add(droit1);
-		droits.add(droit2);
+//		droits.add(droit2);
 		// Admin adiministrateur1=new Admin("admin","admin", droit1);
-		Client client = new Client("eea", "ee", "eee", "ee", "545", LocalDate.of(2018, 12, 12), "455");
-		User_ user = new User_("Bon", "Jean", "impasse du projet", "00000", "email", LocalDate.of(2018, 12, 12), "mdp");
+		Droit droit1=new Droit("admin");
+		
+		User_  user1 = new User_ ("Durand", "Pierre", "rue", "0600000", "email1", LocalDate.of(2018, 12, 12), "mdp1",droit1);
+		User_ user2 = new User_("Bon", "Jean", "impasse du projet", "00000", "email", LocalDate.of(2018, 12, 12), "mdp",droit1);
 		
 		Produit produit = new Produit("mammal", "tigre", 33.0, 22, "////", "Rien du tout", true);
 		Produit produit2 = new Produit("mammal", "dromadaire", 33.0, 22, "////", "Rien du tout", true);
@@ -50,13 +52,13 @@ public class Main {
 		Produit produit8 = new Produit("ave", "aigle", 33.0, 22, "////", "Rien du tout", true);
 		
 		
-		Commande commande = new Commande(LocalDate.of(2018, 12, 12), client);
+		Commande commande = new Commande(LocalDate.of(2018, 12, 12), user1);
 		Quantite quantite = new Quantite(commande, produit, 32);
 		
 		
-		
-		em.persist(client);
-		em.persist(user);
+		em.persist(droit1);
+		em.persist(user1);
+		em.persist(user2);
 		em.persist(commande);
 		em.persist(quantite);
 		em.persist(produit);
