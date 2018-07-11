@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import javax.sql.DataSource;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -147,14 +148,16 @@ public class ProduitDao {
 		}
 
 		if (prixMin != null) {
-			query.where(builder.between(rootProduit.get("Prix"), prixMin, prixMax));
+			//query.where(builder.between(rootProduit.get("prix"),prixMax, prixMin));
+			//.add( Restrictions.between("weight", minWeight, maxWeight) )
+			
+			query.where(builder.between(rootProduit.get("prix"), prixMin,prixMax) );
 		}
 
 		return entityManager.createQuery(query).getResultList();
 		
 	}
 	
-
 	public Boolean statutProduit(Integer id, Boolean statut) {
 		String SQL = "update produit set active = ? where idproduit = ?";
 		jdbcTemplate.update(SQL, statut, id);

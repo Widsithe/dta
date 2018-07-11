@@ -36,9 +36,13 @@ public class ClientController {
 	//recuperer tous les produits
 	public List<Produit> listeProduits(
 			// rajout pagination sur la recherche
+			@RequestParam(value = "type", required = false) String type,
+			@RequestParam(value = "nom", required = false) String nom,
+			@RequestParam(value = "prixMin", required = false) Double prixMin,
+			@RequestParam(value = "prixMax", required = false) Double prixMax,
 			@RequestParam(value = "pagination", required = false) Integer pagination) {
 		List<Produit> produit = new ArrayList<>();
-		produit = (userService.ListerProduit());
+		produit = (userService.getProduitsAfficherClient(type,nom, prixMin,  prixMax) );
 		if (pagination == null) {// quand pagination non mentionn� renvoit tout
 			return produit;
 		} else if (pagination == 5 && produit.size() >= 5) {
