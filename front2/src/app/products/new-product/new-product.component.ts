@@ -17,12 +17,12 @@ import { DropdownModule } from 'primeng/dropdown';
 
 export class NewProductComponent implements OnInit {
   cat: SelectItem[];
-  product: Product=new Product(0,"","",null ,"",null,"",false,"");
+  product: Product = new Product(0, '', '', 0, 0, '', true, '');
   msgs: Message[] = [];
   selectedFile: File = null;
   modifCategory;
 
-  readonly categ = { 'CLIMBING': 'Alpinisme / Escalade', 'DIVING': 'Plongée', 'HIKING': 'Randonnée' };
+  readonly categ = { 'MAMMIFERE': 'Mammifère', 'OISEAU': 'Oiseau', 'INSECTE': 'Insecte' };
 
   constructor(private productService: ProductService, private uServ: UserService, private router: Router) {
     this.productService = productService;
@@ -32,18 +32,19 @@ export class NewProductComponent implements OnInit {
 
 
   resetForm(form?: NgForm) {
-    if (form != null)
+    if (form != null) {
       form.reset();
-    this.product = new Product(0, '', '', null, '', null, '', false, "");
+    }
+    this.product = new Product(0, '', '', 0, 0, '', true, '');
   }
 
   ngOnInit() {
     if (!this.uServ.getConnectedUserInSession()) {
-      this.router.navigate(["/authentification"], {
+      this.router.navigate(['/authentification'], {
         queryParams: {
-          severity: "warn",
-          summary: "Vous n'êtes pas connecté",
-          message: "Connectez-vous afin de pouvoir accéder à votre profile."
+          severity: 'warn',
+          summary: 'Vous n\'êtes pas connecté',
+          message: 'Connectez-vous afin de pouvoir accéder à votre profil.'
         }
       });
     }
@@ -57,28 +58,28 @@ export class NewProductComponent implements OnInit {
 
   OnSubmit(form: NgForm) {
     this.msgs = [];
-    this.product.id = null;
+    this.product.idproduit = null;
     if (!form.valid) {
       this.msgs.push({
         severity: 'error',
-        summary: "Champs invalides",
+        summary: 'Champs invalides',
         detail: 'Certains champs du formulaire sont incomplets ou invalide.'
       });
       return;
     }
-    //save first time to get new id 
-    this.product.category = this.modifCategory.value;
+    // save first time to get new id
+    this.product.type = this.modifCategory.value;
     this.productService.saveProduct(this.product).subscribe(newProduct => {
-      //save image with id of product
+      // save image with id of product
       this.productService.saveImage(newProduct.id, this.selectedFile).subscribe(filePath => {
-        //update new product with new src
+        // update new product with new src
         if (filePath.body) {
-          newProduct.category=this.modifCategory.value;
+          newProduct.category = this.modifCategory.value;
           newProduct.src = filePath.body;
           this.productService.saveProduct(newProduct).subscribe(data => {
             this.msgs.push({
               severity: 'success',
-              summary: "Produit créé",
+              summary: 'Produit créé',
               detail: 'Le produit à bien été crée'
             });
             this.resetForm(form);
@@ -89,7 +90,7 @@ export class NewProductComponent implements OnInit {
         error => {
           this.msgs.push({
             severity: 'error',
-            summary: "Problème serveur",
+            summary: 'Problème serveur',
             detail: 'Le produit n\'a pas pu être créer suite à une erreur du serveur.'
           });
         });
@@ -97,7 +98,7 @@ export class NewProductComponent implements OnInit {
       error => {
         this.msgs.push({
           severity: 'error',
-          summary: "Problème serveur",
+          summary: 'Problème serveur',
           detail: 'Le produit n\'a pas pu être créer suite à une erreur du serveur.'
         });
       });
@@ -108,10 +109,12 @@ export class NewProductComponent implements OnInit {
   }
 
   getCat(str) {
-    for (let i of this.cat) {
-      if (i.value == str || i.label == str) return i;
+    for (const i of this.cat) {
+      if (i.value === str || i.label === str) {
+        return i;
+      }
     }
-    return "";
+    return '';
   }
 }
 

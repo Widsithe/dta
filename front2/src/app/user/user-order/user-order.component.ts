@@ -36,14 +36,14 @@ export class UserOrderComponent implements OnInit {
   nbProduit(comm: Commande): number {
     let total = 0;
     for (const p of comm.products) {
-      total += p.qty;
+      total += p.stock;
     }
     return total;
   }
   prixTotal(comm: Commande): number {
     let prix = 0;
     for (const p of comm.products) {
-      prix += p.qty * p.price;
+      prix += p.stock * p.prix;
     }
     return prix;
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../../products/product';
-import { ProductService } from './../../products/product.service';
 import { PanierService } from '../panier.service';
 import { CommandeService } from '../commande.service';
 import { UserService } from './../../user/user.service';
@@ -44,7 +43,7 @@ export class PanierComponent implements OnInit {
     let total = 0;
 
     for (const element of this.monPanier) {
-      total += element.price * element.qty;
+      total += element.prix * element.stock;
     }
     return total;
   }
@@ -53,7 +52,7 @@ export class PanierComponent implements OnInit {
     let nbr = 0;
 
     for (const prod of this.monPanier) {
-      nbr += prod.qty;
+      nbr += prod.stock;
     }
     return nbr;
   }

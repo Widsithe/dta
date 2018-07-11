@@ -1,23 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../../products/product';
 import { ProductService } from './../../products/product.service';
-import { DataTableModule } from 'primeng/datatable';
-import { TableModule } from 'primeng/table';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DataGridModule } from 'primeng/datagrid';
-import { PanelModule } from 'primeng/panel';
-import { DialogModule } from 'primeng/dialog';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { Router, ActivatedRoute } from '@angular/router';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { forEach } from '@angular/router/src/utils/collection';
-import { DropdownModule } from 'primeng/dropdown';
 import { SelectItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CommandeService } from './../../cart/commande.service';
 import { Message } from 'primeng/components/common/api';
-import { callNgModuleLifecycle } from '@angular/core/src/view/ng_module';
 import { UserService } from './../../user/user.service';
 
 interface Category {
@@ -35,24 +22,24 @@ interface Category {
 export class AdminProductsComponent implements OnInit {
   cat: SelectItem[];
   selectedCat: Category;
-  checked1: boolean = false;
-  checked2: boolean = true;
+  checked1: Boolean = false;
+  checked2: Boolean = true;
   myProducts: Product[];
   selectedProduct: Product;
   cols: any[];
-  page: number = 1;
-  resultByPage: number = 1000;
-  model: Product = new Product(0, "", "", 0, "", 0, "", false, "");
-  name: string = "";
-  category: string = "";
-  id: number = 0;
+  page: Number = 1;
+  resultByPage: Number = 1000;
+  model: Product = new Product(0, '', '', 0, 0, '', false, '');
+  name: String = '';
+  category: String = '';
+  id: Number = 0;
   submitted = false;
-  display: boolean = false;
+  display: Boolean = false;
   activ: boolean;
   avalaibleCategories: SelectItem[] = [];
   selectedTypes: string[];
   msgs: Message[] = [];
-  readonly categ = { 'CLIMBING': 'Alpinisme / Escalade', 'DIVING': 'Plongée', 'HIKING': 'Randonnée' };
+  readonly categ = { 'MAMMIFERE': 'Mammifère', 'OISEAU': 'Oiseau', 'INSECTE': 'Insecte' };
 
   modifCategory;
 
@@ -67,7 +54,7 @@ export class AdminProductsComponent implements OnInit {
     this.router = router;
 
     this.productService.getCategories().subscribe(myAvalaibleCategories => {
-      for (let catStr of myAvalaibleCategories) {
+      for (const catStr of myAvalaibleCategories) {
         this.avalaibleCategories.push({ label: catStr, value: catStr });
       }
     });
@@ -75,42 +62,41 @@ export class AdminProductsComponent implements OnInit {
 
   ngOnInit() {
     if (!this.uServ.getConnectedUserInSession()) {
-      this.router.navigate(["/authentification"], {
+      this.router.navigate(['/authentification'], {
         queryParams: {
-          severity: "warn",
-          summary: "Vous n'êtes pas connecté",
-          message: "Connectez-vous afin de pouvoir accéder à votre profile."
+          severity: 'warn',
+          summary: 'Vous n\'êtes pas connecté',
+          message: 'Connectez-vous afin de pouvoir accéder à votre profile.'
         }
       });
     }
     this.productService.getProducts().subscribe(result => {
       this.myProducts = result.map(p => Product.fromJson(p));
-      this.myProducts = this.myProducts.sort((a, b) => a.id - b.id);
+      this.myProducts = this.myProducts.sort((a, b) => a.idproduit - b.idproduit);
     });
 
 
 
 
     this.cat = [
-      { label: 'Alpinisme / Escalade', value: 'CLIMBING' },
-      { label: 'Plongée', value: 'DIVING' },
-      { label: 'Randonnée', value: 'HIKING' }
+      { label: 'Mammifère', value: 'MAMMIFERE' },
+      { label: 'Insecte', value: 'INSECTE' },
+      { label: 'Oiseau', value: 'OISEAU' }
     ];
 
     this.cols = [
-      { field: 'id', header: 'Id' },
-      { field: 'name', header: 'Nom' },
+      { field: 'idproduit', header: 'Id' },
+      { field: 'nom', header: 'Nom' },
       { field: 'type', header: 'Type' },
-      { field: 'price', header: 'Prix' },
-      { field: 'category', header: 'Catégorie' },
-      { field: 'qty', header: 'Quantité' }
+      { field: 'prix', header: 'Prix' },
+      { field: 'stock', header: 'Quantité' }
     ];
   }
 
   onSubmit() {
     this.submitted = true;
-    let catStr = this.selectedTypes ? this.selectedTypes.join("-") : '';
-    if (this.name == "" && catStr == "") {
+    const catStr = this.selectedTypes ? this.selectedTypes.join('-') : '';
+    if (this.name === '' && catStr === '') {
       this.ngOnInit();
     }
     this.productService.search(this.name, catStr, this.page, this.resultByPage)
@@ -122,7 +108,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   saveProduct(productName: string, productQty: number, productPrice: number, productType: string, productDescript: string) {
-    this.selectedProduct.category = this.modifCategory.value;
+    this.selectedProduct.type = this.modifCategory.value;
     this.productService.saveProduct(this.selectedProduct).subscribe(() => this.ngOnInit());
   }
 
@@ -134,7 +120,7 @@ export class AdminProductsComponent implements OnInit {
   selectProduct(product: Product) {
     this.display = true;
     this.selectedProduct = product;
-    this.modifCategory = this.getCat(this.selectedProduct.category);
+    this.modifCategory = this.getCat(this.selectedProduct.type);
   }
 
   activProduct(product: Product) {
@@ -143,14 +129,14 @@ export class AdminProductsComponent implements OnInit {
 
   onOffProduct(activ) {
 
-    this.commandeService.isInOrder(this.selectedProduct.id).subscribe(
+    this.commandeService.isInOrder(this.selectedProduct.idproduit).subscribe(
       data => {
-        if (data.orders.length == 0) {
-          this.productService.activProduct(this.selectedProduct.id, activ).subscribe(() => this.ngOnInit());
+        if (data.orders.length === 0) {
+          this.productService.activProduct(this.selectedProduct.idproduit, activ).subscribe(() => this.ngOnInit());
 
         } else {
           this.productService.getProducts().subscribe(() => this.ngOnInit());
-          this.alertOffProduct(this.selectedProduct.name);
+          this.alertOffProduct(this.selectedProduct.nom);
         }
       });
 
@@ -169,9 +155,11 @@ export class AdminProductsComponent implements OnInit {
   }
 
   getCat(str) {
-    for (let i of this.cat) {
-      if (i.value == str || i.label == str) return i;
+    for (const i of this.cat) {
+      if (i.value === str || i.label === str) {
+        return i;
+      }
     }
-    return "";
+    return '';
   }
 }

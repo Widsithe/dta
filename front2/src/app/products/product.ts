@@ -1,27 +1,40 @@
 export class Product {
-    id: number;
-    name: string;
+    idproduit: number;
+    nom: string;
     type: string;
-    price: number;
-    category: string;
-    qty: number;
-    src: string;
-    activ:boolean;
-    descript: string;
+    prix: number;
+    stock: number;
+    image: string;
+    active: Boolean;
+    description: string;
 
-    constructor(id: number, name: string, type: string, price: number, category: string, qty: number, src: string, activ: boolean, description: string) {
-        this.id = id;
-        this.name = name;
+    constructor(idproduit: number,
+        nom: string,
+        type: string,
+        prix: number,
+        stock: number,
+        image: string,
+        active: boolean,
+        description: string) {
+
+        this.idproduit = idproduit;
+        this.nom = nom;
         this.type = type;
-        this.price = price;
-        this.category = category;
-        this.qty = qty;
-        this.src = src;
-        this.activ=activ;
-        this.descript=description;
+        this.prix = prix;
+        this.stock = stock;
+        this.image = image ;
+        this.active = active;
+        this.description = description;
     }
 
     static fromJson(jsonObj) {
-        return new Product(jsonObj.id,jsonObj.name,jsonObj.type,jsonObj.price,jsonObj.category,jsonObj.qty,jsonObj.src,jsonObj.activ,jsonObj.descript);
+        return new Product(jsonObj.idproduit,
+            jsonObj.nom,
+            jsonObj.type,
+            jsonObj.prix,
+            jsonObj.stock,
+            jsonObj.image,
+            jsonObj.active,
+            jsonObj.description);
     }
 }

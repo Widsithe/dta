@@ -18,16 +18,15 @@ import { Message } from 'primeng/components/common/api';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  //model: Product = new Product(0, "", "", 0, "", 0, "", false, "");//utile?
+  model: Product = new Product(0, '', '', 0, 0, '', false, '');
   submitted = false;
   myProducts: Product[];
-  name: string = "";
-  category: string = "";//utile?
-  page: number = 1;
-  resultByPage: number = 1000;
+  name: String = '';
+  page: Number = 1;
+  resultByPage: Number = 1000;
   avalaibleCategories: SelectItem[] = [];
   selectedTypes: string[];
-  display: boolean = false;
+  display: Boolean = false;
   selectedProduct: Product;
   msgs: Message[] = [];
 
@@ -42,10 +41,10 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.productService.getProducts().subscribe(myProducts => {
       this.myProducts = myProducts;
-      this.myProducts = this.myProducts.sort((a, b) => a.price - b.price);
+      this.myProducts = this.myProducts.sort((a, b) => a.prix - b.prix);
     });
     this.productService.getCategories().subscribe(myAvalaibleCategories => {
-      for (let catStr of myAvalaibleCategories) {
+      for (const catStr of myAvalaibleCategories) {
         this.avalaibleCategories.push({ label: catStr, value: catStr });
       }
     });
@@ -54,7 +53,7 @@ export class ProductsComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    let catStr = this.selectedTypes ? this.selectedTypes.join("-") : '';
+    const catStr = this.selectedTypes ? this.selectedTypes.join('-') : '';
     this.productService.search(this.name, catStr, this.page, this.resultByPage)
       .subscribe(result => this.myProducts = result.listSearch, error => console.log(error));
   }
