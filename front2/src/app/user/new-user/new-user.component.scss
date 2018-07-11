@@ -1,21 +1,13 @@
-div.sm-jumbotron{
-    margin: 0px;
-    padding: 0.5rem;
-    background-color: rgb(18, 101, 184);
-    color: #fff;
+.col.s3 {
+    margin: 0 auto;
+    text-align: center;
 }
 
-button.btn-submit{
-    background-color: rgb(18, 101, 184);
-    color: #fff;
-    width: 100%;
-}
-button.btn-submit:focus,button.btn-submit:hover{
-    background-color: rgb(18, 101, 184);
+main.container {
+    padding: 0 0px 40px;
+    border-radius: 5px;
 }
 
-#cgu{
-    text-decoration:underline;
-    color:blue;
-    cursor:pointer;
+.form {
+    padding: 20px;
 }
