@@ -21,7 +21,7 @@ public class Commande {
 
 	private LocalDate dateCommande;
 	@ManyToOne
-	private Client client;
+	private User_  client;
 	
 	
 	@ManyToOne
@@ -34,9 +34,9 @@ public class Commande {
 	public Commande() {
 	}
 
-	public Commande(LocalDate dateCommande, Client client) {
+	public Commande(LocalDate dateCommande, User_ user) {
 		this.dateCommande = dateCommande;
-		this.client = client;
+		this.user = user;
 	}
 
 	public Integer getIdCommande() {
@@ -55,11 +55,11 @@ public class Commande {
 		this.dateCommande = dateCommande;
 	}
 
-	public Client getClient() {
-		return client;
+	public User_  getClient() {
+		return user;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClient(User_  user) {
+		this.user = user;
 	}
 }

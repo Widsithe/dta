@@ -17,7 +17,7 @@ public class Droit {
 	
 	
 	@OneToMany(mappedBy = "droit")
-	private List<Admin> droit;
+	private List<User_ > droits;
 	
 	public Droit() {
 	}

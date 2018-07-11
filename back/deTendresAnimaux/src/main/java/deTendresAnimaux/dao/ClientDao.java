@@ -7,7 +7,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import deTendresAnimaux.bdd.Client;
+import deTendresAnimaux.bdd.User_;
+
+
 
 @Repository
 @Transactional
@@ -16,8 +18,8 @@ public class ClientDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Client findClientByEmail(String email) {
-		TypedQuery<Client> query = entityManager.createQuery("from Client c where c.email = :email", Client.class);
+	public User_ findClientByEmail(String email) {
+		TypedQuery<User_> query = entityManager.createQuery("from Client c where c.email = :email", User_.class);
 		query.setParameter("email", email);
 
 		return query.getSingleResult();

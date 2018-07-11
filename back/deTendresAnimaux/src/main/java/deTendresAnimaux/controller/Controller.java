@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import deTendresAnimaux.bdd.Admin;
-import deTendresAnimaux.bdd.Client;
-import deTendresAnimaux.dao.AdminDao;
+
+import deTendresAnimaux.bdd.User_;
+import deTendresAnimaux.dao.UserDao;
 import deTendresAnimaux.service.AdminService;
 
 
@@ -18,23 +18,23 @@ import deTendresAnimaux.service.AdminService;
 public class Controller {
 	
 	@Autowired
-	AdminDao adminDao;
+	UserDao userDao;
 	
 
 	
 	
 	@PreAuthorize(value = "hasAuthority('READ')")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Client display() {
+	public User_ display() {
 		
-		return new Client();
+		return new User_();
 	}
 	
 	@PreAuthorize(value = "hasAuthority('WRITE')")
 	@RequestMapping(value = "/admin/", method = RequestMethod.GET)
-	public Admin display2() {
+	public User_ display2() {
 		
-		return new Admin();
+		return new User_();
 	}
 
 	public Controller() {
