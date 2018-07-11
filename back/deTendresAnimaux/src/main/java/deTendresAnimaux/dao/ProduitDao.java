@@ -115,9 +115,17 @@ public class ProduitDao {
 	
 	{
 	    
-		this.jdbcTemplate.update("delete from produit where idproduit=?" ,referenceProduit);
+		try
+		{
+			this.jdbcTemplate.update("delete from produit where idproduit=?" ,referenceProduit);
+			return true;
+		}
 		
-		return true;
+		catch(Exception e)
+		{
+			return false;
+		}
+		
 	}
 	
 	public List<Produit>  afficherProduitClient()

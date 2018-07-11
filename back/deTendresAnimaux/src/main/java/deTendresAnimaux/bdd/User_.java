@@ -43,8 +43,8 @@ public class User_ {
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Commande> commandes;
 	
-	@ManyToOne
-	private Droit  droit;
+	//@ManyToOne
+	//private Droit  droit;
 	
 	
 	public User_() {
@@ -63,19 +63,19 @@ public class User_ {
 		this.motDePasse = motDePasse;
 		this.role = "visiteur";
 	}
-	public User_(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance,
-			String motDePasse, Droit droit) {
-		// super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.telephone = telephone;
-		this.email = email;
-		this.dateDeNaissance = dateDeNaissance;
-		this.motDePasse = motDePasse;
-		this.role = "visiteur";
-		this.droit = droit;
-	}
+//	public User_(String nom, String prenom, String adresse, String telephone, String email, LocalDate dateDeNaissance,
+//			String motDePasse, Droit droit) {
+//		// super();
+//		this.nom = nom;
+//		this.prenom = prenom;
+//		this.adresse = adresse;
+//		this.telephone = telephone;
+//		this.email = email;
+//		this.dateDeNaissance = dateDeNaissance;
+//		this.motDePasse = motDePasse;
+//		this.role = "visiteur";
+//		this.droit = droit;
+//	}
 
 	public Integer getIduser() {
 		return iduser;
