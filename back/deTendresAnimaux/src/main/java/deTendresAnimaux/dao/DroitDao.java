@@ -8,7 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import deTendresAnimaux.bdd.Droit;
+
 
 @Repository
 public class DroitDao { //approledao

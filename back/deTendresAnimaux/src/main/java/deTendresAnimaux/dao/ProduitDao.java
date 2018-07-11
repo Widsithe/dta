@@ -115,9 +115,17 @@ public class ProduitDao {
 	
 	{
 	    
-		this.jdbcTemplate.update("delete from produit where idproduit=?" ,referenceProduit);
+		try
+		{
+			this.jdbcTemplate.update("delete from produit where idproduit=?" ,referenceProduit);
+			return true;
+		}
 		
-		return true;
+		catch(Exception e)
+		{
+			return false;
+		}
+		
 	}
 	
 	public List<Produit>  afficherProduitClient()
@@ -129,11 +137,6 @@ public class ProduitDao {
     
 	public List<Produit> findProduitsClient(String name, String type, Double prixMin, Double prixMax) {
 		
-//		List<Produit> produitPagination = new ArrayList<>();
-//		produitPagination = (List<Produit>) entityManager.createQuery("SELECT * FROM produit p where ");
-//		return produitPagination;
-		
-		// Create CriteriaBuilder
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Produit> query = builder.createQuery(Produit.class);
 
@@ -147,12 +150,10 @@ public class ProduitDao {
 			query.where(builder.equal(rootProduit.get("type"), type));
 		}
 
-		if (prixMin != null) {
-			//query.where(builder.between(rootProduit.get("prix"),prixMax, prixMin));
-			//.add( Restrictions.between("weight", minWeight, maxWeight) )
-			
-			query.where(builder.between(rootProduit.get("prix"), prixMin,prixMax) );
-		}
+//		if (prixMin != null) {
+//		
+//			query.where(builder.between(rootProduit.get("prix"), prixMin,prixMax) );
+//		}
 
 		return entityManager.createQuery(query).getResultList();
 		

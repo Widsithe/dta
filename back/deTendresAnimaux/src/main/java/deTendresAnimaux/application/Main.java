@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import deTendresAnimaux.bdd.Commande;
-import deTendresAnimaux.bdd.Droit;
 import deTendresAnimaux.bdd.Produit;
 import deTendresAnimaux.bdd.Quantite;
 import deTendresAnimaux.bdd.User_;
@@ -37,10 +36,10 @@ public class Main {
 		// droits.add(droit1);
 //		droits.add(droit2);
 		// Admin adiministrateur1=new Admin("admin","admin", droit1);
-		Droit droit1=new Droit("admin");
+		//Droit droit1=new Droit("admin");
 		
-		User_  user1 = new User_ ("Durand", "Pierre", "rue", "0600000", "email1", LocalDate.of(2018, 12, 12), "mdp1",droit1);
-		User_ user2 = new User_("Bon", "Jean", "impasse du projet", "00000", "email", LocalDate.of(2018, 12, 12), "mdp",droit1);
+		User_  user1 = new User_ ("Durand", "Pierre", "rue", "0600000", "email1", LocalDate.of(2018, 12, 12), "mdp1");
+		User_ user2 = new User_("Bon", "Jean", "impasse du projet", "00000", "email", LocalDate.of(2018, 12, 12), "mdp");
 		
 		Produit produit = new Produit("mammal", "tigre", 33.0, 22, "////", "Rien du tout", true);
 		Produit produit2 = new Produit("mammal", "dromadaire", 33.0, 22, "////", "Rien du tout", true);
@@ -54,9 +53,6 @@ public class Main {
 		
 		Commande commande = new Commande(LocalDate.of(2018, 12, 12), user1);
 		Quantite quantite = new Quantite(commande, produit, 32);
-		
-		
-		em.persist(droit1);
 		em.persist(user1);
 		em.persist(user2);
 		em.persist(commande);
