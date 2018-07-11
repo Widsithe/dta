@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
   selectedProduct: Product;
   msgs: Message[] = [];
 
-  qtyCmd:number=0;
+  qtyCmd: number = 0;
 
   constructor(private productService: ProductService, private panierService: PanierService) {
     this.productService = productService;
@@ -56,7 +56,7 @@ export class ProductsComponent implements OnInit {
 
     let catStr = this.selectedTypes ? this.selectedTypes.join("-") : '';
     this.productService.search(this.name, catStr, this.page, this.resultByPage)
-      .subscribe(result => this.myProducts = result.listSearch, error => console.log(error));  
+      .subscribe(result => this.myProducts = result.listSearch, error => console.log(error));
   }
 
   selectProduct(product: Product) {
@@ -70,10 +70,10 @@ export class ProductsComponent implements OnInit {
     this.panierService.addProductToPanier(product, this.qtyCmd);
     this.msgs.push({
       severity: 'success',
-      summary: "Votre produit à été ajouté au panier",
+      summary: 'Votre produit à été ajouté au panier',
       detail: 'Vous pouvez continuer vos achats'
     });
 
-    this.qtyCmd=0;
+    this.qtyCmd = 0;
   }
 }

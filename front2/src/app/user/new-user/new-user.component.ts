@@ -31,7 +31,6 @@ export class NewUserComponent implements OnInit {
 
   OnSubmit(form: NgForm) {
     this.msgs = [];
-    return;
     if (!form.valid) {
       this.msgs.push({
         severity: 'error',

@@ -12,12 +12,12 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-order.component.scss']
 })
 export class UserOrderComponent implements OnInit {
-  display: boolean = false;
+  display: Boolean = false;
   selectedCommande: Commande;
   private total: number;
   curentUser: User;
   mesCommandes = new Array<Commande>();
-  hasOrder: boolean = false;
+  hasOrder: Boolean = false;
   model: Commande = new Commande(0, null, null, 0);
 
 
@@ -26,25 +26,23 @@ export class UserOrderComponent implements OnInit {
   ngOnInit() {
     this.userService.getConnectedUser().subscribe(user => {
       this.curentUser = User.fromJSON(user);
-
       this.commandeService.getOrderOfUser(user.id).subscribe(commandes => {
         this.mesCommandes = commandes.orders;
         this.hasOrder = commandes.orders.length > 0;
       });
-
     });
   }
 
   nbProduit(comm: Commande): number {
     let total = 0;
-    for (let p of comm.products) {
+    for (const p of comm.products) {
       total += p.qty;
     }
     return total;
   }
   prixTotal(comm: Commande): number {
     let prix = 0;
-    for (let p of comm.products) {
+    for (const p of comm.products) {
       prix += p.qty * p.price;
     }
     return prix;

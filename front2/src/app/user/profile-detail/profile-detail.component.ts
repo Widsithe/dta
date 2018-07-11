@@ -10,8 +10,8 @@ import { Message } from 'primeng/components/common/api';
   styleUrls: ['./profile-detail.component.scss']
 })
 export class ProfileDetailComponent implements OnInit {
-  user: User=null;
-  updateUserFormGroup: FormGroup=null;
+  user: User = null;
+  updateUserFormGroup: FormGroup = null;
   msgs: Message[] = [];
   displayContVisi = false;
   modifContVisi = true;
@@ -22,7 +22,7 @@ export class ProfileDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.user = new User("lastname", "fName", "ceci est un mail", "50 une addresse de merde", 555555555, "admin", "pwd");
+    // this.user = new User("lastname", "fName", "ceci est un mail", "50 une addresse de merde", 555555555, "admin", "pwd");
     this.uServ.getConnectedUser().subscribe(user => {
       this.user = User.fromJSON(user);
       this.updateUserFormGroup = this.fb.group({
@@ -30,7 +30,7 @@ export class ProfileDetailComponent implements OnInit {
         lName: [this.user.lastName, Validators.required],
         mail: [this.user.mail, Validators.email],
         address: [this.user.address],
-        phone: [this.user.phone,phoneValidator],
+        phone: [this.user.phone, phoneValidator],
       });
     });
   }
@@ -46,8 +46,8 @@ export class ProfileDetailComponent implements OnInit {
     if (!this.updateUserFormGroup.valid) {
       this.msgs.push({
         severity: 'error',
-        summary: "Champs invalides",
-        detail: "Certains champs sont incorrects."
+        summary: 'Champs invalides',
+        detail: 'Certains champs sont incorrects.'
       });
       return;
     }
@@ -73,6 +73,7 @@ Validate phone
 Check is a number and is > 0
 */
 function phoneValidator(fg: FormGroup) {
-  let phoneNum=parseInt(fg.get("phone").value);
-  return !isNaN(phoneNum) && phoneNum>0;
+  // tslint:disable-next-line:radix
+  const phoneNum = parseInt(fg.get('phone').value);
+  return !isNaN(phoneNum) && phoneNum > 0;
 }

@@ -43,11 +43,11 @@ export class AuthentificationComponent implements OnInit {
     this.userService.userAuthentification(form.value.UserName, form.value.Password)
       .subscribe((data: any) => {
         this.userService.getUser(form.value.UserName).subscribe(user => this.userService.setConnectedUser(User.fromJSON(user)));
-        this.router.navigate(['/Products']);
+        this.router.navigate(['/profil']);
       },
         error => this.msgs.push({
           severity: 'error',
-          summary: 'Oups !',
+          summary: 'Oups ! ',
           detail: 'Votre authentification à échoué. Vérifiez les valeurs saisies ou créez votre compte.'
         }));
   }

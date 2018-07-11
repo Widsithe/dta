@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @Component
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 

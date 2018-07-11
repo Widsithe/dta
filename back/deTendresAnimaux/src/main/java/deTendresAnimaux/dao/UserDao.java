@@ -1,5 +1,7 @@
 package deTendresAnimaux.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -20,12 +22,11 @@ public class UserDao {
 	public User_ findByUserMail(String email) {
 		TypedQuery<User_> query = entityManager.createQuery("select u from User_ u where email = :email", User_.class);
 		query.setParameter("email", email);
-		User_ user = query.getSingleResult();
-		// System.err.println("dans le dao " + user.getEmail());
-		try {
-			return query.getSingleResult();
-		} catch(NoResultException e) {
+		List<User_> user = query.getResultList();
+		if(user.isEmpty()) {
 			return null;
+		}else {
+			return user.get(0);
 		}
 
 	}

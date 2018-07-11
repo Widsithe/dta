@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.user.id);
     this.uServ.getConnectedUser().subscribe(user => {
       if (user.state && user.state === 'failed') {
         this.buildItems();
