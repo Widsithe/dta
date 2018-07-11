@@ -17,16 +17,21 @@ export class PanierComponent implements OnInit {
 
   msgs: Message[] = [];
 
-  constructor(private panierService: PanierService, private commandeService: CommandeService, private userService: UserService,private router:Router) {
+  constructor(private panierService: PanierService,
+              private commandeService: CommandeService,
+              private userService: UserService,
+              private router: Router) {
     this.panierService = panierService;
     this.commandeService = commandeService;
     this.userService = userService;
-    this.router=router;
+    this.router = router;
   }
 
   ngOnInit() {
-    if (this.panierService.getCurrentPanier())
+    if (this.panierService.getCurrentPanier()) {
       this.monPanier = this.panierService.getCurrentPanier();
+    }
+
   }
 
   deleteArticle(index: number) {
@@ -35,20 +40,20 @@ export class PanierComponent implements OnInit {
   }
 
   updateTotal() {
-    //return this.monPanier.reduce((acc,elt)=>acc+=elt.price*elt.qty,0);
+    // return this.monPanier.reduce((acc,elt)=>acc+=elt.price*elt.qty,0);
     let total = 0;
 
-    for (let element of this.monPanier) {
+    for (const element of this.monPanier) {
       total += element.price * element.qty;
     }
     return total;
   }
   nbrProduit() {
-    //return this.monPanier.reduce((acc,elt)=>acc+=elt.price*elt.qty,0);
+    // return this.monPanier.reduce((acc,elt)=>acc+=elt.price*elt.qty,0);
     let nbr = 0;
 
-    for (let prod of this.monPanier) {
-      nbr +=  prod.qty;
+    for (const prod of this.monPanier) {
+      nbr += prod.qty;
     }
     return nbr;
   }
@@ -57,35 +62,35 @@ export class PanierComponent implements OnInit {
     this.monPanier = this.panierService.getCurrentPanier();
   }
 
-  checkout() {//Validation de la commande
-    if(!this.userService.getConnectedUserInSession()) {
-      this.router.navigate(["/authentification"], {
+  checkout() {// Validation de la commande
+    if (!this.userService.getConnectedUserInSession()) {
+      this.router.navigate(['/authentification'], {
         queryParams: {
-          severity: "warn",
-          summary: "Vous n'êtes pas authentifié",
-          message: "Veuillez vous connectez ou créer votre compte afin de valider votre panier"
+          severity: 'warn',
+          summary: 'Vous n\'êtes pas authentifié ! ',
+          message: 'Veuillez vous connectez ou créer votre compte afin de valider votre panier'
         }
       });
       return;
     }
     this.userService.getConnectedUser().subscribe(user => {
       this.commandeService.createCommande(user).subscribe(data => {
-        //display message success
+        // display message success
         this.msgs.push({
           severity: 'success',
-          summary: "Commande validée",
-          detail: 'Votre panier à été validé, et votre commande créer.\nVous pouvez consulter vos commandes dans votre profil.'
+          summary: 'Commande validée ',
+          detail: 'Votre panier est validé ! \nVous pouvez consulter vos commandes dans votre profil.'
         });
-        //empty panier
+        // empty panier
         this.panierService.clearPanier();
         this.ngOnInit();
       });
     }, error => {
-      //display error message
+      // display error message
       this.msgs.push({
         severity: 'error',
-        summary: "Erreur",
-        detail: 'Un erreur est survenue lors de la création de votre commande.'
+        summary: 'Erreur. ',
+        detail: 'Une erreur est survenue lors de la création de votre commande.'
       });
     });
   }

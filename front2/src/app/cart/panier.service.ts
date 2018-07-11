@@ -17,16 +17,18 @@ export class PanierService {
   addProductToPanier(p: Product, qty: number) {
     let currPanier = JSON.parse(sessionStorage.getItem('panier'));
     p.qty = qty;
-    if (currPanier == null) currPanier = [];
-    let isThere=false;
-    for(let prodPan of currPanier) {
-      if(prodPan.id==p.id) {
-        isThere=true;
-        prodPan.qty=qty;
+    if (currPanier === null){
+      currPanier = [];
+    }
+    let isThere = false;
+    for (const prodPan of currPanier) {
+      if (prodPan.id === p.id) {
+        isThere = true;
+        prodPan.qty = qty;
         break;
       }
     }
-    if(!isThere) currPanier.push(p);
+    if (!isThere) currPanier.push(p);
     sessionStorage.setItem("panier", JSON.stringify(currPanier));
   }
 
