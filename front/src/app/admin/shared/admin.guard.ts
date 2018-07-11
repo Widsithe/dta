@@ -6,14 +6,15 @@ import {
   Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../account/shared/auth.service';
+// import { AuthService } from '../../account/shared/auth.service';
 
 import { take ,  map ,  tap } from 'rxjs/operators';
+import { LoginAdminService } from '../loginadmin/login-admin.service';
 
 @Injectable()
-export class AdminGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
-
+export class AdminGuard {
+  constructor(private authService: LoginAdminService, private router: Router) {}
+/*
   public canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -27,5 +28,5 @@ export class AdminGuard implements CanActivate {
         }
       })
     );
-  }
+  }*/
 }

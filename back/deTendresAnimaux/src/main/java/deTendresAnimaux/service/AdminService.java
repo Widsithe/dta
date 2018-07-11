@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import deTendresAnimaux.bdd.Produit;
 import deTendresAnimaux.dao.ProduitDao;
+
+@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 
 @Component
 public class AdminService {

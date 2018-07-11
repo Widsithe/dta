@@ -1,0 +1,54 @@
+<div class="container padding-20 grey lighten-4">
+    <div class="jumbotron card-panel deep-purple darken-1 text-center">
+        <h3 class="white-text">Nouvel utilisateur</h3>
+    </div>
+    <form class="form col s12" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
+        <div class="row">
+            <div class="input-field col s6">
+                <mat-form-field class="input-field">
+                    <label data-error="Invalid email!" for="Email">Email</label>
+                    <input matInput class="validate" type="text" name="mail" #Email="ngModel" [(ngModel)]="user.mail" [pattern]="emailPattern">
+                </mat-form-field>
+            </div>
+            <div class="input-field col s6">
+                <mat-form-field class="input-field">
+                    <label [attr.data-error]="password.errors!=null?(password.errors.required?'Required field!':'Minimum 3 characters needed'):''">Mot de passe</label>
+                    <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required minlength="3">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <mat-form-field class="input-field">
+                    <label data-error="Required field!">Prénom</label>
+                    <input matInput class="validate" type="text" name="firstName" #firstName="ngModel" [(ngModel)]="user.firstName" required>
+                </mat-form-field>
+            </div>
+            <div class="input-field col s6">
+                <mat-form-field class="input-field">
+                    <label data-error="Required field!">Nom</label>
+                    <input matInput class="validate" type="text" name="lastName" #lastName="ngModel" [(ngModel)]="user.lastName" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <mat-form-field class="input-field">
+                    <label>Téléphone</label>
+                    <input matInput class="validate" type="text" name="phone" #phone="ngModel" [(ngModel)]="user.phone" required minlength="3" maxLength="10">
+                </mat-form-field>
+            </div>
+            <div class="input-field col s6">
+                <mat-form-field class="input-field">
+                    <label>Adresse</label>
+                    <input matInput class="validate" type="text" name="address" #address="ngModel" [(ngModel)]="user.address" required minlength="3">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="text-center margin-top-50">
+            <button mdcButton raised type="submit">Créer mon compte</button>
+        </div>
+    </form>
+</div>
+
+<p-growl [(value)]="msgs"></p-growl>

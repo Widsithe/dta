@@ -1,0 +1,17 @@
+.infoLabel{
+    font-size:1.2em;
+    font-weight:bold;
+}
+.container{
+    padding:1em 1em 0 1em;
+    color:white;
+    border-radius: 0.3em;
+    background-color: rgba(0, 0, 0, .5);
+}
+.but{
+    padding: 0.5em;    
+}
+
+button [label="Enregistrer mes informations"] {
+    margin-bottom:1em;
+}

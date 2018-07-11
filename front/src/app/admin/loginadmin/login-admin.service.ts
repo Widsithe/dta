@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpUserEvent } from '@angular/common/http';
-import { Admin } from './admin/admin';
+import { Admin } from '../admin';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class LoginAdminService {
     });
   }
 
-  logout(){
+  logout() {
     sessionStorage.removeItem('auth');
     this.authenticated = false;
   }

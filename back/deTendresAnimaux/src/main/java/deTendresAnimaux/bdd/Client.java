@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Client implements User {
+public class Client implements User1 {
 
 	@Id
 	@GeneratedValue

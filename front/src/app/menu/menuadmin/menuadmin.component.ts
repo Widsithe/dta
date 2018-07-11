@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import { LoginAdminService } from './../login-admin.service';
+import { LoginAdminService } from '../../admin/loginadmin/login-admin.service';
 
 @Component({
   selector: 'app-menuadmin',

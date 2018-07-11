@@ -23,6 +23,10 @@ public class Commande {
 	@ManyToOne
 	private Client client;
 	
+	
+	@ManyToOne
+	private User_ user;
+	
    
 	@OneToMany(mappedBy = "commande")
 	private List<Quantite> commande;

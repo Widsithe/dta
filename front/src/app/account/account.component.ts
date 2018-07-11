@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AuthService } from './shared/auth.service';
+// import { AuthService } from './shared/auth.service';
 import { Router } from '@angular/router';
 import { OrderService } from './orders/shared/order.service';
 
@@ -15,7 +15,7 @@ export class AccountComponent {
   public user: User;
 
   constructor(
-    private authService: AuthService,
+   // private authService: AuthService,
     public router: Router,
     public orderService: OrderService
   ) {}

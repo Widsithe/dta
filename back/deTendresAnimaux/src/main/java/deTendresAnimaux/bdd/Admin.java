@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Admin implements User {
+public class Admin implements User1 {
 	@Id
 	@GeneratedValue
 	private Integer idAdmin;

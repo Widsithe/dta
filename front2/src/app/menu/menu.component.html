@@ -1,0 +1,40 @@
+<nav class="blue-grey lighten-4" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" routerLink='/' class="brand-logo logomenu">
+            <figure>
+                <img src="../../assets//images/teddy-bear.png" alt="logo">
+            </figure>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li>
+                <a routerLink="/Products" class="text-black">Adopter</a>
+            </li>
+            <!-- 
+            <li>
+                <a (click)="goToProfile()">Profil</a>
+            </li>-->
+            <li>
+                <a (click)='logout()'>Connexion</a>
+            </li>
+            <li>
+                <button mat-raised-button class="blue text-white" (click)="goToCart()">Panier</button>
+            </li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li>
+                <a (click)="goToProfile()">Profil</a>
+            </li>
+            <li>
+                <p-menu #burgerMenu popup="popup" [model]="items"></p-menu>
+            </li>
+            <li>
+                <a (click)='logout()'>Déconnexion</a>
+            </li>
+            <li>
+                <button mat-raised-button color="primary" (click)="goToCart()">Panier</button>
+            </li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+</nav>

@@ -1,21 +1,19 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable ,  of ,  from as fromPromise } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Order } from '../../../models/order.model';
 
 import { MessageService } from '../../../messages/message.service';
-import { AuthService } from '../../shared/auth.service';
+// import { AuthService } from '../../shared/auth.service';
 
 @Injectable()
 export class OrderService {
   constructor(
     private messageService: MessageService,
-    private authService: AuthService,
-    private store: AngularFireDatabase
+    // private authService: AuthService,
   ) {}
-
+/*
   public getOrders() {
     return this.authService.user
       .pipe(
@@ -79,5 +77,5 @@ export class OrderService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
+  }*/
 }

@@ -1,83 +1,81 @@
 package deTendresAnimaux.security;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-import deTendresAnimaux.bdd.Admin;
-import deTendresAnimaux.bdd.Client;
-import deTendresAnimaux.bdd.Droit;
+import deTendresAnimaux.bdd.User_;
 import deTendresAnimaux.dao.AdminDao;
 import deTendresAnimaux.dao.ClientDao;
+import deTendresAnimaux.dao.UserDao;
 
+@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @Component
 public class AuthenticationService implements UserDetailsService {
 	@Autowired
 	private AdminDao adminDao;
-	
+
 	@Autowired
 	private ClientDao clientDao;
 
+	@Autowired
+	private UserDao userDao;
+
+	/*
+	 * @Override public UserDetails loadUserByUsername(final String identifiant)
+	 * throws UsernameNotFoundException { System.err .println(
+	 * "isderubvgiazebvrguizh "+ identifiant);
+	 * 
+	 * Admin admin = adminDao.findAdminName(identifiant); Set<Droit> droits =
+	 * new HashSet<>(); if(admin == null) {
+	 * 
+	 * Client client = clientDao.findClientByEmail(identifiant);
+	 * droits.add(client.getiddroit()); // rajout du droit client ou pas ?
+	 * System.err.println("id "+identifiant);
+	 * 
+	 * }else { droits.add(admin.getiddroit()); System.err.println(
+	 * "isderubvgiazebvrguizh on est le else"); }
+	 * 
+	 * Collection<GrantedAuthority> authorities = buildUserAuthority(droits);
+	 * System.err.println(authorities);
+	 * 
+	 * return buildUserForAuthentication(admin, authorities);
+	 * 
+	 * }
+	 */
+
 	@Override
-	public UserDetails loadUserByUsername(final String identifiant) throws UsernameNotFoundException {
-		System.err
-		.println("isderubvgiazebvrguizh "+ identifiant);
-		
-		Admin admin = adminDao.findAdminName(identifiant);
-		Set<Droit> droits = new HashSet<>();
-		if(admin == null) {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-				Client client = clientDao.findClientByEmail(identifiant);
-				droits.add(client.getiddroit()); // rajout du droit client ou pas ?
-				System.err.println("id "+identifiant);
-			
-		}else {
-			droits.add(admin.getiddroit());
-			System.err.println("isderubvgiazebvrguizh on est le else");
-		}
-		
-		Collection<GrantedAuthority> authorities = buildUserAuthority(droits);
-		System.err.println(authorities);
-		
-		return buildUserForAuthentication(admin, authorities);
-		/*
-		 * List<GrantedAuthority> rules = new ArrayList<>(); rules.add(new
-		 * SimpleGrantedAuthority("READ"));
-		 * 
-		 * 
-		 * if (username.equals("admin1234")) { rules.add(new
-		 * SimpleGrantedAuthority("WRITE")); }
-		 * 
-		 * Client monClient = userDao.findUserAccount(username); UserDetails
-		 * monClientDetails = new
-		 * org.springframework.security.core.userdetails.User(username,
-		 * monClient.getMotDePasse(), rules); return monClientDetails;
-		 */
-	}
+		User_ user = userDao.findByUserMail(email);
 
-	private User buildUserForAuthentication(deTendresAnimaux.bdd.User user, Collection<GrantedAuthority> authorities) {
-		System.err.println("method buildUserForAuthentication : " + authorities);
-		return new org.springframework.security.core.userdetails.User(user.getIdentifiant(), user.getMotDePasse(),
-				authorities);
-	}
-
-	private Collection<GrantedAuthority> buildUserAuthority(Set<Droit> droits) {
-		Set<GrantedAuthority> setAuths = new HashSet<>();
-
-		// Build user's authorities
-		for (Droit droit : droits) {
-			setAuths.add(new SimpleGrantedAuthority(droit.getNomDroit()));
+		if (user != null) {
+			List<GrantedAuthority> rules = user.getDroits();
+			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getMotDePasse(), rules);
 		}
 
-		return setAuths;
+		throw new UsernameNotFoundException("User not found");
 	}
+
+	/*
+	 * private User buildUserForAuthentication(deTendresAnimaux.bdd.User user,
+	 * Collection<GrantedAuthority> authorities) { System.err.println(
+	 * "method buildUserForAuthentication : " + authorities); return new
+	 * org.springframework.security.core.userdetails.User(user.getIdentifiant(),
+	 * user.getMotDePasse(), authorities); }
+	 * 
+	 * private Collection<GrantedAuthority> buildUserAuthority(Set<Droit>
+	 * droits) { Set<GrantedAuthority> setAuths = new HashSet<>();
+	 * 
+	 * // Build user's authorities for (Droit droit : droits) { setAuths.add(new
+	 * SimpleGrantedAuthority(droit.getNomDroit())); }
+	 * 
+	 * return setAuths; }
+	 */
 }
